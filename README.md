@@ -1,7 +1,7 @@
 # Amazon Captcha Solver
 Pure Python, non-OCR, lightweight, [Pillow](https://github.com/python-pillow/Pillow) based solver for the [Amazon text captcha](https://www.amazon.com/errors/validateCaptcha).
 
-![Accuracy](https://img.shields.io/badge/accuracy-87.9%25-success)
+![Accuracy](https://img.shields.io/badge/accuracy-88.3%25-success)
 ![Timing](https://img.shields.io/badge/execution%20time-0.4s-red)
 ![Size](https://img.shields.io/badge/package%20size-2%20MB-informational)
 ![Version](https://img.shields.io/pypi/v/amazoncaptcha?color=information)
