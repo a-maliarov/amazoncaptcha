@@ -3,7 +3,7 @@ Pure Python, non-OCR, lightweight, [Pillow](https://github.com/python-pillow/Pil
 
 ![Accuracy](https://img.shields.io/badge/accuracy-88.3%25-success)
 ![Timing](https://img.shields.io/badge/execution%20time-0.4s-success)
-![Size](https://img.shields.io/badge/package%20size-2%20MB-informational)
+![Wheel size](https://img.shields.io/badge/wheel%20size-800%20kB-informational)
 ![Version](https://img.shields.io/pypi/v/amazoncaptcha?color=informational)
 ![Python version](https://img.shields.io/pypi/pyversions/amazoncaptcha)
 
