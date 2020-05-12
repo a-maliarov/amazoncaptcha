@@ -5,7 +5,6 @@ Pure Python, non-OCR, lightweight, [Pillow](https://github.com/python-pillow/Pil
 ![Timing](https://img.shields.io/badge/execution%20time-0.4s-red)
 ![Size](https://img.shields.io/badge/package%20size-2%20MB-informational)
 ![Version](https://img.shields.io/pypi/v/amazoncaptcha?color=information)
-<!-- ![Downloads](https://img.shields.io/pypi/dm/amazoncaptcha?color=information) -->
 ![Python version](https://img.shields.io/pypi/pyversions/amazoncaptcha)
 
 ## Installation
