@@ -34,3 +34,6 @@ solution = AmazonCaptcha('captcha.jpg').solve()
   2. Reached 90%+ accuracy.
 + **Version 0.0.11**:
   1. Fixed error with captcha images that were taken from BytesIO.
++ **Version 0.0.12**:
+  1. Code adjustments and improvements. 
+  2. Program can now solve images where last [letter is corrupted](https://github.com/a-maliarov/amazon-captcha-solver/blob/master/errors/solved/corrupted-image-recognition.png).
