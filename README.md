@@ -6,7 +6,7 @@ Pure Python, non-OCR, lightweight, [Pillow](https://github.com/python-pillow/Pil
 ![Size](https://img.shields.io/badge/size-2%20MB-informational)
 ![Version](https://img.shields.io/pypi/v/amazoncaptcha?color=informational)
 ![Python version](https://img.shields.io/pypi/pyversions/amazoncaptcha)
-![Downloads](https://img.shields.io/pypi/dm/amazoncaptcha?color=9cf)
+![Downloads](https://img.shields.io/pypi/dm/amazoncaptcha?color=success)
 
 ## Installation
 ```bash
