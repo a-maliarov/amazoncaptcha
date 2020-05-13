@@ -23,3 +23,7 @@ solution = AmazonCaptcha('captcha.jpg').solve()
 ## For whom?
 + **Data extraction** and **web scraping** specialists could use this tool, obviously, to bypass the Amazon captcha.
 + **Machine learning** developers could use *captchas* folder (currently contains **10000 solved captchas**) based on a demand.
+
+## Happy Captcha Solving!
+
+![Gif](https://github.com/a-maliarov/amazon-captcha-solver/blob/master/captchas.gif)
