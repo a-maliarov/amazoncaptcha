@@ -3,9 +3,10 @@ Pure Python, non-OCR, lightweight, [Pillow](https://github.com/python-pillow/Pil
 
 ![Accuracy](https://img.shields.io/badge/accuracy-88.3%25-success)
 ![Timing](https://img.shields.io/badge/execution%20time-0.4s-success)
-![Wheel size](https://img.shields.io/badge/wheel%20size-800%20kB-informational)
+![Size](https://img.shields.io/badge/size-2%20MB-informational)
 ![Version](https://img.shields.io/pypi/v/amazoncaptcha?color=informational)
 ![Python version](https://img.shields.io/pypi/pyversions/amazoncaptcha)
+![Downloads](https://img.shields.io/pypi/dm/amazoncaptcha?color=9cf)
 
 ## Installation
 ```bash
@@ -19,6 +20,6 @@ from amazoncaptcha import AmazonCaptcha
 solution = AmazonCaptcha('captcha.jpg').solve()
 ```
 
-## For who?
+## For whom?
 + **Data extraction** and **web scraping** specialists could use this tool, obviously, to bypass the Amazon captcha.
-+ **Machine learning** developers could use *captchas* folder (currently contains **6000 solved captchas**) based on a demand.
++ **Machine learning** developers could use *captchas* folder (currently contains **10000 solved captchas**) based on a demand.
