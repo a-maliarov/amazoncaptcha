@@ -32,3 +32,5 @@ solution = AmazonCaptcha('captcha.jpg').solve()
 + **Version 0.0.10**:
   1. Reached 10000 training samples.
   2. Reached 90%+ accuracy.
++ **Version 0.0.11**:
+  1. Fixed error with captcha images that were taken from BytesIO.
