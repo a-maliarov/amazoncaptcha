@@ -27,3 +27,8 @@ solution = AmazonCaptcha('captcha.jpg').solve()
 ## Happy Captcha Solving!
 
 ![Gif](https://github.com/a-maliarov/amazon-captcha-solver/blob/master/captchas.gif)
+
+## Logs
++ **Version 0.0.10**:
+  1. Reached 10000 training samples.
+  2. Reached 90%+ accuracy.
