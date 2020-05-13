@@ -44,7 +44,7 @@ class AmazonCaptcha(object):
                          'raw_dict' = the same as 'dict', but it will be returned even if a captcha wasn't solved.
         """
 
-        self.img = Image.open(img, 'r')
+        self.img = Image.open(img, 'r').convert('L') # 0.0.11 Added ".convert('L')" to prevent Error if image was stored from BytesIO
         self.size = self.img.size
         self.monoweight = monoweight
         self.onreturn = onreturn
