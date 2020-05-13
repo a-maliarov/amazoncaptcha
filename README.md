@@ -24,6 +24,10 @@ solution = AmazonCaptcha('captcha.jpg').solve()
 + **Data extraction** and **web scraping** specialists could use this tool, obviously, to bypass the Amazon captcha.
 + **Machine learning** developers could use *captchas* folder (currently contains **10000 solved captchas**) based on a demand.
 
+## Contribution
++ If you checked the code and you know the way or have any ideas, how to make it better, feel free to fork-n-pull or contact me. Thank you!
++ If you want to help with current problems, please check this [file](https://github.com/a-maliarov/amazon-captcha-solver/blob/master/errors/HELPME.md).
+
 ## Happy Captcha Solving!
 
 ![Gif](https://github.com/a-maliarov/amazon-captcha-solver/blob/master/captchas.gif)
@@ -38,7 +42,5 @@ solution = AmazonCaptcha('captcha.jpg').solve()
   1. Code adjustments and improvements. 
   2. Program can now solve images where last [letter is corrupted](https://github.com/a-maliarov/amazon-captcha-solver/blob/master/errors/solved/corrupted-image-recognition.png).
   
-## Contribution
-+ If you checked the code and you know the way or have any ideas, how to make it better, feel free to fork-n-pull or contact me. Thank you!
-+ If you want to help with current problems, please check this [file](https://github.com/a-maliarov/amazon-captcha-solver/blob/master/errors/HELPME.md).
+
 
