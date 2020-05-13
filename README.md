@@ -37,3 +37,8 @@ solution = AmazonCaptcha('captcha.jpg').solve()
 + **Version 0.0.12**:
   1. Code adjustments and improvements. 
   2. Program can now solve images where last [letter is corrupted](https://github.com/a-maliarov/amazon-captcha-solver/blob/master/errors/solved/corrupted-image-recognition.png).
+  
+## Contribution
++ If you checked the code and you know the way or have any ideas, how to make it better, feel free to fork-n-pull or contact me. Thank you!
++ If you want to help with current problems, please check this [file](https://github.com/a-maliarov/amazon-captcha-solver/blob/master/errors/HELPME.md).
+
