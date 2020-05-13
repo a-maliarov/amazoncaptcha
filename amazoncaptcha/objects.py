@@ -25,6 +25,23 @@ def cut_the_white(letter):
     bbox = diff.getbbox()
     return letter.crop(bbox)
 
+def merge_horizontally(img1, img2):
+    """
+    Merges two letters horizontally.
+
+    Created in case image is corrupted and last letter ends at the beginning,
+    causing letter to be unreadable.
+
+    :param img1: A PIL.Image instance of first letter.
+    :param img2: A PIL.Image instance of second letter.
+    :returns: A PIL.Image instance of two merged letters.
+    """
+
+    merged = Image.new('L', (img1.width + img2.width, img1.height))
+    merged.paste(img1, (0, 0))
+    merged.paste(img2, (img1.width, 0))
+    return merged
+
 #-----------------------------------------------------------------------------------------------------------------------------------------------------------
 
 class AmazonCaptcha(object):
@@ -52,6 +69,7 @@ class AmazonCaptcha(object):
         self.result = dict()
         # Creates abspath to 'data' folder, which contains training data for solving captchas.
         self.data_folder = os.path.abspath(os.path.dirname(os.path.abspath(__file__))) + os.sep + 'data' + os.sep
+        self.alphabet = [i.split('.')[0] for i in os.listdir(self.data_folder)]
 
     def monochrome(self):
         """
@@ -100,13 +118,27 @@ class AmazonCaptcha(object):
 
             inletter = False
 
-        if len(letter_boxes) != 6:
-            return None
-
-        for place, letter_box in zip(range(1, 7), letter_boxes):
+        letters = list()
+        for letter_box in letter_boxes:
             letter = self.img.crop((letter_box[0], 0, letter_box[1], self.size[1]))
-            letter = cut_the_white(letter)
+            letters.append(letter)
 
+        if len(letters) == 6:
+            for letter in letters:
+                if letter.width < 7:
+                    return 'Error'
+
+            letters = [cut_the_white(letter) for letter in letters]
+
+        elif len(letters) == 7:
+            letters[6] = merge_horizontally(letters[6], letters[0])
+            del letters[0]
+            letters = [cut_the_white(letter) for letter in letters]
+
+        else:
+            return 'Error'
+
+        for place, letter in zip(range(1, 7), letters):
             # Gets letter's color data.
             letter_data = list(letter.getdata())
             # Makes a string, where '1' represents a black pixel and '0' represents a white one.
@@ -128,15 +160,11 @@ class AmazonCaptcha(object):
         :errors:ref:method:'find_letters': Check for more info.
         """
 
-        alpha = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
         for place, pseudo_binary in self.letters.items():
-            for letter in alpha:
-                try:
-                    with open(self.data_folder + letter + '.json', 'r', encoding = 'utf-8') as js:
-                        data = json.loads(js.read())
+            for letter in self.alphabet:
 
-                except:
-                    continue
+                with open(self.data_folder + letter + '.json', 'r', encoding = 'utf-8') as js:
+                    data = json.loads(js.read())
 
                 if pseudo_binary in data:
                     self.result[place] = letter
@@ -149,7 +177,7 @@ class AmazonCaptcha(object):
         if self.onreturn == 'raw_dict':
             pass
         # If there is no result at all, it means that :method:'find_letters': wasn't able to proceed.
-        elif not list(self.result.values()):
+        elif not self.result:
             self.result = 'Error'
         # If there are some blanks AND solved letters, there is no error, but a captcha wasn't solved.
         elif '' in self.result.values():
