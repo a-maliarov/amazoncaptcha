@@ -20,7 +20,7 @@ from amazoncaptcha import AmazonCaptcha
 solution = AmazonCaptcha('captcha.jpg').solve()
 ```
 
-## For whom?
+## For Whom?
 + **Data extraction** and **web scraping** specialists could use this tool, obviously, to bypass the Amazon captcha.
 + **Machine learning** developers could use *captchas* folder (currently contains **10000 solved captchas**) based on a demand.
 
@@ -40,7 +40,7 @@ solution = AmazonCaptcha('captcha.jpg').solve()
   1. Fixed error with captcha images that were taken from BytesIO.
 + **Version 0.0.12**:
   1. Code adjustments and improvements. 
-  2. Program can now solve images where last [letter is corrupted](https://github.com/a-maliarov/amazon-captcha-solver/blob/master/errors/solved/corrupted-image-recognition.png).
+  2. Program can now solve images where [last letter is corrupted](https://github.com/a-maliarov/amazon-captcha-solver/blob/master/errors/solved/corrupted-image-recognition.png).
   
 
 
