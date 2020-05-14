@@ -2,7 +2,7 @@
 Pure Python, non-OCR, lightweight, [Pillow](https://github.com/python-pillow/Pillow)-based solver for the [Amazon image captcha](https://www.amazon.com/errors/validateCaptcha).
 
 ![Accuracy](https://img.shields.io/badge/accuracy-94.7%25-success)
-![Timing](https://img.shields.io/badge/execution%20time-0.4s-success)
+![Timing](https://img.shields.io/badge/execution%20time-0.213s-success)
 ![Size](https://img.shields.io/badge/wheel%20size-1%20MB-informational)
 ![Version](https://img.shields.io/pypi/v/amazoncaptcha?color=informational)
 ![Python version](https://img.shields.io/pypi/pyversions/amazoncaptcha)
