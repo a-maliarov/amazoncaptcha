@@ -28,7 +28,7 @@ from selenium import webdriver
 driver = webdriver.Chrome()
 driver.get('https://www.amazon.com/errors/validateCaptcha')
 
-captcha = AmazonCaptcha.from_webdriver(driver) # Just make sure zoom level is standard
+captcha = AmazonCaptcha.from_webdriver(driver)
 solution = captcha.solve()
 ```
 
