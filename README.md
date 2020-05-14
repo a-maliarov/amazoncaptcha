@@ -55,3 +55,5 @@ solution = captcha.solve()
   2. Program can now solve images where [last letter is corrupted](https://github.com/a-maliarov/amazon-captcha-solver/blob/master/errors/solved/corrupted-image-recognition.png).
 + **Version 0.0.13**:
   1. Added and tested 'from_webdriver' classmethod.
++ **Version 0.1.0**:
+  1. 100,000 captchas crash test, accuracy is 98.5%.
