@@ -70,3 +70,6 @@ solution = captcha.solve()
 + **Version 0.1.1**:
   1. Code adjustments and improvements.
   2. Added tests.
++ **Version 0.1.3**:
+  1. Code adjustments and improvements.
+  2. Added vulnerabilities tests.
