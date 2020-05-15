@@ -9,4 +9,4 @@ install:
   - pip install amazoncaptcha
 
 script:
-  - python3 tests/test_main.py
+  - python tests/test_main.py
