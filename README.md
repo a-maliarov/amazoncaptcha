@@ -17,7 +17,10 @@ pip install amazoncaptcha
 ```python
 from amazoncaptcha import AmazonCaptcha
 
-solution = AmazonCaptcha('captcha.jpg').solve()
+captcha = AmazonCaptcha('captcha.jpg')
+solution = captcha.solve()
+
+# Or: solution = AmazonCaptcha('captcha.jpg').solve()
 ```
 
 ## Status
