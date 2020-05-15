@@ -1,8 +1,11 @@
 #-----------------------------------------------------------------------------------------------------------------------------------------------------------
 # Modules
-from PIL import Image, ImageChops
+from PIL import Image
+from PIL import ImageChops
 from io import BytesIO
-import os, json, zlib
+import os
+import json
+import zlib
 
 #-----------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -60,7 +63,6 @@ class AmazonCaptcha(object):
         """
 
         self.img = Image.open(img, 'r')
-        self.size = self.img.size
         self.monoweight = monoweight
         self.onreturn = onreturn
         self.letters = dict()
@@ -90,56 +92,56 @@ class AmazonCaptcha(object):
         """
         Finds and separates letters from a captcha image.
 
-        Populates 'self.letters' with an extracted letters.
+        Vertically iterates an image, column example is [255, 255, 255, 0, 0, 255, ...].
+        If '0' (black) is present, then current column is a part of a letter.
 
-        :errors: If the number of extracted letters isn't 6, final result is 'Error'.
+        Populates 'self.letters' with extracted letters.
         """
 
-        inletter = False
-        foundletter = False
+        in_letter = False
+        found_letter = False
         start = 0
         end = 0
 
         letter_boxes = list()
-        for x in range(self.size[0]):
-            column = [self.img.getpixel((x, y)) for y in range(self.size[1])]
+        for x in range(self.img.width):
+            column = [self.img.getpixel((x, y)) for y in range(self.img.height)]
 
             if 0 in column:
-                inletter = True
+                in_letter = True
 
-            if foundletter == False and inletter == True:
-                foundletter = True
+            if not found_letter and in_letter:
+                found_letter = True
                 start = x
 
-            if foundletter == True and (inletter == False or x == self.size[0] - 1):
-                foundletter = False
+            if found_letter and (not in_letter or x == self.img.width - 1):
+                found_letter = False
                 end = x
 
                 letter_boxes.append((start, end))
 
-            inletter = False
+            in_letter = False
 
-        letters = list()
-        for letter_box in letter_boxes:
-            letter = self.img.crop((letter_box[0], 0, letter_box[1], self.size[1]))
-            letters.append(letter)
+        letters = [self.img.crop((letter_box[0], 0, letter_box[1], self.img.height)) for letter_box in letter_boxes]
 
-        if len(letters) == 6:
-            for letter in letters:
-                if letter.width < 7:
-                    return 'Error'
-
-            letters = [cut_the_white(letter) for letter in letters]
-
-        elif len(letters) == 7:
-            letters[6] = merge_horizontally(letters[6], letters[0])
-            del letters[0]
-            letters = [cut_the_white(letter) for letter in letters]
-
-        else:
+        if (len(letters) == 6 and letters[0].width < 7) or (len(letters) != 6 and len(letters) != 7):
             return 'Error'
 
-        for place, letter in zip(range(1, 7), letters):
+        if len(letters) == 7:
+            letters[6] = merge_horizontally(letters[6], letters[0])
+            del letters[0]
+
+        letters = [cut_the_white(letter) for letter in letters]
+        self.letters = {str(k): v for k, v in zip(range(1, 7), letters)}
+
+    def save_letters(self):
+        """
+        Transforms separated letters into pseudo binary.
+
+        Populates 'self.letters' with pseudo binaries.
+        """
+
+        for place, letter in self.letters.items():
 
             # Gets letter's color data.
             letter_data = list(letter.getdata())
@@ -152,7 +154,7 @@ class AmazonCaptcha(object):
             pseudo_binary = str(zlib.compress(letter_data_string.encode('utf-8')))
 
             # Adds pseudo binary strings to according places (i.e. 1, 2, 3...).
-            self.letters[str(place)] = pseudo_binary
+            self.letters[place] = pseudo_binary
 
     def translate(self):
         """
@@ -210,6 +212,7 @@ class AmazonCaptcha(object):
 
         self.monochrome()
         self.find_letters()
+        self.save_letters()
         self.translate()
         return self.result
 
