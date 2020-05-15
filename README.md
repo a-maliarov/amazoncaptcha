@@ -20,6 +20,9 @@ from amazoncaptcha import AmazonCaptcha
 solution = AmazonCaptcha('captcha.jpg').solve()
 ```
 
+## Status
+![CodeFactor](https://img.shields.io/codefactor/grade/github/a-maliarov/amazon-captcha-solver/master)
+
 ## Popular Usage
 ```python
 from amazoncaptcha import AmazonCaptcha
