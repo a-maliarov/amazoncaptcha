@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="amazoncaptcha",
-    version="0.1.0",
+    version="0.1.1",
     description="Solving captchas never ends...",
     packages=['amazoncaptcha'],
     py_modules=['objects'],
@@ -15,9 +15,9 @@ setuptools.setup(
         'amazoncaptcha': ['data/*.*'],
     },
     classifiers=[
-        "Programming Language :: Python :: 3.5",
         "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.8",
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
@@ -28,5 +28,5 @@ setuptools.setup(
     ],
     author="Anatolii Maliarov",
     author_email="tly.mov@gmail.com",
-    url="https://github.com/a-maliarov/Amazon-Captcha-Solver",
+    url="https://github.com/a-maliarov/amazon-captcha-solver",
 )
