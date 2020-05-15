@@ -13,7 +13,7 @@ class TestAmazonCaptcha(unittest.TestCase):
             captcha = AmazonCaptcha(self.current_location + 'captchas' + os.sep + file)
             solutions.append(captcha.solve())
 
-        self.assertEqual(solutions, ['KRJNBY', 'UGXGMM'])
+        self.assertEqual(solutions, ['UGXGMM', 'KRJNBY'])
 
 if __name__ == '__main__':
     unittest.main()
