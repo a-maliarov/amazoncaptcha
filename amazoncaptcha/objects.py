@@ -46,6 +46,43 @@ def merge_horizontally(img1, img2):
     merged.paste(img2, (img1.width, 0))
     return merged
 
+def find_letter_boxes(img):
+    """
+    Finds and separates letters from a captcha image.
+
+    Vertically iterates an image. Column example is [255, 255, 255, 0, 0, 255, ...].
+    If '0' (black) is present, then current column is a part of a letter.
+
+    :param img: A PIL.Image instance of a monochrome captcha.
+    :returns: A list with X coordinates of letters (letter boxes).
+    """
+
+    in_letter = False
+    found_letter = False
+    start = 0
+    end = 0
+
+    letter_boxes = list()
+    for x in range(img.width):
+        column = [img.getpixel((x, y)) for y in range(img.height)]
+
+        if 0 in column:
+            in_letter = True
+
+        if not found_letter and in_letter:
+            found_letter = True
+            start = x
+
+        if found_letter and (not in_letter or x == img.width - 1):
+            found_letter = False
+            end = x
+
+            letter_boxes.append((start, end))
+
+        in_letter = False
+
+    return letter_boxes
+
 #-----------------------------------------------------------------------------------------------------------------------------------------------------------
 
 class AmazonCaptcha(object):
@@ -84,44 +121,17 @@ class AmazonCaptcha(object):
         *All the numbers stay for color codes.
         """
 
-        # 0.0.11 Added ".convert('L')" to prevent Error if image was stored from BytesIO
         self.img = self.img.convert('L')
         self.img = Image.eval(self.img, lambda a: 0 if a <= self.monoweight else 255)
 
     def find_letters(self):
         """
-        Finds and separates letters from a captcha image.
-
-        Vertically iterates an image, column example is [255, 255, 255, 0, 0, 255, ...].
-        If '0' (black) is present, then current column is a part of a letter.
+        Extracts letters from an image using letter boxes.
 
         Populates 'self.letters' with extracted letters.
         """
 
-        in_letter = False
-        found_letter = False
-        start = 0
-        end = 0
-
-        letter_boxes = list()
-        for x in range(self.img.width):
-            column = [self.img.getpixel((x, y)) for y in range(self.img.height)]
-
-            if 0 in column:
-                in_letter = True
-
-            if not found_letter and in_letter:
-                found_letter = True
-                start = x
-
-            if found_letter and (not in_letter or x == self.img.width - 1):
-                found_letter = False
-                end = x
-
-                letter_boxes.append((start, end))
-
-            in_letter = False
-
+        letter_boxes = find_letter_boxes(self.img)
         letters = [self.img.crop((letter_box[0], 0, letter_box[1], self.img.height)) for letter_box in letter_boxes]
 
         if (len(letters) == 6 and letters[0].width < 7) or (len(letters) != 6 and len(letters) != 7):
