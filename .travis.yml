@@ -1,0 +1,12 @@
+language: python
+python:
+  - "3.5"
+  - "3.6"
+  - "3.7"
+  - "3.8"
+
+install:
+  - pip install amazoncaptcha
+
+script:
+  - python3 tests/test_main.py
