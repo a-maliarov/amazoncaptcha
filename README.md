@@ -21,7 +21,8 @@ solution = AmazonCaptcha('captcha.jpg').solve()
 ```
 
 ## Status
-![CodeFactor](https://img.shields.io/codefactor/grade/github/a-maliarov/amazon-captcha-solver/master)
+[![CodeFactor Grade](https://img.shields.io/codefactor/grade/github/a-maliarov/amazon-captcha-solver/master)](https://www.codefactor.io/repository/github/a-maliarov/amazon-captcha-solver/overview/master)
+[![Build Status](https://travis-ci.com/a-maliarov/amazon-captcha-solver.svg?branch=master)](https://travis-ci.com/a-maliarov/amazon-captcha-solver)
 
 ## Popular Usage
 ```python
