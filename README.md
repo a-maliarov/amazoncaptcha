@@ -4,9 +4,9 @@ Pure Python, non-OCR, lightweight, [Pillow](https://github.com/python-pillow/Pil
 ![Accuracy](https://img.shields.io/badge/accuracy-98.5%25-success)
 ![Timing](https://img.shields.io/badge/execution%20time-0.22s-success)
 ![Size](https://img.shields.io/badge/wheel%20size-1%20MB-informational)
-![Version](https://img.shields.io/pypi/v/amazoncaptcha?color=informational)
-![Python version](https://img.shields.io/pypi/pyversions/amazoncaptcha)
-![Downloads](https://img.shields.io/pypi/dm/amazoncaptcha?color=success)
+[![Version](https://img.shields.io/pypi/v/amazoncaptcha?color=informational)](https://pypi.org/project/amazoncaptcha/)
+[![Python version](https://img.shields.io/pypi/pyversions/amazoncaptcha)](https://pypi.org/project/amazoncaptcha/)
+[![Downloads](https://img.shields.io/pypi/dm/amazoncaptcha?color=success)](https://pypi.org/project/amazoncaptcha/)
 
 ## Installation
 ```bash
@@ -21,8 +21,8 @@ solution = AmazonCaptcha('captcha.jpg').solve()
 ```
 
 ## Status
-[![CodeFactor Grade](https://img.shields.io/codefactor/grade/github/a-maliarov/amazon-captcha-solver/master)](https://www.codefactor.io/repository/github/a-maliarov/amazon-captcha-solver/overview/master)
 [![Build Status](https://travis-ci.com/a-maliarov/amazon-captcha-solver.svg?branch=master)](https://travis-ci.com/a-maliarov/amazon-captcha-solver)
+[![CodeFactor Grade](https://img.shields.io/codefactor/grade/github/a-maliarov/amazon-captcha-solver/master)](https://www.codefactor.io/repository/github/a-maliarov/amazon-captcha-solver/overview/master)
 
 ## Popular Usage
 ```python
