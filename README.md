@@ -1,5 +1,5 @@
 # Amazon Captcha Solver
-Pure Python (3.6+), lightweight, [Pillow](https://github.com/python-pillow/Pillow)-based solver for the [Amazon text captcha](https://www.amazon.com/errors/validateCaptcha).
+Pure Python (3.6+), lightweight, [Pillow](https://github.com/python-pillow/Pillow)-based solver for the [Amazon's text captcha](https://www.amazon.com/errors/validateCaptcha).
 
 [![Accuracy](https://img.shields.io/badge/accuracy-98.5%25-success)](https://github.com/a-maliarov/amazon-captcha-solver/blob/master/accuracy.log)
 ![Timing](https://img.shields.io/badge/execution%20time-0.22s-success)
@@ -47,9 +47,10 @@ solution = captcha.solve()
 + **Data extraction** and **web scraping** specialists could use this tool, obviously, to bypass the Amazon captcha.
 + **Machine learning** developers could use [captchas](https://github.com/a-maliarov/amazon-captcha-solver/tree/master/captchas) folder (currently contains **15000 solved captchas**) based on a demand.
 
-## Contribution
-+ If you checked the code and you know the way or have any ideas, how to make it better, feel free to fork-n-pull or contact me. Thank you!
-+ If you want to help with current problems, please check this [file](https://github.com/a-maliarov/amazon-captcha-solver/blob/master/errors/HELPME.md).
+## Issues
++ If you constantly receive 'Error' output, feel free to create an issue and describe details.
++ If you received an output, different from solution itself, 'Error' or 'Not solved', please, create an issue or contact me.
++ If you've somehow met an Exception, which you don't understand - you know what to do :)
 
 ## Happy Captcha Solving!
 
@@ -74,3 +75,6 @@ solution = captcha.solve()
 + **Version 0.1.3**:
   1. Code adjustments and improvements.
   2. Added vulnerabilities tests.
++ **Version 0.1.4**:
+  1. Code adjustments and improvements.
+  2. Added more tests.
