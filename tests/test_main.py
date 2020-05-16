@@ -1,4 +1,5 @@
 from amazoncaptcha import AmazonCaptcha
+from maliarov import webdriver
 import unittest
 
 class TestAmazonCaptcha(unittest.TestCase):
@@ -30,6 +31,23 @@ class TestAmazonCaptcha(unittest.TestCase):
     def test_output_raw_dict(self):
         solution = AmazonCaptcha('tests/captchas/notcorrupted.jpg', onreturn = 'raw_dict').solve()
         self.assertEqual(solution, {'1': 'K', '2': 'R', '3': 'J', '4': 'N', '5': 'B', '6': 'Y'})
+
+    def test_from_webdriver(self):
+        capabilities = webdriver.ChromeCapabilities()
+        capabilities.add_argument('--headless')
+        capabilities.add_argument('--no-sandbox')
+        driver = webdriver.ChromeDriver('tests/chromedriver.exe', desired_capabilities = capabilities.desired)
+
+        solutions = list()
+        for i in range(5):
+            driver.get('https://www.amazon.com/errors/validateCaptcha')
+
+            captcha = AmazonCaptcha.from_webdriver(driver)
+            solutions.append(len(captcha.solve()))
+
+        driver.quit()
+
+        self.assertIn(6, solutions)
 
 if __name__ == '__main__':
     unittest.main()
