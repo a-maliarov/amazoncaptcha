@@ -1,4 +1,11 @@
 language: python
+
+services:
+  - xvfb
+
+addons:
+  chrome: stable
+
 python:
   - "3.6"
   - "3.7"
@@ -8,6 +15,7 @@ install:
   - pip install amazoncaptcha
 
 before_script:
+  - pip install maliarov
   - pip install coverage
   - pip install codecov
 
