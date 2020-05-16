@@ -7,5 +7,9 @@ python:
 install:
   - pip install amazoncaptcha
 
+before_script:
+  - pip install coverage
+
 script:
   - python tests/test_main.py
+  - coverage run tests/test_main.py
