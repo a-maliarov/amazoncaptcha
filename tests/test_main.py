@@ -1,19 +1,35 @@
 from amazoncaptcha import AmazonCaptcha
 import unittest
-import os
 
 class TestAmazonCaptcha(unittest.TestCase):
 
-    current_location = os.path.abspath(os.path.dirname(os.path.abspath(__file__))) + os.sep
+    def test_notcorrupted(self):
+        solution = AmazonCaptcha('captchas/notcorrupted.jpg').solve()
+        self.assertEqual(solution, 'KRJNBY')
 
-    def test_solve(self):
-        solutions = list()
+    def test_corrupted(self):
+        solution = AmazonCaptcha('captchas/corrupted.png').solve()
+        self.assertEqual(solution, 'UGXGMM')
 
-        for file in os.listdir(self.current_location + 'captchas' + os.sep):
-            captcha = AmazonCaptcha(self.current_location + 'captchas' + os.sep + file)
-            solutions.append(captcha.solve())
+    def test_error(self):
+        solution = AmazonCaptcha('captchas/error.png').solve()
+        self.assertEqual(solution, 'Error')
 
-        self.assertEqual(solutions, ['UGXGMM', 'KRJNBY'])
+    def test_error_1(self):
+        solution = AmazonCaptcha('captchas/error_1.png').solve()
+        self.assertEqual(solution, 'Error')
+
+    def test_notsolved(self):
+        solution = AmazonCaptcha('captchas/notsolved.jpg').solve()
+        self.assertEqual(solution, 'Not solved')
+
+    def test_output_dict(self):
+        solution = AmazonCaptcha('captchas/notcorrupted.jpg', onreturn = 'dict').solve()
+        self.assertEqual(solution, {'1': 'K', '2': 'R', '3': 'J', '4': 'N', '5': 'B', '6': 'Y'})
+
+    def test_output_raw_dict(self):
+        solution = AmazonCaptcha('captchas/notcorrupted.jpg', onreturn = 'raw_dict').solve()
+        self.assertEqual(solution, {'1': 'K', '2': 'R', '3': 'J', '4': 'N', '5': 'B', '6': 'Y'})
 
 if __name__ == '__main__':
     unittest.main()
