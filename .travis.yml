@@ -13,25 +13,22 @@ python:
   - "3.8"
 
 install:
+  - pip install amazoncaptcha
+
+before_script:
   - wget -N https://chromedriver.storage.googleapis.com/83.0.4103.39/chromedriver_linux64.zip -P ~/
   - unzip ~/chromedriver_linux64.zip -d ~/
   - rm ~/chromedriver_linux64.zip
   - sudo mv -f ~/chromedriver /usr/local/share/
   - sudo chmod +x /usr/local/share/chromedriver
   - sudo ln -s /usr/local/share/chromedriver /usr/local/bin/chromedriver
-  - pip install amazoncaptcha
-
-before_script:
+  - whereis chromedriver
   - pip install maliarov
   - pip install coverage
   - pip install codecov
 
 script:
-  - whereis google-chrome-stable
-  - whereis chromedriver
+  - coverage run tests/test_main.py
 
-# script:
-#   - coverage run tests/test_main.py
-#
-# after_success:
-#   - codecov
+after_success:
+  - codecov
