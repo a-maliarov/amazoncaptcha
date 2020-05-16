@@ -9,7 +9,10 @@ install:
 
 before_script:
   - pip install coverage
+  - pip install codecov
 
 script:
-  - python tests/test_main.py
   - coverage run tests/test_main.py
+
+after_success:
+  - codecov
