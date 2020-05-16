@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="amazoncaptcha",
-    version="0.1.3",
+    version="0.1.4",
     description="Solving captchas never ends...",
     packages=['amazoncaptcha'],
     py_modules=['objects'],
