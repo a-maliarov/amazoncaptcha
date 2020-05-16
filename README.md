@@ -26,7 +26,7 @@ solution = captcha.solve()
 ## Status
 [![Status](https://img.shields.io/pypi/status/amazoncaptcha)](https://pypi.org/project/amazoncaptcha/)
 [![Build Status](https://travis-ci.com/a-maliarov/amazon-captcha-solver.svg?branch=master)](https://travis-ci.com/a-maliarov/amazon-captcha-solver)
-[![codecov](https://codecov.io/gh/a-maliarov/amazon-captcha-solver/branch/master/graph/badge.svg)](https://codecov.io/gh/a-maliarov/amazon-captcha-solver)
+[![codecov](https://img.shields.io/codecov/c/gh/a-maliarov/amazon-captcha-solver)](https://codecov.io/gh/a-maliarov/amazon-captcha-solver)
 [![Requirements Status](https://requires.io/github/a-maliarov/amazon-captcha-solver/requirements.svg?branch=master)](https://requires.io/github/a-maliarov/amazon-captcha-solver/requirements/?branch=master)
 [![Known Vulnerabilities](https://img.shields.io/badge/vulnerabilities-0-success)](https://snyk.io/test/github/a-maliarov/amazon-captcha-solver?targetFile=requirements.txt)
 [![CodeFactor Grade](https://img.shields.io/codefactor/grade/github/a-maliarov/amazon-captcha-solver/master)](https://www.codefactor.io/repository/github/a-maliarov/amazon-captcha-solver/overview/master)
