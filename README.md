@@ -3,8 +3,8 @@ Pure Python, lightweight, [Pillow](https://github.com/python-pillow/Pillow)-base
 
 Motivation behind creation of this library is taking its start from the genuinely simple concept: "***I don't want to use pytesseract or some other non-amazon-specific OCR services, neither do I want to install some executables to just solve a captcha. My desire is to get a solution within 1-2 lines of code without any heavy add-ons. Using a pure Python.***"
 
-[![Accuracy](https://img.shields.io/badge/accuracy-98.5%25-success)](https://github.com/a-maliarov/amazon-captcha-solver/blob/master/accuracy.log)
-![Timing](https://img.shields.io/badge/execution%20time-0.22s-success)
+[![Accuracy](https://img.shields.io/badge/accuracy-99.1%25-success)](https://github.com/a-maliarov/amazon-captcha-solver/blob/master/accuracy.log)
+![Timing](https://img.shields.io/badge/execution%20time-0.28s-success)
 ![Size](https://img.shields.io/badge/wheel%20size-1%20MB-informational)
 [![Version](https://img.shields.io/pypi/v/amazoncaptcha?color=informational)](https://pypi.org/project/amazoncaptcha/)
 [![Python version](https://img.shields.io/pypi/pyversions/amazoncaptcha)](https://pypi.org/project/amazoncaptcha/)
@@ -66,7 +66,7 @@ solution = captcha.solve()
   1. Fixed error with captcha images that were taken from BytesIO.
 + **Version 0.0.12**:
   1. Code adjustments and improvements.
-  2. Program can now solve images where [last letter is corrupted](https://github.com/a-maliarov/amazon-captcha-solver/blob/master/errors/solved/corrupted-image-recognition.png).
+  2. Program can now solve images where last letter is corrupted.
 + **Version 0.0.13**:
   1. Added and tested 'from_webdriver' classmethod.
 + **Version 0.1.0**:
@@ -74,3 +74,7 @@ solution = captcha.solve()
 + **Version 0.1.1 - 0.1.5**:
   1. Code adjustments and improvements.
   2. Added tests.
++ **Version 0.2.0**:
+  1. Second crash test through 120k+ captchas.
+  2. Accuracy increased to 99.1%
+  3. Code coverage is 100%
