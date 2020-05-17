@@ -8,7 +8,7 @@ Pure Python, lightweight, [Pillow](https://github.com/python-pillow/Pillow)-base
 [![Python version](https://img.shields.io/pypi/pyversions/amazoncaptcha)](https://pypi.org/project/amazoncaptcha/)
 [![Downloads](https://img.shields.io/pypi/dm/amazoncaptcha?color=success)](https://pypi.org/project/amazoncaptcha/)
 
-Motivation behind creation of this library is taking its start from the genuinely simple concept: "***I don't want to use pytesseract or some other non-amazon-specific OCR services, neither do I want to install some executables to just solve a captcha. My desire is to just get a solution within 1-2 lines of code without any heavy add-ons. Just a pure Python.***" If you are sharing these thoughts and are actively scraping Amazon, please, enjoy the service.
+Motivation behind creation of this library is taking its start from the genuinely simple concept: "***I don't want to use pytesseract or some other non-amazon-specific OCR services, neither do I want to install some executables to just solve a captcha. My desire is to just get a solution within 1-2 lines of code without any heavy add-ons. Just a pure Python.***"
 
 ## Installation
 ```bash
