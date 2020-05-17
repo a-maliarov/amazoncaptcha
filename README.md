@@ -69,12 +69,6 @@ solution = captcha.solve()
   1. Added and tested 'from_webdriver' classmethod.
 + **Version 0.1.0**:
   1. 100,000 captchas crash test, accuracy is 98.5%.
-+ **Version 0.1.1**:
++ **Version 0.1.1 - 0.1.5**:
   1. Code adjustments and improvements.
   2. Added tests.
-+ **Version 0.1.3**:
-  1. Code adjustments and improvements.
-  2. Added vulnerabilities tests.
-+ **Version 0.1.4**:
-  1. Code adjustments and improvements.
-  2. Added more tests.
