@@ -1,4 +1,4 @@
-# Amazon Captcha Solver
+# Amazon Captcha Solver [![Build Status](https://travis-ci.com/a-maliarov/amazon-captcha-solver.svg?branch=master)](https://travis-ci.com/a-maliarov/amazon-captcha-solver) [![Maintainer](https://img.shields.io/badge/maintainer-a--maliarov-informational)](https://github.com/a-maliarov)
 Pure Python (3.6+), lightweight, [Pillow](https://github.com/python-pillow/Pillow)-based solver for the [Amazon's text captcha](https://www.amazon.com/errors/validateCaptcha).
 
 [![Accuracy](https://img.shields.io/badge/accuracy-98.5%25-success)](https://github.com/a-maliarov/amazon-captcha-solver/blob/master/accuracy.log)
