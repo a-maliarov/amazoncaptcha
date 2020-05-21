@@ -1,7 +1,6 @@
 #-----------------------------------------------------------------------------------------------------------------------------------------------------------
 # Modules
-from PIL import Image
-from PIL import ImageChops
+from PIL import Image, ImageChops
 from io import BytesIO
 import os
 import json
@@ -46,40 +45,32 @@ def merge_horizontally(img1, img2):
     merged.paste(img2, (img1.width, 0))
     return merged
 
-def find_letter_boxes(img):
+def find_letter_boxes(img, maxlength):
     """
     Finds and separates letters from a captcha image.
 
-    Vertically iterates an image. Column example is [255, 255, 255, 0, 0, 255, ...].
-    If '0' (black) is present, then current column is a part of a letter.
-
     :param img: A PIL.Image instance of a monochrome captcha.
+    :param maxlength: maximum length of a letter, an integer.
     :returns: A list with X coordinates of letters (letter boxes).
     """
 
-    in_letter = False
-    found_letter = False
-    start = 0
-    end = 0
+    image_columns = [[img.getpixel((x, y)) for y in range(img.height)] for x in range(img.width)]
+    image_code = [1 if 0 in column else 0 for column in image_columns]
+    xpoints = [d for d, s in zip(range(len(image_code)), image_code) if s]
+    xcoords = [x for x in xpoints if x - 1 not in xpoints or x + 1 not in xpoints]
+    xcoords.insert(1, xcoords[0]) if len(xcoords) % 2 else None
 
     letter_boxes = list()
-    for x in range(img.width):
-        column = [img.getpixel((x, y)) for y in range(img.height)]
+    for s, e in zip(xcoords[0::2], xcoords[1::2]):
+        start, end = s, min(e + 1, img.width - 1)
 
-        if 0 in column:
-            in_letter = True
-
-        if not found_letter and in_letter:
-            found_letter = True
-            start = x
-
-        if found_letter and (not in_letter or x == img.width - 1):
-            found_letter = False
-            end = x
-
+        if end - start <= maxlength:
             letter_boxes.append((start, end))
 
-        in_letter = False
+        else:
+            two_letters = {k: v.count(0) for k, v in enumerate(image_columns[start + 5:end - 5])}
+            divider = min(two_letters, key = two_letters.get) + 5
+            letter_boxes.extend([(start, start + divider), (start + divider + 1, end)])
 
     return letter_boxes
 
@@ -90,22 +81,18 @@ class AmazonCaptcha(object):
     This class represents an AmazonCaptcha object.
     """
 
-    def __init__(self, img, monoweight = 1, onreturn = 'string'):
+    monoweight = 1
+    maximum_letter_length = 33
+    minimum_letter_length = 14
+
+    def __init__(self, img):
         """
         :param img: Path to an input image OR an instance of BytesIO representing this image.
-        :param monoweight: Stands to define the range of color codes while monochroming. Please, do not change.
-        :param onreturn: 'string' = 'ABCDEF'
-                         'dict' = {'1': 'A', '2': 'B', '3': 'C', '4': 'D', '5': 'E', '6': 'F'}
-                         'raw_dict' = the same as 'dict', but it will be returned even if a captcha wasn't solved.
         """
 
         self.img = Image.open(img, 'r')
-        self.monoweight = monoweight
-        self.onreturn = onreturn
         self.letters = dict()
         self.result = dict()
-
-        # Creates abspath to 'data' folder, which contains training data for solving captchas.
         self.data_folder = os.path.abspath(os.path.dirname(os.path.abspath(__file__))) + os.sep + 'data' + os.sep
         self.alphabet = [i.split('.')[0] for i in os.listdir(self.data_folder)]
 
@@ -131,11 +118,11 @@ class AmazonCaptcha(object):
         Populates 'self.letters' with extracted letters.
         """
 
-        letter_boxes = find_letter_boxes(self.img)
+        letter_boxes = find_letter_boxes(self.img, self.maximum_letter_length)
         letters = [self.img.crop((letter_box[0], 0, letter_box[1], self.img.height)) for letter_box in letter_boxes]
 
-        if (len(letters) == 6 and letters[0].width < 7) or (len(letters) != 6 and len(letters) != 7):
-            return 'Error'
+        if (len(letters) == 6 and letters[0].width < self.minimum_letter_length) or (len(letters) != 6 and len(letters) != 7):
+            return None
 
         if len(letters) == 7:
             letters[6] = merge_horizontally(letters[6], letters[0])
@@ -152,18 +139,10 @@ class AmazonCaptcha(object):
         """
 
         for place, letter in self.letters.items():
-
-            # Gets letter's color data.
             letter_data = list(letter.getdata())
-
-            # Makes a string, where '1' represents a black pixel and '0' represents a white one.
             letter_data_string = ''.join(['1' if pix == 0 else '0' for pix in letter_data])
 
-            # Compresses the Str to Bytes, then stores result Bytes as string. The only thing why we are doing
-            # this -  is because it costs 3 times less storage space.
             pseudo_binary = str(zlib.compress(letter_data_string.encode('utf-8')))
-
-            # Adds pseudo binary strings to according places (i.e. 1, 2, 3...).
             self.letters[place] = pseudo_binary
 
     def translate(self):
@@ -190,28 +169,11 @@ class AmazonCaptcha(object):
             else:
                 self.result[place] = ''
 
-        # Returns any result
-        if self.onreturn == 'raw_dict':
-            pass
-
-        # If there is no result at all, it means that :method:'find_letters': wasn't able to proceed.
-        elif not self.result:
-            self.result = 'Error'
-
-        # If there are some blanks AND solved letters, there is no error, but a captcha wasn't solved.
-        elif '' in self.result.values():
+        if (not self.result) or ('' in self.result.values()):
             self.result = 'Not solved'
 
-        # If all the letters are present, captcha was solved correctly.
         else:
-
-            # Returns Str instance solution
-            if self.onreturn == 'string':
-                self.result = ''.join(self.result.values())
-
-            # Since data was stored into 'self.result' dict all the way, just a 'pass' will do.
-            elif self.onreturn == 'dict':
-                pass
+            self.result = ''.join(self.result.values())
 
     def solve(self):
         """
@@ -227,21 +189,15 @@ class AmazonCaptcha(object):
         return self.result
 
     @classmethod
-    def from_webdriver(cls, driver, monoweight = 1, onreturn = 'string'):
+    def from_webdriver(cls, driver):
         """
         :param driver: A selenium.webdriver.* instance.
-        :param monoweight: Stands to define the range of color codes while monochroming. Please, do not change.
-        :param onreturn: 'string' = 'ABCDEF'
-                         'dict' = {'1': 'A', '2': 'B', '3': 'C', '4': 'D', '5': 'E', '6': 'F'}
-                         'raw_dict' = the same as 'dict', but it will be returned even if a captcha wasn't solved.
         :returns: AmazonCaptcha instance.
         """
 
-        # Takes a screenshot of whole page and finds a captcha.
         png = driver.get_screenshot_as_png()
         element = driver.find_element_by_tag_name('img')
 
-        # Gets captcha's location on the screenshot and constructs bbox.
         location = element.location
         size = element.size
         left = location['x']
@@ -249,15 +205,13 @@ class AmazonCaptcha(object):
         right = location['x'] + size['width']
         bottom = location['y'] + size['height']
 
-        # Crops the captcha.
         img = Image.open(BytesIO(png))
         img = img.crop((left, top, right, bottom))
 
-        # Stores image into BytesIO.
         bytes_array = BytesIO()
         img.save(bytes_array, format='PNG')
         img_bytes_array = bytes_array.getvalue()
 
-        return cls(BytesIO(img_bytes_array), monoweight = monoweight, onreturn = onreturn)
+        return cls(BytesIO(img_bytes_array))
 
 #-----------------------------------------------------------------------------------------------------------------------------------------------------------
