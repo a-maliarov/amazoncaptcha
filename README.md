@@ -47,7 +47,7 @@ solution = captcha.solve()
 
 ## For Whom?
 + **Data extraction** and **web scraping** specialists could use this tool, obviously, to bypass the Amazon captcha.
-+ **Machine learning** developers could use [captchas](https://github.com/a-maliarov/amazon-captcha-solver/tree/master/captchas) folder (currently contains **15000 solved captchas**) based on a demand.
++ **Machine learning** developers could use [captchas](https://github.com/a-maliarov/amazon-captcha-solver/tree/master/captchas) folder (currently contains **13000 unique solved captchas**) based on a demand.
 
 ## Issues
 + If you constantly receive 'Not solved' output, feel free to create an issue and describe details.
