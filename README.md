@@ -50,8 +50,8 @@ solution = captcha.solve()
 + **Machine learning** developers could use [captchas](https://github.com/a-maliarov/amazon-captcha-solver/tree/master/captchas) folder (currently contains **15000 solved captchas**) based on a demand.
 
 ## Issues
-+ If you constantly receive 'Error' output, feel free to create an issue and describe details.
-+ If you received an output, different from solution itself, 'Error' or 'Not solved', please, create an issue or contact me.
++ If you constantly receive 'Not solved' output, feel free to create an issue and describe details.
++ If you received an output, different from solution itself or 'Not solved', please, create an issue or contact me.
 + If you've somehow met an Exception, which you don't understand - you know what to do :)
 
 ## Happy Captcha Solving!
@@ -79,5 +79,6 @@ solution = captcha.solve()
   2. Accuracy increased to 99.1%
   3. Code coverage is 100%
 + **Version 0.3.0**:
-  1. Third crash test through 140k+ captchas.
-  2. Accuracy increased to 99.998%
+  1. Program can now solve images where letters are intercepted.
+  2. Third crash test through 140k+ captchas.
+  3. Accuracy increased to 99.998%
