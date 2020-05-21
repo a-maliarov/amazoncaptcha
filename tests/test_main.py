@@ -12,16 +12,20 @@ class TestAmazonCaptcha(unittest.TestCase):
         solution = AmazonCaptcha('tests/captchas/corrupted.png').solve()
         self.assertEqual(solution, 'UGXGMM')
 
-    def test_error(self):
+    def test_corrupted_1(self):
         solution = AmazonCaptcha('tests/captchas/corrupted_1.png').solve()
         self.assertEqual(solution, 'BPXHGH')
 
-    def test_error_1(self):
+    def test_corrupted_2(self):
         solution = AmazonCaptcha('tests/captchas/corrupted_2.png').solve()
         self.assertEqual(solution, 'KMGMXE')
 
     def test_notsolved(self):
         solution = AmazonCaptcha('tests/captchas/notsolved.jpg').solve()
+        self.assertEqual(solution, 'Not solved')
+
+    def test_notsolved_1(self):
+        solution = AmazonCaptcha('tests/captchas/notsolved_1.jpg').solve()
         self.assertEqual(solution, 'Not solved')
 
     def test_from_webdriver(self):
