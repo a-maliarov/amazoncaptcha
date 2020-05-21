@@ -58,7 +58,9 @@ def find_letter_boxes(img, maxlength):
     image_code = [1 if 0 in column else 0 for column in image_columns]
     xpoints = [d for d, s in zip(range(len(image_code)), image_code) if s]
     xcoords = [x for x in xpoints if x - 1 not in xpoints or x + 1 not in xpoints]
-    xcoords.insert(1, xcoords[0]) if len(xcoords) % 2 else None
+
+    if len(xcoords) % 2:
+        xcoords.insert(1, xcoords[0])
 
     letter_boxes = list()
     for s, e in zip(xcoords[0::2], xcoords[1::2]):
