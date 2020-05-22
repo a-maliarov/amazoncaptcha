@@ -5,7 +5,7 @@ Motivation behind creation of this library is taking its start from the genuinel
 
 [![Accuracy](https://img.shields.io/badge/accuracy-99.9%25-success)](https://github.com/a-maliarov/amazon-captcha-solver/blob/master/accuracy.log)
 ![Timing](https://img.shields.io/badge/execution%20time-0.2s-success)
-[![Size](https://img.shields.io/badge/wheel%20size-908%20kB-informational)](https://github.com/a-maliarov/amazon-captcha-solver/releases/tag/v0.3.0)
+[![Size](https://img.shields.io/badge/wheel%20size-0.9%20MB-informational)](https://github.com/a-maliarov/amazon-captcha-solver/releases/tag/v0.3.0)
 [![Version](https://img.shields.io/pypi/v/amazoncaptcha?color=informational)](https://pypi.org/project/amazoncaptcha/)
 [![Python version](https://img.shields.io/pypi/pyversions/amazoncaptcha)](https://pypi.org/project/amazoncaptcha/)
 [![Downloads](https://img.shields.io/pypi/dm/amazoncaptcha?color=success)](https://pypi.org/project/amazoncaptcha/)
