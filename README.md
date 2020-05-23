@@ -9,7 +9,7 @@
 | ▓▓  | ▓▓ ▓▓ | ▓▓ | ▓▓  ▓▓    \ ▓▓  | ▓▓\▓▓    ▓▓ ▓▓    ▓▓  \▓▓  ▓▓\▓▓     \ ▓▓  | ▓▓
  \▓▓   \▓▓\▓▓  \▓▓  \▓▓\▓▓▓▓▓▓▓▓\▓▓   \▓▓ \▓▓▓▓▓▓| ▓▓▓▓▓▓▓    \▓▓▓▓  \▓▓▓▓▓▓▓\▓▓   \▓▓
                                                  | ▓▓                                 
-  >>>solution                                    | ▓▓                   Version  0.3.5
+  >>>solution                                    | ▓▓                   Version  0.3.7
   "AmznCptch"                                     \▓▓                   Accuracy 99.9%
 ```
 Motivation behind creation of this library is taking its start from the genuinely simple idea: "***I don't want to use pytesseract or some other non-amazon-specific OCR services, nor do I want to install some executables to just solve a captcha. My desire is to get a solution within 1-2 lines of code without any heavy add-ons. Using a pure Python.***"
