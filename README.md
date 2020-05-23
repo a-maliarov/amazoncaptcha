@@ -9,7 +9,7 @@
 | ▓▓  | ▓▓ ▓▓ | ▓▓ | ▓▓  ▓▓    \ ▓▓  | ▓▓\▓▓    ▓▓\▓▓    ▓▓ ▓▓    ▓▓  \▓▓  ▓▓\▓▓     \ ▓▓  | ▓▓\▓▓    ▓▓
  \▓▓   \▓▓\▓▓  \▓▓  \▓▓\▓▓▓▓▓▓▓▓\▓▓   \▓▓ \▓▓▓▓▓▓  \▓▓▓▓▓▓▓ ▓▓▓▓▓▓▓    \▓▓▓▓  \▓▓▓▓▓▓▓\▓▓   \▓▓ \▓▓▓▓▓▓▓
                                                           | ▓▓                                          
-  >>>solution                                             | ▓▓                            Version  0.3.7
+  >>>solution                                             | ▓▓                            Version  0.3.8
   "AmznCaptcha"                                            \▓▓                            Accuracy 99.9%
 ```
 Motivation behind creation of this library is taking its start from the genuinely simple idea: "***I don't want to use pytesseract or some other non-amazon-specific OCR services, nor do I want to install some executables to just solve a captcha. My desire is to get a solution within 1-2 lines of code without any heavy add-ons. Using a pure Python.***"
@@ -48,7 +48,7 @@ solution = captcha.solve()
 ![Implementation](https://img.shields.io/pypi/implementation/amazoncaptcha)
 
 ## Usage
-If you are **data extraction** or **web scraping** specialist, who is crawling Amazon by using `selenium`, this classmethod will do all the "dirty" work of extracting an image from webpage for you. Practically, it takes a screenshot from your webdriver, crops the captcha and stores it into bytes array, which is then used to create an AmazonCaptcha instance. This also means avoiding any local savings.
+For **data extraction** or **web scraping** specialists, who is crawling Amazon by using `selenium`, the classmethod below will do all the "dirty" work of extracting an image from webpage for you. Practically, it takes a screenshot from your webdriver, crops the captcha and stores it into bytes array, which is then used to create an `AmazonCaptcha` instance. This also means avoiding any local savings.
 ```python
 from amazoncaptcha import AmazonCaptcha
 from selenium import webdriver
@@ -60,40 +60,21 @@ captcha = AmazonCaptcha.from_webdriver(driver)
 solution = captcha.solve()
 ```
 
-## For Whom?
-+ **Data extraction** and **web scraping** specialists could use this tool, obviously, to bypass the Amazon captcha.
-+ **Machine learning** developers could use [captchas](https://github.com/a-maliarov/amazon-captcha-solver/tree/master/captchas) folder (currently contains **13000 unique solved captchas**) based on a demand.
+On the other hand, if you are **machine learning** or **neural networks** developer and are looking for some training data, firstly check the [captchas](https://github.com/a-maliarov/amazon-captcha-solver/tree/master/captchas) folder. It currently contains **13000 solved captchas with unique patterns**. For more solved images, consider using `AmazonCaptchaCollector` instance with a really simple API sampled below. An image will be stored, only if there is a 100% answer. However, if you've noticed a wrong solution, please, create an issue using corresponding template.
+```python
+from amazoncaptcha import AmazonCaptchaCollector
 
-## Issues
-+ If you constantly receive 'Not solved' output, feel free to create an issue and describe details.
-+ If you received an output, different from solution itself or 'Not solved', please, create an issue or contact me.
-+ If you've somehow met an Exception, which you don't understand - you know what to do :)
+output_folder = '/path/to/output/folder' # where you want to store captchas
+target = 100000 # final number of solved captchas you want to get
+processes = 10 # number of simultaneous processes
 
-## Happy Captcha Solving!
+if __name__ == '__main__':
+    collector = AmazonCaptchaCollector(output_folder = output_folder)
+    collector.start(target = target, processes = processes)
+```
+If you have any suggestions or ideas of additional instances and methods, which you would like to see in this library, please, feel free to contact the owner via email or fork'n'pull to repository. Any contribution is highly appreciated!
 
-![Gif](https://github.com/a-maliarov/amazon-captcha-solver/blob/master/captchas.gif)
-
-## Changes
-+ **Version 0.0.10**:
-  1. Reached 10000 training samples.
-  2. Reached 90%+ accuracy.
-+ **Version 0.0.11**:
-  1. Fixed error with captcha images that were taken from BytesIO.
-+ **Version 0.0.12**:
-  1. Code adjustments and improvements.
-  2. Program can now solve images where last letter is corrupted.
-+ **Version 0.0.13**:
-  1. Added and tested 'from_webdriver' classmethod.
-+ **Version 0.1.0**:
-  1. 100,000 captchas crash test, accuracy is 98.5%.
-+ **Version 0.1.1 - 0.1.5**:
-  1. Code adjustments and improvements.
-  2. Added tests.
-+ **Version 0.2.0**:
-  1. Second crash test through 120k+ captchas.
-  2. Accuracy increased to 99.1%
-  3. Code coverage is 100%
-+ **Version 0.3.0**:
-  1. Program can now solve images where letters are intercepted.
-  2. Third crash test through 140k+ captchas.
-  3. Accuracy increased to 99.998%
+## Additional
++ Just FYI, `pip` will install only module itself. However, if you are using `git clone`, be aware that you will also clone 50 MB of captchas, currently located in the repository.
++ If you want to see the [**History of Changes**](https://github.com/a-maliarov/amazon-captcha-solver/blob/master/HISTORY.md), [**Code of Conduct**](https://github.com/a-maliarov/amazon-captcha-solver/blob/master/CODE_OF_CONDUCT.md), [**Contributing Policy**](https://github.com/a-maliarov/amazon-captcha-solver/blob/master/CONTRIBUTING.md) or [**License**](https://github.com/a-maliarov/amazon-captcha-solver/blob/master/LICENSE), use these inline links to navigate based on your need.
++ If you are facing any errors, please, report your situation via an issue.
