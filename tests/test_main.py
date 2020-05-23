@@ -1,6 +1,8 @@
 from amazoncaptcha import AmazonCaptcha
+from amazoncaptcha import AmazonCaptchaCollector
 from maliarov import webdriver
 import unittest
+import os
 
 class TestAmazonCaptcha(unittest.TestCase):
 
@@ -44,6 +46,12 @@ class TestAmazonCaptcha(unittest.TestCase):
         driver.quit()
 
         self.assertIn(6, solutions)
+
+    def test_collector(self):
+        collector = AmazonCaptchaCollector(output_folder = 'tests/captchas')
+        collector.start(target = 10, processes = 2)
+
+        self.assertGreaterEqual(len(os.listdir('tests/captchas')), 15)
 
 if __name__ == '__main__':
     unittest.main()
