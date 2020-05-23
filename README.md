@@ -47,12 +47,13 @@ solution = captcha.solve()
 [![CodeFactor Grade](https://img.shields.io/codefactor/grade/github/a-maliarov/amazon-captcha-solver/master)](https://www.codefactor.io/repository/github/a-maliarov/amazon-captcha-solver/overview/master)
 ![Implementation](https://img.shields.io/pypi/implementation/amazoncaptcha)
 
-## Popular Usage
+## Usage
+If you are **data extraction** or **web scraping** specialist, who is crawling Amazon by using `selenium`, this classmethod will do all the "dirty" work of extracting an image from webpage for you. Practically, it takes a screenshot from your webdriver, crops the captcha and stores it into bytes array, which is then used to create an AmazonCaptcha instance. This also means avoiding any local savings.
 ```python
 from amazoncaptcha import AmazonCaptcha
 from selenium import webdriver
 
-driver = webdriver.Chrome()
+driver = webdriver.Chrome() # This is a simplified example
 driver.get('https://www.amazon.com/errors/validateCaptcha')
 
 captcha = AmazonCaptcha.from_webdriver(driver)
