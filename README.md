@@ -1,7 +1,21 @@
-# Amazon Captcha Solver
-Pure Python, lightweight, [Pillow](https://github.com/python-pillow/Pillow)-based solver for the [Amazon's text captcha](https://www.amazon.com/errors/validateCaptcha).
+```python
+  ______                                  ______             __              __       
+ /      \                                /      \           |  \            |  \      
+|  ▓▓▓▓▓▓\______ ____  ________ _______ |  ▓▓▓▓▓▓\ ______  _| ▓▓_    _______| ▓▓____  
+| ▓▓__| ▓▓      \    \|        \       \| ▓▓   \▓▓/      \|   ▓▓ \  /       \ ▓▓    \ 
+| ▓▓    ▓▓ ▓▓▓▓▓▓\▓▓▓▓\\▓▓▓▓▓▓▓▓ ▓▓▓▓▓▓▓\ ▓▓     |  ▓▓▓▓▓▓\\▓▓▓▓▓▓ |  ▓▓▓▓▓▓▓ ▓▓▓▓▓▓▓\
+| ▓▓▓▓▓▓▓▓ ▓▓ | ▓▓ | ▓▓ /    ▓▓| ▓▓  | ▓▓ ▓▓   __| ▓▓  | ▓▓ | ▓▓ __| ▓▓     | ▓▓  | ▓▓
+| ▓▓  | ▓▓ ▓▓ | ▓▓ | ▓▓/  ▓▓▓▓_| ▓▓  | ▓▓ ▓▓__/  \ ▓▓__/ ▓▓ | ▓▓|  \ ▓▓_____| ▓▓  | ▓▓
+| ▓▓  | ▓▓ ▓▓ | ▓▓ | ▓▓  ▓▓    \ ▓▓  | ▓▓\▓▓    ▓▓ ▓▓    ▓▓  \▓▓  ▓▓\▓▓     \ ▓▓  | ▓▓
+ \▓▓   \▓▓\▓▓  \▓▓  \▓▓\▓▓▓▓▓▓▓▓\▓▓   \▓▓ \▓▓▓▓▓▓| ▓▓▓▓▓▓▓    \▓▓▓▓  \▓▓▓▓▓▓▓\▓▓   \▓▓
+                                                 | ▓▓                                 
+  >>>solution                                    | ▓▓                   Version  0.3.4
+  "AmznCptch"                                     \▓▓                   Accuracy 99.9%
+```
+Motivation behind creation of this library is taking its start from the genuinely simple idea: "***I don't want to use pytesseract or some other non-amazon-specific OCR services, nor do I want to install some executables to just solve a captcha. My desire is to get a solution within 1-2 lines of code without any heavy add-ons. Using a pure Python.***"
 
-Motivation behind creation of this library is taking its start from the genuinely simple concept: "***I don't want to use pytesseract or some other non-amazon-specific OCR services, nor do I want to install some executables to just solve a captcha. My desire is to get a solution within 1-2 lines of code without any heavy add-ons. Using a pure Python.***"
+---
+Pure Python, lightweight, [Pillow](https://github.com/python-pillow/Pillow)-based solver for the [Amazon's text captcha](https://www.amazon.com/errors/validateCaptcha).
 
 [![Accuracy](https://img.shields.io/badge/accuracy-99.9%25-success)](https://github.com/a-maliarov/amazon-captcha-solver/blob/master/accuracy.log)
 ![Timing](https://img.shields.io/badge/response%20time-0.2s-success)
