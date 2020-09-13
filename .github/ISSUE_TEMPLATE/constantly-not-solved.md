@@ -17,6 +17,9 @@ Code goes here
 Code goes here
 ```
 
+**Is it really constant?**
+How many captchas in a row have given the "Not Solved" result?
+
 **To Reproduce**
 Steps to reproduce the behavior:
 1. Go to '...'
