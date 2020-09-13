@@ -17,7 +17,7 @@ Code goes here
 Code goes here
 ```
 
-**To Reproduce (optional)**
+**To Reproduce**
 Steps to reproduce the behavior:
 1. Go to '...'
 2. Click on '....'
