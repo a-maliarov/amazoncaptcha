@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="amazoncaptcha",
-    version="0.3.9",
+    version="0.3.10",
     description="Pure Python, lightweight, Pillow-based solver for the Amazon's text captcha.",
     packages=['amazoncaptcha'],
     py_modules=['objects'],
@@ -25,8 +25,8 @@ setuptools.setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     install_requires = [
-        "pillow ~= 7.1.2",
-        "requests ~= 2.23.0"
+        "pillow ~= 7.2.0",
+        "requests ~= 2.24.0"
     ],
     author="Anatolii Maliarov",
     author_email="tly.mov@gmail.com",
