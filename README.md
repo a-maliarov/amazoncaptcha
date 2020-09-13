@@ -69,8 +69,8 @@ target = 100000 # final number of solved captchas you want to get
 processes = 10 # number of simultaneous processes
 
 if __name__ == '__main__':
-    collector = AmazonCaptchaCollector(output_folder = output_folder)
-    collector.start(target = target, processes = processes)
+    collector = AmazonCaptchaCollector(output_folder)
+    collector.start(target, processes)
 ```
 If you have any suggestions or ideas of additional instances and methods, which you would like to see in this library, please, feel free to contact the owner via email or fork'n'pull to repository. Any contribution is highly appreciated!
 
