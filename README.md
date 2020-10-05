@@ -107,4 +107,4 @@ If you have any suggestions or ideas of additional instances and methods, which 
 
 ## Happy Captcha Solving!
 
-![Gif](https://github.com/a-maliarov/amazon-captcha-solver/blob/master/captchas.gif)
+![Gif](https://github.com/a-maliarov/amazon-captcha-solver/blob/master/ext/captchas.gif)
