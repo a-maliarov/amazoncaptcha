@@ -84,7 +84,7 @@ if __name__ == '__main__':
 ```
 
 ## Help the development
-If you are willing to help the development, consider setting `keep_logs` argument of the `solve` method to `True`. Here is the example, if you are using `fromdriver` class method. If set to `True`, all the links of the unsolved captcha will be stored, so later you can open the issue and send the logs.
+If you are willing to help the development, consider setting `keep_logs` argument of the `solve` method to `True`. Here is the example, if you are using `fromdriver` class method. If set to `True`, all the links of the unsolved captcha will be stored, so later you can open [the issue and send the logs](https://github.com/a-maliarov/amazon-captcha-solver/issues/new?assignees=a-maliarov&labels=training+data&template=send_logs.md&title=Add+training+data).
 ```python
 from amazoncaptcha import AmazonCaptcha
 from selenium import webdriver
