@@ -12,7 +12,7 @@
   >>>solution                                             | ▓▓                            Version  0.4.0
   "AmznCaptcha"                                            \▓▓                            Accuracy 99.9%
 ```
-The motivation behind the creation of this library is taking its start from the genuinely simple idea: "**I don't want to use pytesseract or some other non-amazon-specific OCR services, nor do I want to install some executables to just solve a captcha. I desire to get a solution within 1-2 lines of code without any heavy add-ons. Using a pure Python.**"
+The motivation behind the creation of this library is taking its start from the genuinely simple idea: "**I don't want to use pytesseract or some other non-amazon-specific OCR services, nor do I want to install some executables to just solve a captcha. I desire to get a solution within 1-2 lines of code without any heavy add-ons using a pure Python.**"
 
 ---
 Pure Python, lightweight, [Pillow](https://github.com/python-pillow/Pillow)-based solver for [Amazon's text captcha](https://www.amazon.com/errors/validateCaptcha).
@@ -60,7 +60,7 @@ captcha = AmazonCaptcha.fromdriver(driver)
 solution = captcha.solve()
 ```
 
-If you are not using `selenium` or the previous method is just not the case for you, it is possible to just use a captcha link directly. This classmethod will request the url, check the content type and store the content into bytes array to create an instance of `AmazonCaptcha`.
+If you are not using `selenium` or the previous method is not just the case for you, it is possible to use a captcha link directly. This class method will request the url, check the content type and store the response content into bytes array to create an instance of `AmazonCaptcha`.
 ```python
 from amazoncaptcha import AmazonCaptcha
 
@@ -70,7 +70,7 @@ captcha = AmazonCaptcha.fromlink(link)
 solution = captcha.solve()
 ```
 
-In addition, if you are a **machine learning** or **neural networks** developer and are looking for some training data, firstly check the [captchas](https://github.com/a-maliarov/amazon-captcha-solver/tree/master/captchas) folder. It currently contains **13000 solved captchas with unique patterns**. For more solved images, consider using `AmazonCaptchaCollector` instance with a really simple API sampled below. An image will be stored, only if there is a 100% answer. However, if you've noticed a wrong solution, please, create an issue using the corresponding template.
+In addition, if you are a **machine learning** or **neural network** developer and are looking for some training data, firstly check the [captchas](https://github.com/a-maliarov/amazon-captcha-solver/tree/master/captchas) folder. It currently contains **13000 solved captchas with unique patterns**. For more solved images, consider using `AmazonCaptchaCollector` instance with a really simple API sampled below. An image will be stored, only if there is a 100% answer. However, if you've noticed a wrong solution, please, create an issue using the corresponding template.
 ```python
 from amazoncaptcha import AmazonCaptchaCollector
 
@@ -84,7 +84,7 @@ if __name__ == '__main__':
 ```
 
 ## Help the development
-If you are willing to help the development, consider setting `keep_logs` argument of the `solve` method to `True`. Here is the example, if you are using `fromdriver` class method. If set to `True`, all the links of the unsolved captcha will be stored, so later you can open [the issue and send the logs](https://github.com/a-maliarov/amazon-captcha-solver/issues/new?assignees=a-maliarov&labels=training+data&template=send_logs.md&title=Add+training+data).
+If you are willing to help the development, consider setting `keep_logs` argument of the `solve` method to `True`. Here is the example, if you are using `fromdriver` class method. If set to `True`, all the links of the unsolved captcha will be stored, so later you can [open the issue and send the logs](https://github.com/a-maliarov/amazon-captcha-solver/issues/new?assignees=a-maliarov&labels=training+data&template=send_logs.md&title=Add+training+data).
 ```python
 from amazoncaptcha import AmazonCaptcha
 from selenium import webdriver
@@ -99,7 +99,7 @@ solution = captcha.solve(keep_logs=True)
 If you have any suggestions or ideas of additional instances and methods, which you would like to see in this library, please, feel free to contact the owner via email or fork'n'pull to repository. Any contribution is highly appreciated!
 
 ## Additional
-+ Just FYI, `pip` will install only module itself. However, if you are using `git clone`, be aware that you will also clone 50 MB of captchas, currently located in the repository.
-+ If you want to see the [**History of Changes**](https://github.com/a-maliarov/amazon-captcha-solver/blob/master/HISTORY.md), [**Code of Conduct**](https://github.com/a-maliarov/amazon-captcha-solver/blob/master/.github/CODE_OF_CONDUCT.md), [**Contributing Policy**](https://github.com/a-maliarov/amazon-captcha-solver/blob/master/.github/CONTRIBUTING.md), or [**License**](https://github.com/a-maliarov/amazon-captcha-solver/blob/master/LICENSE), use these inline links to navigate based on your need.
++ Just FYI, `pip` will install only the module itself. However, if you are using `git clone`, be aware that you will also clone 50 MB of captchas currently located in the repository.
++ If you want to see the [**History of Changes**](https://github.com/a-maliarov/amazon-captcha-solver/blob/master/HISTORY.md), [**Code of Conduct**](https://github.com/a-maliarov/amazon-captcha-solver/blob/master/.github/CODE_OF_CONDUCT.md), [**Contributing Policy**](https://github.com/a-maliarov/amazon-captcha-solver/blob/master/.github/CONTRIBUTING.md), or [**License**](https://github.com/a-maliarov/amazon-captcha-solver/blob/master/LICENSE), use these inline links to navigate based on your needs.
 + If you are facing any errors, please, report your situation via an issue.
 + This project is for educational and research purposes only. Any actions and/or activities related to the material contained on this GitHub Repository is solely your responsibility. The author will not be held responsible in the event any criminal charges be brought against any individuals misusing the information in this GitHub Repository to break the law.
