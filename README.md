@@ -9,10 +9,10 @@
 | ▓▓  | ▓▓ ▓▓ | ▓▓ | ▓▓  ▓▓    \ ▓▓  | ▓▓\▓▓    ▓▓\▓▓    ▓▓ ▓▓    ▓▓  \▓▓  ▓▓\▓▓     \ ▓▓  | ▓▓\▓▓    ▓▓
  \▓▓   \▓▓\▓▓  \▓▓  \▓▓\▓▓▓▓▓▓▓▓\▓▓   \▓▓ \▓▓▓▓▓▓  \▓▓▓▓▓▓▓ ▓▓▓▓▓▓▓    \▓▓▓▓  \▓▓▓▓▓▓▓\▓▓   \▓▓ \▓▓▓▓▓▓▓
                                                           | ▓▓                                          
-  >>>solution                                             | ▓▓                            Version 0.3.10
+  >>>solution                                             | ▓▓                            Version  0.4.0
   "AmznCaptcha"                                            \▓▓                            Accuracy 99.9%
 ```
-The motivation behind the creation of this library is taking its start from the genuinely simple idea: "***I don't want to use pytesseract or some other non-amazon-specific OCR services, nor do I want to install some executables to just solve a captcha. I desire to get a solution within 1-2 lines of code without any heavy add-ons. Using a pure Python.***"
+The motivation behind the creation of this library is taking its start from the genuinely simple idea: "**I don't want to use pytesseract or some other non-amazon-specific OCR services, nor do I want to install some executables to just solve a captcha. I desire to get a solution within 1-2 lines of code without any heavy add-ons. Using a pure Python.**"
 
 ---
 Pure Python, lightweight, [Pillow](https://github.com/python-pillow/Pillow)-based solver for [Amazon's text captcha](https://www.amazon.com/errors/validateCaptcha).
@@ -48,7 +48,7 @@ solution = captcha.solve()
 ![Implementation](https://img.shields.io/pypi/implementation/amazoncaptcha)
 
 ## Usage
-For **data extraction** or **web scraping** specialists, who is crawling Amazon by using selenium, the class method below will do all the "dirty" work of extracting an image from the webpage for you. Practically, it takes a screenshot from your webdriver, crops the captcha, and stores it into bytes array, which is then used to create an `AmazonCaptcha` instance. This also means avoiding any local savings.
+Browsing Amazon using `selenium` and stuck on captcha? The class method below will do all the "dirty" work of extracting an image from the webpage for you. Practically, it takes a screenshot from your webdriver, crops the captcha, and stores it into bytes array, which is then used to create an `AmazonCaptcha` instance. This also means avoiding any local savings.
 ```python
 from amazoncaptcha import AmazonCaptcha
 from selenium import webdriver
@@ -56,11 +56,21 @@ from selenium import webdriver
 driver = webdriver.Chrome() # This is a simplified example
 driver.get('https://www.amazon.com/errors/validateCaptcha')
 
-captcha = AmazonCaptcha.from_webdriver(driver)
+captcha = AmazonCaptcha.fromdriver(driver)
 solution = captcha.solve()
 ```
 
-On the other hand, if you are **machine learning** or **neural networks** developer and are looking for some training data, firstly check the [captchas](https://github.com/a-maliarov/amazon-captcha-solver/tree/master/captchas) folder. It currently contains **13000 solved captchas with unique patterns**. For more solved images, consider using `AmazonCaptchaCollector` instance with a really simple API sampled below. An image will be stored, only if there is a 100% answer. However, if you've noticed a wrong solution, please, create an issue using the corresponding template.
+If you are not using `selenium` or the previous method is just not the case for you, it is possible to just use a captcha link directly. This classmethod will request the url, check the content type and store the content into bytes array to create an instance of `AmazonCaptcha`.
+```python
+from amazoncaptcha import AmazonCaptcha
+
+link = 'https://images-na.ssl-images-amazon.com/captcha/usvmgloq/Captcha_kwrrnqwkph.jpg'
+
+captcha = AmazonCaptcha.fromlink(link)
+solution = captcha.solve()
+```
+
+In addition, if you are a **machine learning** or **neural networks** developer and are looking for some training data, firstly check the [captchas](https://github.com/a-maliarov/amazon-captcha-solver/tree/master/captchas) folder. It currently contains **13000 solved captchas with unique patterns**. For more solved images, consider using `AmazonCaptchaCollector` instance with a really simple API sampled below. An image will be stored, only if there is a 100% answer. However, if you've noticed a wrong solution, please, create an issue using the corresponding template.
 ```python
 from amazoncaptcha import AmazonCaptchaCollector
 
