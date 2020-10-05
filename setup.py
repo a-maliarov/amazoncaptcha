@@ -5,14 +5,14 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="amazoncaptcha",
-    version="0.3.10",
+    version="0.4.0",
     description="Pure Python, lightweight, Pillow-based solver for the Amazon's text captcha.",
     packages=['amazoncaptcha'],
-    py_modules=['objects'],
+    py_modules=['objects', 'exceptions', 'utils'],
     include_package_data = True,
     package_data = {
         '': ['*.json'],
-        'amazoncaptcha': ['data/*.*'],
+        'amazoncaptcha': ['training_data/*.*'],
     },
     classifiers=[
         "Programming Language :: Python :: 3.6",
@@ -26,7 +26,8 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     install_requires = [
         "pillow ~= 7.2.0",
-        "requests ~= 2.24.0"
+        "requests ~= 2.24.0",
+        "selenium ~= 3.141.0"
     ],
     author="Anatolii Maliarov",
     author_email="tly.mov@gmail.com",
