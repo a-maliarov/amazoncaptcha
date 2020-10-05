@@ -31,6 +31,7 @@ class TestAmazonCaptcha(unittest.TestCase):
         self.assertEqual(solution, 'Not solved')
 
     def test_from_webdriver(self):
+        # TODO: Update
         capabilities = webdriver.ChromeCapabilities()
         capabilities.add_argument('--headless')
         capabilities.add_argument('--no-sandbox')
