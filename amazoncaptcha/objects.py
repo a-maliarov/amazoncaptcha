@@ -4,7 +4,7 @@
 amazoncaptcha.objects
 ~~~~~~~~~~~~~~~~~~~
 
-Main objects of the library.
+The main objects of the library.
 
 Attributes:
     MONOWEIGHT (int): The bigger this number - the thicker a monochromed picture
@@ -42,10 +42,10 @@ class AmazonCaptcha(object):
     """Instance to operate with Amazon's captcha.
 
     Attributes:
-        letters (dict): Dictionary to contain found letters and their pseudo binaries.
-        result (dict): Dictionary to contain translated pseudo binaries.
-        training_data_folder (str): Path to the folder with training data.
-        alphabet (list of str): list with all the existent letters based on
+        letters (dict): Dictionary for containing found letters and their pseudo binaries.
+        result (dict): Dictionary for containing translated pseudo binaries.
+        training_data_folder (str): Path to the folder with the training data.
+        alphabet (list of str): List with all the existent letters based on
             the files found in the training data folder.
 
     """
@@ -81,7 +81,7 @@ class AmazonCaptcha(object):
 
         Literally says: "for each pixel of an image turn codes 0, 1 to a 0,
         while everything in range from 2 to 255 should be replaced with 255".
-        All the numbers stay for color codes.
+        *All the numbers stay for color codes.
         """
 
         self.img = self.img.convert('L')
@@ -89,7 +89,7 @@ class AmazonCaptcha(object):
 
     def _find_letters(self):
         """
-        Extracts letters from an image using letter boxes.
+        Extracts letters from an image using found letter boxes.
 
         Populates 'self.letters' with extracted letters being PIL.Image instances.
         """
@@ -98,7 +98,8 @@ class AmazonCaptcha(object):
         letters = [self.img.crop((letter_box[0], 0, letter_box[1], self.img.height)) for letter_box in letter_boxes]
 
         if (len(letters) == 6 and letters[0].width < MINIMUM_LETTER_LENGTH) or (len(letters) != 6 and len(letters) != 7):
-            return None
+            self.letters = {str(k): Image.new('L', (200, 70)) for k in range(1, 7)}
+            return
 
         if len(letters) == 7:
             letters[6] = merge_horizontally(letters[6], letters[0])
@@ -125,9 +126,8 @@ class AmazonCaptcha(object):
         """
         Finds patterns to extracted pseudo binary strings from data folder.
 
-        Literally says: "for each pseudo binary walk through every stored letter
-        pattern and find a match. If there is no such letter stored, go to next
-        letter."
+        Literally says: "for each pseudo binary scan every stored letter
+        pattern and find a match".
 
         Returns:
             str: a solution if there is one OR 'Not solved' if devmode set to False
@@ -189,7 +189,7 @@ class AmazonCaptcha(object):
         This also means avoiding any local savings.
 
         Args:
-            driver (selenium.webdriver.*): Webdriver with opened captcha.
+            driver (selenium.webdriver.*): Webdriver with opened captcha page.
             devmode (bool, optional): If set to True, instead of 'Not solved',
                 unrecognised letters will be replaced with dashes.
 
@@ -240,7 +240,7 @@ class AmazonCaptcha(object):
             AmazonCaptcha: Instance created based on the image link.
 
         Raises:
-            ContentTypeError: If responce headers contains unsupported
+            ContentTypeError: If response headers contain unsupported
                 content type.
 
         """

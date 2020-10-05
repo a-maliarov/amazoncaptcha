@@ -15,7 +15,7 @@ def cut_the_white(letter):
     """
     Cuts white spaces/borders to get a clear letter.
 
-    We do not trim the whole image at the start, because all the letters
+    We do not trim the whole image at the beginning, because all the letters
     have different position by Y, which means that cutting white won't do
     any good, until letters are separated by X.
 
@@ -37,8 +37,8 @@ def merge_horizontally(img1, img2):
     """
     Merges two letters horizontally.
 
-    Created in case image is corrupted and the last letter ends at the beginning
-    of the image, causing letter to be unreadable.
+    Created in case an image is corrupted and the last letter ends at the
+    beginning of the image, causing letter to be unreadable.
 
     Args:
         img1 (PIL.Image): First letter.
