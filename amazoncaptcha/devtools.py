@@ -4,6 +4,7 @@ from .solver import AmazonCaptcha
 from io import BytesIO
 import multiprocessing
 import requests
+import os
 
 #--------------------------------------------------------------------------------------------------------------
 
