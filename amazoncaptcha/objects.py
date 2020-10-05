@@ -1,131 +1,103 @@
-#-----------------------------------------------------------------------------------------------------------------------------------------------------------
-# Modules
+# -*- coding: utf-8 -*-
+
+"""
+amazoncaptcha.objects
+~~~~~~~~~~~~~~~~~~~
+
+Main objects of the library.
+
+Attributes:
+    MONOWEIGHT (int): The bigger this number - the thicker a monochromed picture
+    MAXIMUM_LETTER_LENGTH (int): Maximum letter length by X axis
+    MINIMUM_LETTER_LENGTH (int): Minimum letter length by X axis
+    SUPPORTED_CONTENT_TYPES (list of str): Used when requesting a captcha url
+        to check if Content-Type in the headers is valid
+
+"""
+
+__all__ = ['AmazonCaptcha', 'AmazonCaptchaCollector']
+
+from .utils import *
+from .exceptions import *
+
 from PIL import Image, ImageChops
 from io import BytesIO
 import multiprocessing
+import warnings
 import requests
-import os
 import json
 import zlib
+import os
 
-#-----------------------------------------------------------------------------------------------------------------------------------------------------------
+#--------------------------------------------------------------------------------------------------------------
 
-def cut_the_white(letter):
-    """
-    Cuts white spaces/borders to get a clear letter.
+MONOWEIGHT = 1
+MAXIMUM_LETTER_LENGTH = 33
+MINIMUM_LETTER_LENGTH = 14
+SUPPORTED_CONTENT_TYPES = ['image/jpeg']
 
-    Implemented through PIL.ImageChops.difference
-    :src: https://pillow.readthedocs.io/en/stable/reference/ImageChops.html#PIL.ImageChops.difference
-
-    We do not trim the whole image at the start, because all the letters
-    have different position by Y, which means that cutting white spaces
-    from the beginning won't lead to anything, until letters are separated.
-
-    :param letter: A PIL.Image instance of found letter.
-    :returns: A PIL.Image instance of found letter with removed white spaces.
-    """
-
-    background = Image.new(letter.mode, letter.size, 255)
-    diff = ImageChops.difference(letter, background)
-    bbox = diff.getbbox()
-    return letter.crop(bbox)
-
-def merge_horizontally(img1, img2):
-    """
-    Merges two letters horizontally.
-
-    Created in case image is corrupted and last letter ends at the beginning,
-    causing letter to be unreadable.
-
-    :param img1: A PIL.Image instance of first letter.
-    :param img2: A PIL.Image instance of second letter.
-    :returns: A PIL.Image instance of two merged letters.
-    """
-
-    merged = Image.new('L', (img1.width + img2.width, img1.height))
-    merged.paste(img1, (0, 0))
-    merged.paste(img2, (img1.width, 0))
-    return merged
-
-def find_letter_boxes(img, maxlength):
-    """
-    Finds and separates letters from a captcha image.
-
-    :param img: A PIL.Image instance of a monochrome captcha.
-    :param maxlength: maximum length of a letter, an integer.
-    :returns: A list with X coordinates of letters (letter boxes).
-    """
-
-    image_columns = [[img.getpixel((x, y)) for y in range(img.height)] for x in range(img.width)]
-    image_code = [1 if 0 in column else 0 for column in image_columns]
-    xpoints = [d for d, s in zip(range(len(image_code)), image_code) if s]
-    xcoords = [x for x in xpoints if x - 1 not in xpoints or x + 1 not in xpoints]
-
-    if len(xcoords) % 2:
-        xcoords.insert(1, xcoords[0])
-
-    letter_boxes = list()
-    for s, e in zip(xcoords[0::2], xcoords[1::2]):
-        start, end = s, min(e + 1, img.width - 1)
-
-        if end - start <= maxlength:
-            letter_boxes.append((start, end))
-
-        else:
-            two_letters = {k: v.count(0) for k, v in enumerate(image_columns[start + 5:end - 5])}
-            divider = min(two_letters, key = two_letters.get) + 5
-            letter_boxes.extend([(start, start + divider), (start + divider + 1, end)])
-
-    return letter_boxes
-
-#-----------------------------------------------------------------------------------------------------------------------------------------------------------
+#--------------------------------------------------------------------------------------------------------------
 
 class AmazonCaptcha(object):
-    """
-    This class represents an AmazonCaptcha object.
+    """Instance to operate with Amazon's captcha.
+
+    Attributes:
+        letters (dict): Dictionary to contain found letters and their pseudo binaries.
+        result (dict): Dictionary to contain translated pseudo binaries.
+        training_data_folder (str): Path to the folder with training data.
+        alphabet (list of str): list with all the existent letters based on
+            the files found in the training data folder.
+
     """
 
-    monoweight = 1
-    maximum_letter_length = 33
-    minimum_letter_length = 14
-
-    def __init__(self, img):
+    def __init__(self, img, image_link=None, devmode=False):
         """
-        :param img: Path to an input image OR an instance of BytesIO representing this image.
+        Initializes the AmazonCaptcha instance.
+
+        Args:
+            img (str or io.BytesIO): Path to an input image OR an instance
+                of BytesIO representing this image.
+            image_link (str, optional): Used if `AmazonCaptcha` was created
+                using `from_webdriver` class method. Defaults to None.
+            devmode (bool, optional): If set to True, instead of 'Not solved',
+                unrecognised letters will be replaced with dashes.
+
         """
 
         self.img = Image.open(img, 'r')
+        self.image_link = image_link
+        self.devmode = devmode
+
         self.letters = dict()
         self.result = dict()
-        self.data_folder = os.path.abspath(os.path.dirname(os.path.abspath(__file__))) + os.sep + 'data' + os.sep
-        self.alphabet = [i.split('.')[0] for i in os.listdir(self.data_folder)]
 
-    def monochrome(self):
+        package_directory_path = os.path.abspath(os.path.dirname(os.path.abspath(__file__)))
+        self.training_data_folder = os.path.join(package_directory, 'training_data')
+        self.alphabet = [filename.split('.')[0] for filename in os.listdir(self.training_data_folder)]
+
+    def _monochrome(self):
         """
         Makes a captcha pure monochrome.
 
-        Implemented through PIL.Image.eval
-        :src: https://pillow.readthedocs.io/en/stable/reference/Image.html?#PIL.Image.eval
-
         Literally says: "for each pixel of an image turn codes 0, 1 to a 0,
         while everything in range from 2 to 255 should be replaced with 255".
-        *All the numbers stay for color codes.
+        All the numbers stay for color codes.
         """
 
         self.img = self.img.convert('L')
-        self.img = Image.eval(self.img, lambda a: 0 if a <= self.monoweight else 255)
+        self.img = Image.eval(self.img, lambda a: 0 if a <= MONOWEIGHT else 255)
 
-    def find_letters(self):
+    def _find_letters(self):
         """
         Extracts letters from an image using letter boxes.
 
-        Populates 'self.letters' with extracted letters.
+        Populates 'self.letters' with extracted letters being PIL.Image instances.
         """
 
-        letter_boxes = find_letter_boxes(self.img, self.maximum_letter_length)
+        letter_boxes = find_letter_boxes(self.img, MAXIMUM_LETTER_LENGTH)
         letters = [self.img.crop((letter_box[0], 0, letter_box[1], self.img.height)) for letter_box in letter_boxes]
 
-        if (len(letters) == 6 and letters[0].width < self.minimum_letter_length) or (len(letters) != 6 and len(letters) != 7):
+        if (len(letters) == 6 and letters[0].width < MINIMUM_LETTER_LENGTH) or (len(letters) != 6 and len(letters) != 7):
             return None
 
         if len(letters) == 7:
@@ -135,7 +107,7 @@ class AmazonCaptcha(object):
         letters = [cut_the_white(letter) for letter in letters]
         self.letters = {str(k): v for k, v in zip(range(1, 7), letters)}
 
-    def save_letters(self):
+    def _save_letters(self):
         """
         Transforms separated letters into pseudo binary.
 
@@ -149,21 +121,23 @@ class AmazonCaptcha(object):
             pseudo_binary = str(zlib.compress(letter_data_string.encode('utf-8')))
             self.letters[place] = pseudo_binary
 
-    def translate(self):
+    def _translate(self):
         """
         Finds patterns to extracted pseudo binary strings from data folder.
 
-        Literally says: "for each pseudo binary walk through every stored letter pattern
-        and find a match. If there is no such letter stored, go to next letter. If all the
-        letters checked and there is no result, fill this place as blank."
+        Literally says: "for each pseudo binary walk through every stored letter
+        pattern and find a match. If there is no such letter stored, go to next
+        letter."
 
-        :errors:ref:method:'find_letters': Check for more info.
+        Returns:
+            str: a solution if there is one OR 'Not solved' if devmode set to False
+
         """
 
         for place, pseudo_binary in self.letters.items():
             for letter in self.alphabet:
 
-                with open(self.data_folder + letter + '.json', 'r', encoding = 'utf-8') as js:
+                with open(os.path.join(self.training_data_folder, letter + '.json'), 'r', encoding = 'utf-8') as js:
                     data = json.loads(js.read())
 
                 if pseudo_binary in data:
@@ -171,36 +145,62 @@ class AmazonCaptcha(object):
                     break
 
             else:
-                self.result[place] = ''
+                self.result[place] = '-'
 
-        if (not self.result) or ('' in self.result.values()):
-            self.result = 'Not solved'
+                if not self.devmode:
+                    return 'Not solved'
 
-        else:
-            self.result = ''.join(self.result.values())
+        return ''.join(self.result.values())
 
-    def solve(self):
+    def solve(self, keep_logs=False, logs_path='not-solved-captcha.log'):
         """
-        Runs the sequence.
+        Runs the sequence of solving a captcha.
 
-        :returns: Solved captcha.
+        Args:
+            keep_logs (bool): Not solved captchas will be logged if True.
+                Defaults to False.
+            logs_path (str): Path to the file, where not solved captcha
+                links will be stored. Defaults to "not-solved-captcha.log".
+
+        Returns:
+            solution (str): Result of the sequence.
+
         """
 
-        self.monochrome()
-        self.find_letters()
-        self.save_letters()
-        self.translate()
-        return self.result
+        self._monochrome()
+        self._find_letters()
+        self._save_letters()
+
+        solution = self._translate()
+
+        if solution == 'Not solved' and keep_logs and self.image_link:
+
+            with open(logs_path, 'a', encoding='utf-8') as f:
+                f.write(self.image_link + '\n')
+
+        return solution
 
     @classmethod
-    def from_webdriver(cls, driver):
+    def fromdriver(cls, driver, devmode=False):
         """
-        :param driver: A selenium.webdriver.* instance.
-        :returns: AmazonCaptcha instance.
+        Takes a screenshot from your webdriver, crops the captcha, and stores
+        it into bytes array, which is then used to create an AmazonCaptcha instance.
+
+        This also means avoiding any local savings.
+
+        Args:
+            driver (selenium.webdriver.*): Webdriver with opened captcha.
+            devmode (bool, optional): If set to True, instead of 'Not solved',
+                unrecognised letters will be replaced with dashes.
+
+        Returns:
+            AmazonCaptcha: Instance created based on webdriver.
+
         """
 
         png = driver.get_screenshot_as_png()
         element = driver.find_element_by_tag_name('img')
+        image_link = element.get_attribute('src')
 
         location = element.location
         size = element.size
@@ -214,11 +214,47 @@ class AmazonCaptcha(object):
 
         bytes_array = BytesIO()
         img.save(bytes_array, format='PNG')
-        img_bytes_array = bytes_array.getvalue()
+        image_bytes_array = BytesIO(bytes_array.getvalue())
 
-        return cls(BytesIO(img_bytes_array))
+        return cls(image_bytes_array, image_link, devmode)
 
-#-----------------------------------------------------------------------------------------------------------------------------------------------------------
+    @classmethod
+    def from_webdriver(cls, driver, devmode=False):
+        warnings.warn("from_webdriver() is deprecated; use fromdriver() instead.", DeprecationWarning, stacklevel=2)
+        return cls.fromdriver(driver, devmode)
+
+    @classmethod
+    def fromlink(cls, image_link, devmode=False):
+        """
+        Requests the given link and stores the content of the response
+        as `io.BytesIO`, which is then used to create AmazonCaptcha instance.
+
+        This also means avoiding any local savings.
+
+        Args:
+            link (str): Link to Amazon's captcha image.
+            devmode (bool, optional): If set to True, instead of 'Not solved',
+                unrecognised letters will be replaced with dashes.
+
+        Returns:
+            AmazonCaptcha: Instance created based on the image link.
+
+        Raises:
+            ContentTypeError: If responce headers contains unsupported
+                content type.
+
+        """
+
+        response = requests.get(image_link)
+
+        if response.headers['Content-Type'] not in SUPPORTED_CONTENT_TYPES:
+            raise ContentTypeError(response.headers['Content-Type'])
+
+        image_bytes_array = BytesIO(response.content)
+
+        return cls(image_bytes_array, image_link, devmode)
+
+#--------------------------------------------------------------------------------------------------------------
 
 class AmazonCaptchaCollector(object):
 
@@ -260,4 +296,4 @@ class AmazonCaptchaCollector(object):
         for proc in jobs:
             proc.join()
 
-#-----------------------------------------------------------------------------------------------------------------------------------------------------------
+#--------------------------------------------------------------------------------------------------------------
