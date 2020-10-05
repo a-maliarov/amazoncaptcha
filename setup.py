@@ -5,10 +5,10 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="amazoncaptcha",
-    version="0.4.3",
+    version="0.4.4",
     description="Pure Python, lightweight, Pillow-based solver for the Amazon's text captcha.",
     packages=['amazoncaptcha'],
-    py_modules=['objects', 'exceptions', 'utils'],
+    py_modules=['devtools', 'exceptions', 'solver', 'utils'],
     include_package_data = True,
     package_data = {
         '': ['*.json'],
