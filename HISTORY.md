@@ -23,3 +23,9 @@
   3. Accuracy increased to 99.998%
 + **Version 0.3.8**:
   1. Added new instance - AmazonCaptchaCollector.
++ **Version 0.4.0**:
+  1. Update docstring to Google style
+  2. Deprecate class method `from_webdriver` to `fromdriver`
+  3. Add `fromlink` class method
+  4. Move utilities into a separated file
+  5. Add `ContentTypeError` exception
