@@ -7,8 +7,6 @@ amazoncaptcha.exceptions
 This module contains the set of amazoncaptcha's exceptions.
 """
 
-__all__ = ['ContentTypeError']
-
 #--------------------------------------------------------------------------------------------------------------
 
 class ContentTypeError(Exception):

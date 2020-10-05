@@ -7,8 +7,6 @@ amazoncaptcha.utils
 This module contains the set of amazoncaptcha's utilities.
 """
 
-__all__ = ['cut_the_white', 'merge_horizontally', 'find_letter_boxes']
-
 from PIL import Image, ImageChops
 
 #--------------------------------------------------------------------------------------------------------------

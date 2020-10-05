@@ -17,8 +17,8 @@ Attributes:
 
 __all__ = ['AmazonCaptcha', 'AmazonCaptchaCollector']
 
-from .utils import *
-from .exceptions import *
+from .utils import cut_the_white, merge_horizontally, find_letter_boxes
+from .exceptions import ContentTypeError
 
 from PIL import Image, ImageChops
 from io import BytesIO
