@@ -6,27 +6,27 @@ import os
 
 class TestAmazonCaptcha(unittest.TestCase):
 
-    def test_notcorrupted(self):
+    def test_not_corrupted_image(self):
         solution = AmazonCaptcha('tests/captchas/notcorrupted.jpg').solve()
         self.assertEqual(solution, 'KRJNBY')
 
-    def test_corrupted(self):
+    def test_corrupted_image_with_last_letter_ending_at_the_beginning(self):
         solution = AmazonCaptcha('tests/captchas/corrupted.png').solve()
         self.assertEqual(solution, 'UGXGMM')
 
-    def test_corrupted_1(self):
+    def test_corrupted_image_with_letters_overlapping(self):
         solution = AmazonCaptcha('tests/captchas/corrupted_1.png').solve()
         self.assertEqual(solution, 'BPXHGH')
 
-    def test_corrupted_2(self):
+    def test_corrupted_image_with_both_overlap_and_separated_letter(self):
         solution = AmazonCaptcha('tests/captchas/corrupted_2.png').solve()
         self.assertEqual(solution, 'KMGMXE')
 
-    def test_notsolved(self):
+    def test_image_with_6_unrecognizable_letters(self):
         solution = AmazonCaptcha('tests/captchas/notsolved.jpg').solve()
         self.assertEqual(solution, 'Not solved')
 
-    def test_notsolved_1(self):
+    def test_totally_broken_image(self):
         solution = AmazonCaptcha('tests/captchas/notsolved_1.jpg').solve()
         self.assertEqual(solution, 'Not solved')
 
