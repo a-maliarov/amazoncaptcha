@@ -1,5 +1,4 @@
-from amazoncaptcha import AmazonCaptcha
-from amazoncaptcha import AmazonCaptchaCollector
+from amazoncaptcha import AmazonCaptcha, AmazonCaptchaCollector, ContentTypeError
 from maliarov import webdriver
 import unittest
 import os
@@ -30,8 +29,21 @@ class TestAmazonCaptcha(unittest.TestCase):
         solution = AmazonCaptcha('tests/captchas/notsolved_1.jpg').solve()
         self.assertEqual(solution, 'Not solved')
 
+    def test_fromlink_and_keep_logs(self):
+        link = 'https://i.ibb.co/Cn2J1mS/notsolved.jpg'
+        captcha = AmazonCaptcha.fromlink(link)
+        solution = captcha.solve(keep_logs=True)
+        self.assertEqual(solution, 'Not solved')
+
+    def test_content_type_error(self):
+        link = 'https://ibb.co/kh13H5P'
+
+        with self.assertRaises(ContentTypeError) as context:
+            AmazonCaptcha.fromlink(link)
+
+        self.assertTrue('is not supported as a Content-Type' in str(context.exception))
+
     def test_from_webdriver(self):
-        # TODO: Update
         capabilities = webdriver.ChromeCapabilities()
         capabilities.add_argument('--headless')
         capabilities.add_argument('--no-sandbox')
