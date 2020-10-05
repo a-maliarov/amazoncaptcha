@@ -70,7 +70,7 @@ captcha = AmazonCaptcha.fromlink(link)
 solution = captcha.solve()
 ```
 
-In addition, if you are a **machine learning** or **neural network** developer and are looking for some training data, firstly check the [captchas](https://github.com/a-maliarov/amazon-captcha-solver/tree/master/captchas) folder. It currently contains **13000 solved captchas with unique patterns**. For more solved images, consider using `AmazonCaptchaCollector` instance with a really simple API sampled below. An image will be stored, only if there is a 100% answer. However, if you've noticed a wrong solution, please, create an issue using the corresponding template.
+In addition, if you are a machine learning or neural network developer and are looking for some training data, firstly check the [captchas](https://github.com/a-maliarov/amazon-captcha-solver/tree/master/captchas) folder. It currently contains **13000 solved captchas with unique patterns**. For more solved images, consider using `AmazonCaptchaCollector` instance with a really simple API sampled below. An image will be stored, only if there is a 100% answer. However, if you've noticed a wrong solution, please, create an issue using the corresponding template.
 ```python
 from amazoncaptcha import AmazonCaptchaCollector
 
@@ -83,7 +83,7 @@ if __name__ == '__main__':
     collector.start(target, processes)
 ```
 
-## Help the development
+## Help the Development
 If you are willing to help the development, consider setting `keep_logs` argument of the `solve` method to `True`. Here is the example, if you are using `fromdriver` class method. If set to `True`, all the links of the unsolved captcha will be stored, so later you can [open the issue and send the logs](https://github.com/a-maliarov/amazon-captcha-solver/issues/new?assignees=a-maliarov&labels=training+data&template=send_logs.md&title=Add+training+data).
 ```python
 from amazoncaptcha import AmazonCaptcha
