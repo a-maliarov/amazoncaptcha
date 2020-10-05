@@ -39,6 +39,7 @@ Examples:
 
 """
 
-from .objects import *
+from .objects import AmazonCaptcha, AmazonCaptchaCollector
+from .exceptions import ContentTypeError
 
 #--------------------------------------------------------------------------------------------------------------

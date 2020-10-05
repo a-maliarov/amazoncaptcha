@@ -15,10 +15,11 @@ class ContentTypeError(Exception):
     contains unsupported content type within response headers.
     """
 
-    def __init__(self, content_type):
+    def __init__(self, content_type, message='is not supported as a Content-Type. Cannot extract the image.'):
         self.content_type = content_type
+        self.message = message
 
     def __str__(self):
-        return f'"{self.content_type}" is not supported as a Content-Type. Cannot extract the image.'
+        return f'"{self.content_type}" {self.message}'
 
 #--------------------------------------------------------------------------------------------------------------
