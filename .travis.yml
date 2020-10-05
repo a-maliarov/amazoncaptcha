@@ -13,7 +13,7 @@ python:
   - "3.8"
 
 install:
-  - pip install amazoncaptcha
+  - pip install git+https://github.com/a-maliarov/amazon-captcha-solver
 
 before_script:
   - wget -N https://chromedriver.storage.googleapis.com/85.0.4183.87/chromedriver_linux64.zip -P ~/
