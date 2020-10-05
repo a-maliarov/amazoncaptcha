@@ -82,6 +82,20 @@ if __name__ == '__main__':
     collector = AmazonCaptchaCollector(output_folder)
     collector.start(target, processes)
 ```
+
+## Help the development
+If you are willing to help the development, consider setting `keep_logs` argument of the `solve` method to `True`. Here is the example, if you are using `fromdriver` class method. If set to `True`, all the link of the unsolved captha will be stored, so later you can open the issue and send the logs.
+```python
+from amazoncaptcha import AmazonCaptcha
+from selenium import webdriver
+
+driver = webdriver.Chrome() # This is a simplified example
+driver.get('https://www.amazon.com/errors/validateCaptcha')
+
+captcha = AmazonCaptcha.fromdriver(driver)
+solution = captcha.solve(keep_logs=True)
+```
+
 If you have any suggestions or ideas of additional instances and methods, which you would like to see in this library, please, feel free to contact the owner via email or fork'n'pull to repository. Any contribution is highly appreciated!
 
 ## Additional
