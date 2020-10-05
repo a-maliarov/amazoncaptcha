@@ -2,7 +2,7 @@
 name: Constantly Not Solved
 about: Create a report to let us help
 title: Constantly Not Solved
-labels: CNS, good first issue
+labels: CNS
 assignees: a-maliarov
 
 ---
@@ -12,7 +12,7 @@ assignees: a-maliarov
 Code goes here
 ```
 
-**If your endpoint is not ".from_webdriver", paste the code of how you download the image**
+**If your endpoint is not ".fromdriver", paste the code of how you download the image**
 ```python
 Code goes here
 ```
