@@ -103,3 +103,8 @@ If you have any suggestions or ideas of additional instances and methods, which 
 + If you want to see the [**History of Changes**](https://github.com/a-maliarov/amazon-captcha-solver/blob/master/HISTORY.md), [**Code of Conduct**](https://github.com/a-maliarov/amazon-captcha-solver/blob/master/.github/CODE_OF_CONDUCT.md), [**Contributing Policy**](https://github.com/a-maliarov/amazon-captcha-solver/blob/master/.github/CONTRIBUTING.md), or [**License**](https://github.com/a-maliarov/amazon-captcha-solver/blob/master/LICENSE), use these inline links to navigate based on your needs.
 + If you are facing any errors, please, report your situation via an issue.
 + This project is for educational and research purposes only. Any actions and/or activities related to the material contained on this GitHub Repository is solely your responsibility. The author will not be held responsible in the event any criminal charges be brought against any individuals misusing the information in this GitHub Repository to break the law.
+---
+
+## Happy Captcha Solving!
+
+![Gif](https://github.com/a-maliarov/amazon-captcha-solver/blob/master/captchas.gif)
