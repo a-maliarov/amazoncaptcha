@@ -96,7 +96,8 @@ class AmazonCaptcha(object):
         letters = [self.img.crop((letter_box[0], 0, letter_box[1], self.img.height)) for letter_box in letter_boxes]
 
         if (len(letters) == 6 and letters[0].width < MINIMUM_LETTER_LENGTH) or (len(letters) != 6 and len(letters) != 7):
-            letters = [Image.new('L', (200, 70)) for i in range(6)]
+            self.letters = {str(k): Image.new('L', (200, 70)) for k in range(1, 7)}
+            return
 
         if len(letters) == 7:
             letters[6] = merge_horizontally(letters[6], letters[0])
