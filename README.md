@@ -24,6 +24,9 @@ Pure Python, lightweight, [Pillow](https://github.com/python-pillow/Pillow)-base
 [![Python version](https://img.shields.io/badge/python-3.6%2B-informational)](https://pypi.org/project/amazoncaptcha/)
 [![Downloads](https://img.shields.io/pypi/dm/amazoncaptcha?color=success)](https://pypi.org/project/amazoncaptcha/)
 
+## Recent News
++ October 7, 2020: tested and approved compatibility with Python 3.9
+
 ## Installation
 ```bash
 pip install amazoncaptcha
