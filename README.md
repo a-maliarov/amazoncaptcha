@@ -35,6 +35,7 @@ pip install amazoncaptcha
 ```
 
 ## Quick Snippet
+An example of the constructor usage. Scroll a bit down to see some tasty class methods.
 ```python
 from amazoncaptcha import AmazonCaptcha
 
@@ -52,7 +53,7 @@ solution = captcha.solve()
 [![CodeFactor Grade](https://img.shields.io/codefactor/grade/github/a-maliarov/amazon-captcha-solver/master)](https://www.codefactor.io/repository/github/a-maliarov/amazon-captcha-solver/overview/master)
 ![Implementation](https://img.shields.io/pypi/implementation/amazoncaptcha)
 
-## Usage
+## Usage and Class Methods
 Browsing Amazon using `selenium` and stuck on captcha? The class method below will do all the "dirty" work of extracting an image from the webpage for you. Practically, it takes a screenshot from your webdriver, crops the captcha, and stores it into bytes array, which is then used to create an `AmazonCaptcha` instance. This also means avoiding any local savings.
 ```python
 from amazoncaptcha import AmazonCaptcha
