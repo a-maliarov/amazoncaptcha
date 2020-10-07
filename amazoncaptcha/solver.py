@@ -20,7 +20,6 @@ from .exceptions import ContentTypeError
 
 from PIL import Image, ImageChops
 from io import BytesIO
-import multiprocessing
 import warnings
 import requests
 import json
