@@ -1,1 +1,1 @@
-include amazoncaptcha/training_data/*.*
+include amazoncaptcha/training_data/*.json
