@@ -15,7 +15,7 @@
 The motivation behind the creation of this library is taking its start from the genuinely simple idea: "**I don't want to use pytesseract or some other non-amazon-specific OCR services, nor do I want to install some executables to just solve a captcha. I desire to get a solution within 1-2 lines of code without any heavy add-ons, using a pure Python.**"
 
 ---
-Pure Python, lightweight, [Pillow](https://github.com/python-pillow/Pillow)-based solver for [Amazon's text captcha](https://www.amazon.com/errors/validateCaptcha) (compatible with Python 3.9)
+Pure Python, lightweight, [Pillow](https://github.com/python-pillow/Pillow)-based solver for [Amazon's text captcha](https://www.amazon.com/errors/validateCaptcha).
 
 [![Accuracy](https://img.shields.io/badge/accuracy-99.998%25-success)](https://github.com/a-maliarov/amazon-captcha-solver/blob/master/ext/accuracy.log)
 ![Timing](https://img.shields.io/badge/response%20time-0.2s-success)
@@ -25,7 +25,8 @@ Pure Python, lightweight, [Pillow](https://github.com/python-pillow/Pillow)-base
 [![Downloads](https://img.shields.io/pypi/dm/amazoncaptcha?color=success)](https://pypi.org/project/amazoncaptcha/)
 
 ## Recent News
-+ October 7, 2020: tested and approved compatibility with Python 3.9
++ *October 8, 2020*: tested and approved compatibility with Chromedriver 86.0.4240.22
++ *October 7, 2020*: tested and approved compatibility with Python 3.9
 
 ## Installation
 ```bash
