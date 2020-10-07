@@ -8,10 +8,16 @@ addons:
   chrome: stable
 
 python:
+  - "3.5"
   - "3.6"
   - "3.7"
   - "3.8"
   - "3.9-dev"
+
+matrix:
+  fast_finish: true
+  allow_failures:
+    - python: "3.5"
 
 install:
   - pip install git+https://github.com/a-maliarov/amazon-captcha-solver
@@ -23,7 +29,6 @@ before_script:
   - sudo mv -f ~/chromedriver /usr/local/share/
   - sudo chmod +x /usr/local/share/chromedriver
   - sudo ln -s /usr/local/share/chromedriver /usr/local/bin/chromedriver
-  - whereis chromedriver
   - pip install maliarov
   - pip install coverage
   - pip install codecov
