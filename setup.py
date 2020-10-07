@@ -1,17 +1,24 @@
+import os
 import setuptools
 
-def readme(logo_end_line=14):
-    """Drops the logo from README file before pushing to PyPi"""
+here = os.path.abspath(os.path.dirname(__file__))
 
-    with open("README.md", "r", encoding="utf-8") as fh:
-        long_description = "".join(fh.readlines()[logo_end_line:])
+def readme(logo_end_line=14):
+    """Extracts the logo from README file before pushing to PyPi"""
+
+    with open('README.md', 'r', encoding='utf-8') as fh:
+        long_description = ''.join(fh.readlines()[logo_end_line:])
 
     return long_description
 
+about = {}
+with open(os.path.join(here, 'amazoncaptcha', '__version__.py'), 'r', encoding='utf-8') as f:
+    exec(f.read(), about)
+
 setuptools.setup(
-    name="amazoncaptcha",
-    version="0.4.5",
-    description="Pure Python, lightweight, Pillow-based solver for Amazon's text captcha.",
+    name=about['__title__'],
+    version=about['__version__'],
+    description=about['__description__'],
     packages=['amazoncaptcha'],
     py_modules=['devtools', 'exceptions', 'solver', 'utils'],
     include_package_data = True,
@@ -27,6 +34,7 @@ setuptools.setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
         "Development Status :: 5 - Production/Stable",
+        "Natural Language :: English",
         "Intended Audience :: Developers",
         "Intended Audience :: Education",
         "Intended Audience :: Information Technology",
@@ -39,8 +47,11 @@ setuptools.setup(
         "requests ~= 2.24.0",
         "selenium ~= 3.141.0"
     ],
-    author="Anatolii Maliarov",
-    author_email="tly.mov@gmail.com",
-    url="https://github.com/a-maliarov/amazon-captcha-solver",
+    author=about['__author__'],
+    author_email=about['__author_email__'],
+    url=about['__url__'],
+    project_urls={
+        'Documentation': about['__url__'],
+        'Source': about['__url__'],
+    },
 )
-
