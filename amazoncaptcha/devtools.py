@@ -19,8 +19,28 @@ import os
 #--------------------------------------------------------------------------------------------------------------
 
 class AmazonCaptchaCollector(object):
+    """Instance to collect Amazon's captcha images or proceed accuracy tests.
+
+    Attributes:
+        collector_logs (str): Path to the file where logs should be stored.
+        test_results (str): Path to the file where the final resust of an accuracy test.
+        not_solved_logs (str): Path to the file where links of unsolved captcha should be stored.
+
+    """
 
     def __init__(self, output_folder_path, keep_logs=True, accuracy_test=False):
+        """
+        Initializes the AmazonCaptchaCollector instance.
+
+        Args:
+            output_folder (str): Folder where images or logs should be stored.
+            keep_logs (bool, optional): Is set to True, unsolved captcha links
+                will be stored separately.
+            accuracy_test (bool, optional): If set to True, AmazonCaptchaCollector
+                will not download images, but just solve them and log the results.
+
+        """
+
         self.output_folder = output_folder_path
         self.keep_logs = keep_logs
         self.accuracy_test = accuracy_test
@@ -36,12 +56,26 @@ class AmazonCaptchaCollector(object):
         self.not_solved_logs = os.path.join(self.output_folder, 'not-solved-captcha.log')
 
     def _extract_captcha_link(self, captcha_page):
+        """Extracts a captcha link from an html page."""
+
         return captcha_page.text.split('<img src="')[1].split('">')[0]
 
     def _extract_captcha_id(self, captcha_link):
+        """Extracts a captcha id from a captcha link."""
+
         return ''.join(captcha_link.split('/captcha/')[1].replace('.jpg', '').split('/Captcha_'))
 
     def get_captcha_image(self):
+        """
+        Requests the page with Amazon's captcha, gets random captcha.
+        Creates AmazonCaptcha instance, stores an original image before solving.
+
+        If it is not an accuracy test, the image will be stored in a specified
+        folder with the solution within its name. Otherwise, only the logs
+        will be stored, mentioning the captcha link being processes and the result.
+
+        """
+
         captcha_page = requests.get('https://www.amazon.com/errors/validateCaptcha')
         captcha_link = self._extract_captcha_link(captcha_page)
 
@@ -64,10 +98,21 @@ class AmazonCaptchaCollector(object):
                 f.write(log_message + '\n')
 
     def _distribute_collecting(self, milestone):
+        """Distribution function for multiprocessing."""
+
         for step in milestone:
             self.get_captcha_image()
 
     def start(self, target, processes):
+        """
+        Starts the process of collecting captchas of conducting a test.
+
+        Args:
+            target (int): Number of captchas to be processed.
+            processes (int): Number of simultaneous processes.
+
+        """
+
         goal = list(range(target))
         milestones = [goal[x: x + target // processes] for x in range(0, len(goal), target // processes)]
 
