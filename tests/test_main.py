@@ -63,7 +63,7 @@ class TestAmazonCaptcha(unittest.TestCase):
     def test_collector(self):
         collector = AmazonCaptchaCollector(output_folder_path = 'tests/captchas')
         collector.get_captcha_image()
-        collector.distribute_collecting(range(4))
+        collector._distribute_collecting(range(4))
 
         self.assertGreaterEqual(len(os.listdir('tests/captchas')), 10)
 
