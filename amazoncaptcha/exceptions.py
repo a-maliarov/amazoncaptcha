@@ -2,7 +2,7 @@
 
 """
 amazoncaptcha.exceptions
-~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 This module contains the set of amazoncaptcha's exceptions.
 """

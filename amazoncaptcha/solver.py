@@ -2,7 +2,7 @@
 
 """
 amazoncaptcha.solver
-~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~
 
 This module contains AmazonCaptcha instance and all the requiries for it.
 

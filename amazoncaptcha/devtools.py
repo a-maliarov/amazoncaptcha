@@ -1,4 +1,11 @@
-#--------------------------------------------------------------------------------------------------------------
+# -*- coding: utf-8 -*-
+
+"""
+amazoncaptcha.devtools
+~~~~~~~~~~~~~~~~~~~~~~
+
+This module contains the set of amazoncaptcha's devtools.
+"""
 
 from .solver import AmazonCaptcha
 from .exceptions import NotFolderError
