@@ -80,7 +80,14 @@ class TestAmazonCaptcha(unittest.TestCase):
 
         self.assertTrue('is not a folder. Cannot store images there.' in str(context.exception))
 
-    def test_collector_in_multiprocessing(self):
+    def test_accuracy(self):
+        collector = AmazonCaptchaCollector(output_folder_path = 'tests/new_folder', accuracy_test=True)
+        collector.get_captcha_image()
+        collector._distribute_collecting(range(5))
+
+        self.assertGreaterEqual(len(os.listdir('tests/new_folder')), 1)
+
+    def test_accuracy_in_multiprocessing(self):
         collector = AmazonCaptchaCollector(output_folder_path = 'tests/new_folder', accuracy_test=True)
         collector.start(target = 12, processes = 2)
 
