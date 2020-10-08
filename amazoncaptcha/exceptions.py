@@ -22,4 +22,17 @@ class ContentTypeError(Exception):
     def __str__(self):
         return f'"{self.content_type}" {self.message}'
 
+class NotFolderError(Exception):
+    """
+    Given path, which was supposed to be a path to the folder, where
+    script can store images, is not a folder.
+    """
+
+    def __init__(self, path, message='is not a folder. Cannot store images there.'):
+        self.path = path
+        self.message = message
+
+    def __str__(self):
+        return f'"{self.path}" {self.message}'
+
 #--------------------------------------------------------------------------------------------------------------

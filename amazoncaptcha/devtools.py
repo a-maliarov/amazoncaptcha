@@ -1,6 +1,9 @@
 #--------------------------------------------------------------------------------------------------------------
 
 from .solver import AmazonCaptcha
+from .exceptions import NotFolderError
+from .__version__ import __version__
+
 from io import BytesIO
 import multiprocessing
 import requests
@@ -10,28 +13,50 @@ import os
 
 class AmazonCaptchaCollector(object):
 
-    def __init__(self, output_folder = ''):
-        self.output_folder = output_folder
+    def __init__(self, output_folder_path, keep_logs=True, accuracy_test=False):
+        self.output_folder = output_folder_path
+        self.keep_logs = keep_logs
+        self.accuracy_test = accuracy_test
+
+        if not os.path.exists(self.output_folder):
+            os.mkdir(self.output_folder)
+
+        elif not os.path.isdir(self.output_folder):
+            raise NotFolderError(self.output_folder)
+
+        self.collector_logs = os.path.join(self.output_folder, f'collector-logs-{__version__.replace(".", "")}.log')
+        self.test_results = os.path.join(self.output_folder, 'test-results.log')
+        self.not_solved_logs = os.path.join(self.output_folder, 'not-solved-captcha.log')
+
+    def _extract_captcha_link(self, captcha_page):
+        return captcha_page.text.split('<img src="')[1].split('">')[0]
+
+    def _extract_captcha_id(self, captcha_link):
+        return ''.join(captcha_link.split('/captcha/')[1].replace('.jpg', '').split('/Captcha_'))
 
     def get_captcha_image(self):
         captcha_page = requests.get('https://www.amazon.com/errors/validateCaptcha')
-        captcha_link = captcha_page.text.split('<img src="')[1].split('">')[0]
+        captcha_link = self._extract_captcha_link(captcha_page)
 
         response = requests.get(captcha_link)
-        image_bytes_array = BytesIO(response.content)
+        captcha = AmazonCaptcha(BytesIO(response.content))
+        captcha.image_link = captcha_link
+        original_image = captcha.img
 
-        captcha = AmazonCaptcha(image_bytes_array)
-        captcha_image = captcha.img
-        captcha_id = ''.join(captcha_link.split('/captcha/')[1].replace('.jpg', '').split('/Captcha_'))
-        solution = captcha.solve()
+        solution = captcha.solve(keep_logs=self.keep_logs, logs_path=self.not_solved_logs)
+        log_message = f'{captcha.image_link}::{solution}'
 
-        if solution != 'Not solved':
-            print(captcha_link, solution)
-            captcha_name = 'dl_' + captcha_id + '_' + solution + '.png'
-            path = os.path.join(self.output_folder, captcha_name)
-            captcha_image.save(path)
+        if solution != 'Not solved' and not self.accuracy_test:
+            print(log_message)
+            captcha_name = 'dl_' + self._extract_captcha_id(captcha.image_link) + '_' + solution + '.png'
+            original_image.save(os.path.join(self.output_folder, captcha_name))
 
-    def distribute_collecting(self, milestone):
+        else:
+            print(log_message)
+            with open(self.collector_logs, 'a', encoding='utf-8') as f:
+                f.write(log_message + '\n')
+
+    def _distribute_collecting(self, milestone):
         for step in milestone:
             self.get_captcha_image()
 
@@ -41,11 +66,24 @@ class AmazonCaptchaCollector(object):
 
         jobs = list()
         for j in range(processes):
-            p = multiprocessing.Process(target=self.distribute_collecting, args=(milestones[j], ))
+            p = multiprocessing.Process(target=self._distribute_collecting, args=(milestones[j], ))
             jobs.append(p)
             p.start()
 
         for proc in jobs:
             proc.join()
+
+        if self.accuracy_test:
+            with open(self.collector_logs, 'r', encoding='utf-8') as f:
+                output = f.readlines()
+
+            all_captchas = len(output)
+            solved_captchas = len([i for i in output if 'Not solved' not in i])
+            success_percentage = round((solved_captchas / all_captchas) * 100, 5)
+            result = f'::Test::Ver{__version__}::Cap{all_captchas}::Per{success_percentage}::'
+
+            with open(self.test_results, 'w', encoding='utf-8') as f:
+                print(result)
+                f.write(result)
 
 #--------------------------------------------------------------------------------------------------------------

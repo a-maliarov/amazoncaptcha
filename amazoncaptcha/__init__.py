@@ -41,6 +41,6 @@ Examples:
 
 from .solver import AmazonCaptcha
 from .devtools import AmazonCaptchaCollector
-from .exceptions import ContentTypeError
+from .exceptions import ContentTypeError, NotFolderError
 
 #--------------------------------------------------------------------------------------------------------------
