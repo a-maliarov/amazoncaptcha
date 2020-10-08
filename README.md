@@ -2,7 +2,7 @@
   ______                                  ______                      __              __                
  /      \                                /      \                    |  \            |  \               
 |  ▓▓▓▓▓▓\______ ____  ________ _______ |  ▓▓▓▓▓▓\ ______   ______  _| ▓▓_    _______| ▓▓____   ______  
-| ▓▓__| ▓▓      \    \|        \       \| ▓▓   \▓▓|      \ /      \|   ▓▓ \  /       \ ▓▓    \ |      \ 
+| ▓▓__| ▓▓      \    \|        \       \| ▓▓   \▓▓|      \ /      \|   ▓▓ \  /       \ ▓▓    \ |      \
 | ▓▓    ▓▓ ▓▓▓▓▓▓\▓▓▓▓\\▓▓▓▓▓▓▓▓ ▓▓▓▓▓▓▓\ ▓▓       \▓▓▓▓▓▓\  ▓▓▓▓▓▓\\▓▓▓▓▓▓ |  ▓▓▓▓▓▓▓ ▓▓▓▓▓▓▓\ \▓▓▓▓▓▓\
 | ▓▓▓▓▓▓▓▓ ▓▓ | ▓▓ | ▓▓ /    ▓▓| ▓▓  | ▓▓ ▓▓   __ /      ▓▓ ▓▓  | ▓▓ | ▓▓ __| ▓▓     | ▓▓  | ▓▓/      ▓▓
 | ▓▓  | ▓▓ ▓▓ | ▓▓ | ▓▓/  ▓▓▓▓_| ▓▓  | ▓▓ ▓▓__/  \  ▓▓▓▓▓▓▓ ▓▓__/ ▓▓ | ▓▓|  \ ▓▓_____| ▓▓  | ▓▓  ▓▓▓▓▓▓▓
@@ -19,7 +19,7 @@ Pure Python, lightweight, [Pillow](https://github.com/python-pillow/Pillow)-base
 
 [![Accuracy](https://img.shields.io/badge/success%20rate-99.9%25-success)](https://github.com/a-maliarov/amazon-captcha-solver/blob/master/ext/accuracy.log)
 ![Timing](https://img.shields.io/badge/response%20time-0.2s-success)
-[![Size](https://img.shields.io/badge/wheel%20size-0.82%20MB-informational)](https://github.com/a-maliarov/amazon-captcha-solver/releases/tag/v0.3.0)
+[![Size](https://img.shields.io/badge/wheel%20size-0.9%20MB-informational)](https://pypi.org/project/amazoncaptcha/)
 [![Version](https://img.shields.io/pypi/v/amazoncaptcha?color=informational)](https://pypi.org/project/amazoncaptcha/)
 [![Python version](https://img.shields.io/badge/python-3.6%2B-informational)](https://pypi.org/project/amazoncaptcha/)
 [![Downloads](https://img.shields.io/pypi/dm/amazoncaptcha?color=success)](https://pypi.org/project/amazoncaptcha/)
@@ -51,7 +51,7 @@ solution = captcha.solve()
 [![codecov](https://img.shields.io/codecov/c/gh/a-maliarov/amazon-captcha-solver)](https://codecov.io/gh/a-maliarov/amazon-captcha-solver)
 [![Requirements Status](https://requires.io/github/a-maliarov/amazon-captcha-solver/requirements.svg?branch=master)](https://requires.io/github/a-maliarov/amazon-captcha-solver/requirements/?branch=master)
 [![CodeFactor Grade](https://img.shields.io/codefactor/grade/github/a-maliarov/amazon-captcha-solver/master)](https://www.codefactor.io/repository/github/a-maliarov/amazon-captcha-solver/overview/master)
-![Implementation](https://img.shields.io/pypi/implementation/amazoncaptcha)
+[![Docs](https://img.shields.io/badge/docs-failing-red)](https://github.com/a-maliarov/amazon-captcha-solver)
 
 ## Usage and Class Methods
 Browsing Amazon using `selenium` and stuck on captcha? The class method below will do all the "dirty" work of extracting an image from the webpage for you. Practically, it takes a screenshot from your webdriver, crops the captcha, and stores it into bytes array, which is then used to create an `AmazonCaptcha` instance. This also means avoiding any local savings.
