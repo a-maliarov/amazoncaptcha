@@ -60,5 +60,18 @@ class TestAmazonCaptcha(unittest.TestCase):
 
         self.assertIn(6, solutions)
 
+    def test_collector(self):
+        collector = AmazonCaptchaCollector(output_folder_path = 'tests/captchas')
+        collector.get_captcha_image()
+        collector.distribute_collecting(range(4))
+
+        self.assertGreaterEqual(len(os.listdir('tests/captchas')), 10)
+
+    def test_collector_in_multiprocessing(self):
+        collector = AmazonCaptchaCollector(output_folder_path = 'tests/captchas')
+        collector.start(target = 12, processes = 2)
+
+        self.assertGreaterEqual(len(os.listdir('tests/captchas')), 20)
+
 if __name__ == '__main__':
     unittest.main()
