@@ -1,11 +1,11 @@
-import os
 import setuptools
+import os
 
 here = os.path.abspath(os.path.dirname(__file__))
 
-about = dict()
 with open(os.path.join(here, 'amazoncaptcha', '__version__.py'), 'r', encoding='utf-8') as f:
-    exec(f.read(), about)
+    file_data = [i.replace('\n', '').replace('\'', '').split(' = ') for i in f.readlines()]
+    about = {k: v for k, v in file_data}
 
 def readme(logo_end_line=14):
     """Extracts the logo from README file before pushing to PyPi."""
