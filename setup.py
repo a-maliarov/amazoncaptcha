@@ -8,7 +8,7 @@ with open(os.path.join(here, 'amazoncaptcha', '__version__.py'), 'r', encoding='
     exec(f.read(), about)
 
 def readme(logo_end_line=14):
-    """Extracts the logo from README file before pushing to PyPi"""
+    """Extracts the logo from README file before pushing to PyPi."""
 
     with open('README.md', 'r', encoding='utf-8') as fh:
         long_description = ''.join(fh.readlines()[logo_end_line:])
