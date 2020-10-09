@@ -49,9 +49,9 @@ solution = captcha.solve()
 [![Status](https://img.shields.io/pypi/status/amazoncaptcha)](https://pypi.org/project/amazoncaptcha/)
 [![Build Status](https://travis-ci.com/a-maliarov/amazon-captcha-solver.svg?branch=master)](https://travis-ci.com/a-maliarov/amazon-captcha-solver)
 [![codecov](https://img.shields.io/codecov/c/gh/a-maliarov/amazon-captcha-solver)](https://codecov.io/gh/a-maliarov/amazon-captcha-solver)
+[![Documentation Status](https://readthedocs.org/projects/amazoncaptcha/badge/?version=latest)](https://amazoncaptcha.readthedocs.io/en/latest/?badge=latest)
 [![Requirements Status](https://requires.io/github/a-maliarov/amazon-captcha-solver/requirements.svg?branch=master)](https://requires.io/github/a-maliarov/amazon-captcha-solver/requirements/?branch=master)
 [![CodeFactor Grade](https://img.shields.io/codefactor/grade/github/a-maliarov/amazon-captcha-solver/master)](https://www.codefactor.io/repository/github/a-maliarov/amazon-captcha-solver/overview/master)
-[![Docs](https://img.shields.io/badge/docs-failing-red)](https://github.com/a-maliarov/amazon-captcha-solver)
 
 ## Usage and Class Methods
 Browsing Amazon using `selenium` and stuck on captcha? The class method below will do all the "dirty" work of extracting an image from the webpage for you. Practically, it takes a screenshot from your webdriver, crops the captcha, and stores it into bytes array, which is then used to create an `AmazonCaptcha` instance. This also means avoiding any local savings.
