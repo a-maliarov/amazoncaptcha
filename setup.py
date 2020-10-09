@@ -1,8 +1,11 @@
-from amazoncaptcha import __version__ as about
-import setuptools
 import os
+import setuptools
 
 here = os.path.abspath(os.path.dirname(__file__))
+
+about = dict()
+with open(os.path.join(here, 'amazoncaptcha', '__version__.py'), 'r', encoding='utf-8') as f:
+    exec(f.read(), about)
 
 def readme(logo_end_line=14):
     """Extracts the logo from README file before pushing to PyPi."""
@@ -34,9 +37,9 @@ requires = [
 ]
 
 setuptools.setup(
-    name=about.__title__,
-    version=about.__version__,
-    description=about.__description__,
+    name=about['__title__'],
+    version=about['__version__'],
+    description=about['__description__'],
     packages=['amazoncaptcha'],
     py_modules=['devtools', 'exceptions', 'solver', 'utils'],
     include_package_data=True,
@@ -45,11 +48,11 @@ setuptools.setup(
     long_description=readme(),
     long_description_content_type="text/markdown",
     install_requires=requires,
-    author=about.__author__,
-    author_email=about.__author_email__,
-    url=about.__url__,
+    author=about['__author__'],
+    author_email=about['__author_email__'],
+    url=about['__url__'],
     project_urls={
-        'Documentation': about.__url__,
-        'Source': about.__url__,
+        'Documentation': about['__url__'],
+        'Source': about['__url__'],
     },
 )
