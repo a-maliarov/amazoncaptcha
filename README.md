@@ -48,9 +48,9 @@ solution = captcha.solve()
 ## Status
 [![Status](https://img.shields.io/pypi/status/amazoncaptcha)](https://pypi.org/project/amazoncaptcha/)
 [![Build Status](https://travis-ci.com/a-maliarov/amazon-captcha-solver.svg?branch=master)](https://travis-ci.com/a-maliarov/amazon-captcha-solver)
-[![codecov](https://img.shields.io/codecov/c/gh/a-maliarov/amazon-captcha-solver)](https://codecov.io/gh/a-maliarov/amazon-captcha-solver)
 [![Documentation Status](https://readthedocs.org/projects/amazoncaptcha/badge/?version=latest)](https://amazoncaptcha.readthedocs.io/en/latest/?badge=latest)
 [![Requirements Status](https://requires.io/github/a-maliarov/amazon-captcha-solver/requirements.svg?branch=master)](https://requires.io/github/a-maliarov/amazon-captcha-solver/requirements/?branch=master)
+[![Code Coverage](https://img.shields.io/codecov/c/gh/a-maliarov/amazon-captcha-solver?label=code%20coverage)](https://codecov.io/gh/a-maliarov/amazon-captcha-solver)
 [![CodeFactor Grade](https://img.shields.io/codefactor/grade/github/a-maliarov/amazon-captcha-solver/master)](https://www.codefactor.io/repository/github/a-maliarov/amazon-captcha-solver/overview/master)
 
 ## Usage and Class Methods
