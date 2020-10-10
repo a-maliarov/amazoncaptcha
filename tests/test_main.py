@@ -1,8 +1,12 @@
+# -*- coding: utf-8 -*-
+
 from amazoncaptcha import AmazonCaptcha, AmazonCaptchaCollector, ContentTypeError, NotFolderError, __version__
 from maliarov import webdriver
 import unittest
 import sys
 import os
+
+#--------------------------------------------------------------------------------------------------------------
 
 here = os.path.abspath(os.path.dirname(__file__))
 captchas_folder = os.path.join(here, 'captchas')
@@ -109,5 +113,9 @@ class TestAmazonCaptcha(unittest.TestCase):
 
         self.assertIn('test-results.log', os.listdir(test_folder))
 
+#--------------------------------------------------------------------------------------------------------------
+
 if __name__ == '__main__':
     unittest.main()
+
+#--------------------------------------------------------------------------------------------------------------
