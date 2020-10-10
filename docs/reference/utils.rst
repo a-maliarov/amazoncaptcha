@@ -4,8 +4,7 @@
 :py:mod:`~amazoncaptcha.utils` Module
 =====================================
 
-The :py:mod:`~amazoncaptcha.utils` module contains functions to cut the white space, extract coordinates of black pixels in an image and merge two images horizontally. This module is used by
-:py:class:`amazoncaptcha.solver.AmazonCaptcha`.
+The :py:mod:`~amazoncaptcha.utils` module contains functions to cut the white space, extract coordinates of black pixels in an image and merge two images horizontally. This module is used by :py:class:`amazoncaptcha.solver.AmazonCaptcha`.
 
 Functions
 ---------
