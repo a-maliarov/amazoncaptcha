@@ -57,8 +57,8 @@ Keeping logs of unsolved captcha.
     captcha = ...
     solution = captcha.solve(keep_logs=True)
 
-The AmazonCaptchaCollector Class
---------------------------------
+The AmazonCaptcha Class
+-----------------------
 
 .. autoclass:: amazoncaptcha.solver.AmazonCaptcha
   :members:
