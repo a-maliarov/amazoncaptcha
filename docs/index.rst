@@ -54,7 +54,7 @@ AmazonCaptcha is an image processing library oriented on `a specific type of ima
 Overview
 ========
 
-This project is for educational and research purposes only. Any actions and/or activities related to the material contained within this project is solely your responsibility. The author will not be held responsible in the event any criminal charges be brought against any individuals misusing the information within this project to break the law.
+This project is for educational and research purposes only (that's why all the private methods are listed within the documentation). Any actions and/or activities related to the material contained within this project is solely your responsibility. The author will not be held responsible in the event any criminal charges be brought against any individuals misusing the information within this project to break the law.
 
 .. toctree::
   :maxdepth: 2
