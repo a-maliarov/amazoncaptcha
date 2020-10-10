@@ -52,7 +52,7 @@ class AmazonCaptcha(object):
         """
 
         self.img = Image.open(img, 'r')
-        self.image_link = image_link
+        self._image_link = image_link
         self.devmode = devmode
 
         self.letters = dict()
@@ -61,6 +61,21 @@ class AmazonCaptcha(object):
         package_directory_path = os.path.abspath(os.path.dirname(os.path.abspath(__file__)))
         self.training_data_folder = os.path.join(package_directory_path, 'training_data')
         self.alphabet = [filename.split('.')[0] for filename in os.listdir(self.training_data_folder)]
+
+    @property
+    def image_link(self):
+        """
+        Image link property is being assigned only if the instance was
+        created using `fromdriver` or `fromlink` class methods. If you
+        have crated an AmazonCaptcha instance using the constructor,
+        the property will be equal to None, which triggers the warning.
+
+        """
+
+        if not self._image_link:
+            warnings.warn("Seems like you are trying to pull out the image link, while not having it.", Warning, stacklevel=2)
+
+        return self._image_link
 
     def _monochrome(self):
         """
