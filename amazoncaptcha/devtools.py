@@ -90,7 +90,7 @@ class AmazonCaptchaCollector(object):
 
         response = requests.get(captcha_link)
         captcha = AmazonCaptcha(BytesIO(response.content))
-        captcha.image_link = captcha_link
+        captcha._image_link = captcha_link
         original_image = captcha.img
 
         solution = captcha.solve(keep_logs=self.keep_logs, logs_path=self.not_solved_logs)
