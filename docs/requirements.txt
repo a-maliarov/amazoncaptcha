@@ -1,1 +1,1 @@
-amazoncaptcha==0.4.7
+amazoncaptcha==0.4.8
