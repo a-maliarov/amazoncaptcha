@@ -67,7 +67,7 @@ class AmazonCaptcha(object):
         """
         Image link property is being assigned only if the instance was
         created using `fromdriver` or `fromlink` class methods. If you
-        have crated an AmazonCaptcha instance using the constructor,
+        have created an AmazonCaptcha instance using the constructor,
         the property will be equal to None, which triggers the warning.
 
         """
