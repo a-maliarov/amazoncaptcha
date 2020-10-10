@@ -52,7 +52,7 @@ setuptools.setup(
     author_email=about['__author_email__'],
     url=about['__url__'],
     project_urls={
-        'Documentation': about['__url__'],
+        'Documentation': 'https://amazoncaptcha.readthedocs.io/en/latest/',
         'Source': about['__url__'],
     },
 )
