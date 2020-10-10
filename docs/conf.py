@@ -14,7 +14,6 @@ import os
 import sys
 sys.path.insert(0, os.path.abspath('.'))
 
-
 # -- Project information -----------------------------------------------------
 
 project = 'amazoncaptcha'
@@ -23,7 +22,6 @@ author = 'Anatolii Maliarov'
 
 # The full version, including alpha/beta/rc tags
 release = 'v0.4.7'
-
 
 # -- General configuration ---------------------------------------------------
 
@@ -43,6 +41,8 @@ templates_path = ['_templates']
 # This pattern also affects html_static_path and html_extra_path.
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
+# The master toctree document.
+master_doc = "index"
 
 # -- Options for HTML output -------------------------------------------------
 
