@@ -4,6 +4,8 @@
 # list see the documentation:
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
 
+import sphinx_rtd_theme
+
 # -- Path setup --------------------------------------------------------------
 
 # If extensions (or modules to document with autodoc) are in another directory,
@@ -74,9 +76,6 @@ pygments_style = "sphinx"
 # Default is False. You can activate this mode temporarily using the -n command-line
 # switch.
 nitpicky = True
-
-# Add any paths that contain templates here, relative to this directory.
-templates_path = ['_templates']
 
 # -- Options for HTML output -------------------------------------------------
 
