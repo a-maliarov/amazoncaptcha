@@ -32,6 +32,9 @@ extensions = [
     "sphinx.ext.viewcode"
 ]
 
+napoleon_google_docstring = True
+napoleon_include_init_with_doc = True
+
 intersphinx_mapping = {"python": ("https://docs.python.org/3", None)}
 
 # The suffix(es) of source filenames.
