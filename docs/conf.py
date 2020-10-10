@@ -34,6 +34,7 @@ extensions = [
 
 napoleon_google_docstring = True
 napoleon_include_init_with_doc = True
+napoleon_include_private_with_doc = True
 
 intersphinx_mapping = {"python": ("https://docs.python.org/3", None)}
 

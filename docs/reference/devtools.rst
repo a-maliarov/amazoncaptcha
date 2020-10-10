@@ -41,4 +41,4 @@ The AmazonCaptchaCollector Class
 --------------------------------
 
 .. autoclass:: amazoncaptcha.devtools.AmazonCaptchaCollector
-.. automethod:: amazoncaptcha.devtools.AmazonCaptchaCollector.start
+  :members:
