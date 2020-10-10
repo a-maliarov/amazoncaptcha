@@ -149,7 +149,7 @@ class AmazonCaptcha(object):
                 links will be stored. Defaults to "not-solved-captcha.log".
 
         Returns:
-            solution (str): Result of the sequence.
+            str: Result of the sequence.
 
         """
 

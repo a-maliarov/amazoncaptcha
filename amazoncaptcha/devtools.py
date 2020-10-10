@@ -48,12 +48,29 @@ class AmazonCaptchaCollector(object):
         self.not_solved_logs = os.path.join(self.output_folder, 'not-solved-captcha.log')
 
     def _extract_captcha_link(self, captcha_page):
-        """Extracts a captcha link from an html page."""
+        """Extracts a captcha link from an html page.
+
+        Args:
+            captcha_page (str): A page's html in string format.
+
+        Returns:
+            str: Captcha link.
+
+        """
 
         return captcha_page.text.split('<img src="')[1].split('">')[0]
 
     def _extract_captcha_id(self, captcha_link):
-        """Extracts a captcha id from a captcha link."""
+        """
+        Extracts a captcha id from a captcha link.
+
+        Args:
+            captcha_link (str): A link to the captcha image.
+
+        Returns:
+            str: Captcha ID.
+
+        """
 
         return ''.join(captcha_link.split('/captcha/')[1].replace('.jpg', '').split('/Captcha_'))
 

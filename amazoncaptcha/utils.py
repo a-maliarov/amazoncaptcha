@@ -64,7 +64,7 @@ def find_letter_boxes(img, maxlength):
         maxlength (int): Maximum letter length by X axis.
 
     Returns:
-        letter_boxes (list of tuple): List with X coords of each letter.
+        letter_boxes (:obj:`list` of :obj:`tuple`): List with X coords of each letter.
 
     """
 
