@@ -14,6 +14,10 @@ class TestAmazonCaptcha(unittest.TestCase):
         solution = AmazonCaptcha(os.path.join(captchas_folder, 'notcorrupted.jpg')).solve()
         self.assertEqual(solution, 'KRJNBY')
 
+    def test_image_link_property_warning(self):
+        captcha = AmazonCaptcha(os.path.join(captchas_folder, 'notcorrupted.jpg'))
+        self.assertEqual(captcha.image_link, None)
+
     def test_corrupted_image_with_last_letter_ending_at_the_beginning(self):
         solution = AmazonCaptcha(os.path.join(captchas_folder, 'corrupted.png')).solve()
         self.assertEqual(solution, 'UGXGMM')
