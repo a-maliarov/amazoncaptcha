@@ -19,14 +19,6 @@ import os
 #--------------------------------------------------------------------------------------------------------------
 
 class AmazonCaptchaCollector(object):
-    """Instance to collect Amazon's captcha images or proceed accuracy tests.
-
-    Attributes:
-        collector_logs (str): Path to the file where logs should be stored.
-        test_results (str): Path to the file where the final resust of an accuracy test.
-        not_solved_logs (str): Path to the file where links of unsolved captcha should be stored.
-
-    """
 
     def __init__(self, output_folder_path, keep_logs=True, accuracy_test=False):
         """
