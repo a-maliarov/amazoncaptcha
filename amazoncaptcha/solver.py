@@ -36,16 +36,6 @@ SUPPORTED_CONTENT_TYPES = ['image/jpeg']
 #--------------------------------------------------------------------------------------------------------------
 
 class AmazonCaptcha(object):
-    """Instance to operate with Amazon's captcha.
-
-    Attributes:
-        letters (dict): Dictionary for containing found letters and their pseudo binaries.
-        result (dict): Dictionary for containing translated pseudo binaries.
-        training_data_folder (str): Path to the folder with the training data.
-        alphabet (list of str): List with all the existent letters based on
-            the files found in the training data folder.
-
-    """
 
     def __init__(self, img, image_link=None, devmode=False):
         """
