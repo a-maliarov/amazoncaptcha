@@ -60,6 +60,7 @@ This project is for educational and research purposes only. Any actions and/or a
   :maxdepth: 2
 
   installation.rst
+  reference/index.rst
 
 Indices and tables
 ==================
