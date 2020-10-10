@@ -50,9 +50,9 @@ source_suffix = ".rst"
 master_doc = "index"
 
 # General information about the project.
-project = 'amazoncaptcha'
-copyright = '2020, Anatolii Maliarov'
-author = 'Anatolii Maliarov'
+project = amazoncaptcha.__version__.__title__
+copyright = amazoncaptcha.__version__.__copyright__
+author = amazoncaptcha.__version__.__author__
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
