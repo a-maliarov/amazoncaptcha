@@ -66,8 +66,9 @@ class AmazonCaptcha(object):
     def image_link(self):
         """
         Image link property is being assigned only if the instance was
-        created using `fromdriver` or `fromlink` class methods. If you
-        have created an AmazonCaptcha instance using the constructor,
+        created using `fromdriver` or `fromlink` class methods.
+
+        If you have created an AmazonCaptcha instance using the constructor,
         the property will be equal to None, which triggers the warning.
 
         """
