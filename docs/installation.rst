@@ -22,15 +22,15 @@ AmazonCaptcha supports all the versions of Python after 3.5
 Basic Installation
 ------------------
 
-Install AmazonCaptcha from PyPi with :command:`pip`::
+Install AmazonCaptcha from PyPi with :command:`pip`:
 
     pip install amazoncaptcha
 
-Install AmazonCaptcha from GitHub with :command:`git`: and :command:`pip`::
+Install AmazonCaptcha from GitHub with :command:`git` and :command:`pip`:
 
     pip install git+https://github.com/a-maliarov/amazon-captcha-solver.git
 
-Install AmazonCaptcha from GitHub with :command:`git`::
+Install AmazonCaptcha from GitHub with :command:`git`:
 
     git clone https://github.com/a-maliarov/amazon-captcha-solver.git
     python setup.py install

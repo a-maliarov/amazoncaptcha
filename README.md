@@ -30,6 +30,7 @@ Pure Python, lightweight, [Pillow](https://github.com/python-pillow/Pillow)-base
 + *September 20, 2020*: dropped support for Python 3.5
 
 ## Installation
+You can simply install the library from [PyPi](https://pypi.org/project/amazoncaptcha/) using **pip**. For more methods check the [docs](https://amazoncaptcha.readthedocs.io/en/latest/installation.html).
 ```bash
 pip install amazoncaptcha
 ```
