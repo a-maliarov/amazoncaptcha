@@ -9,7 +9,7 @@ Warnings
 Python Support
 --------------
 
-AmazonCaptcha supports all the versions of Python after 3.5
+AmazonCaptcha supports all the versions of Python starting from 3.6
 
 +-----------------------------+-------+-------+-------+-------+-------+-------+
 | **Python**                  |**3.9**|**3.8**|**3.7**|**3.6**|**3.5**|**3.4**|
