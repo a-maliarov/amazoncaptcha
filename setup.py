@@ -31,7 +31,6 @@ classifiers = [
     "Intended Audience :: Developers",
     "Intended Audience :: Education",
     "Intended Audience :: Information Technology",
-    "Topic :: Internet :: WWW/HTTP :: Browsers"
 ]
 
 requires = [
