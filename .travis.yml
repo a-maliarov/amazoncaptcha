@@ -20,7 +20,7 @@ matrix:
     - python: "3.5"
 
 install:
-  - pip install git+https://github.com/a-maliarov/amazon-captcha-solver
+  - pip install git+https://github.com/a-maliarov/amazoncaptcha
 
 before_script:
   - wget -N https://chromedriver.storage.googleapis.com/86.0.4240.22/chromedriver_linux64.zip -P ~/

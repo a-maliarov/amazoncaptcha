@@ -28,7 +28,7 @@ Install AmazonCaptcha from PyPi with :command:`pip`:
 
 Install AmazonCaptcha from GitHub with :command:`git` and :command:`pip`:
 
-    pip install git+https://github.com/a-maliarov/amazon-captcha-solver.git
+    pip install git+https://github.com/a-maliarov/amazoncaptcha.git
 
 Install AmazonCaptcha from GitHub after :command:`git clone`:
 

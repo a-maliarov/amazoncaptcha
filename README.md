@@ -17,7 +17,7 @@ The motivation behind the creation of this library is taking its start from the 
 ---
 Pure Python, lightweight, [Pillow](https://github.com/python-pillow/Pillow)-based solver for [Amazon's text captcha](https://www.amazon.com/errors/validateCaptcha).
 
-[![Accuracy](https://img.shields.io/badge/success%20rate-99.9%25-success)](https://github.com/a-maliarov/amazon-captcha-solver/blob/master/ext/accuracy.log)
+[![Accuracy](https://img.shields.io/badge/success%20rate-99.9%25-success)](https://github.com/a-maliarov/amazoncaptcha/blob/master/ext/accuracy.log)
 ![Timing](https://img.shields.io/badge/response%20time-0.2s-success)
 [![Size](https://img.shields.io/badge/wheel%20size-0.9%20MB-informational)](https://pypi.org/project/amazoncaptcha/)
 [![Version](https://img.shields.io/pypi/v/amazoncaptcha?color=informational)](https://pypi.org/project/amazoncaptcha/)
@@ -48,11 +48,11 @@ solution = captcha.solve()
 
 ## Status
 [![Status](https://img.shields.io/pypi/status/amazoncaptcha)](https://pypi.org/project/amazoncaptcha/)
-[![Build Status](https://travis-ci.com/a-maliarov/amazon-captcha-solver.svg?branch=master)](https://travis-ci.com/a-maliarov/amazon-captcha-solver)
+[![Build Status](https://travis-ci.com/a-maliarov/amazoncaptcha.svg?branch=master)](https://travis-ci.com/a-maliarov/amazoncaptcha)
 [![Documentation Status](https://readthedocs.org/projects/amazoncaptcha/badge/?version=latest)](https://amazoncaptcha.readthedocs.io/en/latest/)
-[![Requirements Status](https://requires.io/github/a-maliarov/amazon-captcha-solver/requirements.svg?branch=master)](https://requires.io/github/a-maliarov/amazon-captcha-solver/requirements/?branch=master)
-[![Code Coverage](https://img.shields.io/codecov/c/gh/a-maliarov/amazon-captcha-solver?label=code%20coverage)](https://codecov.io/gh/a-maliarov/amazon-captcha-solver)
-[![CodeFactor Grade](https://img.shields.io/codefactor/grade/github/a-maliarov/amazon-captcha-solver/master)](https://www.codefactor.io/repository/github/a-maliarov/amazon-captcha-solver/overview/master)
+[![Requirements Status](https://requires.io/github/a-maliarov/amazoncaptcha/requirements.svg?branch=master)](https://requires.io/github/a-maliarov/amazoncaptcha/requirements/?branch=master)
+[![Code Coverage](https://img.shields.io/codecov/c/gh/a-maliarov/amazoncaptcha?label=code%20coverage)](https://codecov.io/gh/a-maliarov/amazoncaptcha)
+[![CodeFactor Grade](https://img.shields.io/codefactor/grade/github/a-maliarov/amazoncaptcha/master)](https://www.codefactor.io/repository/github/a-maliarov/amazoncaptcha/overview/master)
 
 ## Usage and Class Methods
 Browsing Amazon using `selenium` and stuck on captcha? The class method below will do all the "dirty" work of extracting an image from the webpage for you. Practically, it takes a screenshot from your webdriver, crops the captcha, and stores it into bytes array, which is then used to create an `AmazonCaptcha` instance. This also means avoiding any local savings.
@@ -80,7 +80,7 @@ solution = captcha.solve()
 In addition, if you are a machine learning or neural network developer and are looking for some training data, check [this](https://github.com/a-maliarov/amazon-captcha-database) repository, which was created to store images and other non-script data for the solver.
 
 ## Help the Development
-If you are willing to help the development, consider setting `keep_logs` argument of the `solve` method to `True`. Here is the example, if you are using `fromdriver` class method. If set to `True`, all the links of the unsolved captcha will be stored, so later you can [open the issue and send the logs](https://github.com/a-maliarov/amazon-captcha-solver/issues/new?assignees=a-maliarov&labels=training+data&template=send_logs.md&title=Add+training+data).
+If you are willing to help the development, consider setting `keep_logs` argument of the `solve` method to `True`. Here is the example, if you are using `fromdriver` class method. If set to `True`, all the links of the unsolved captcha will be stored, so later you can [open the issue and send the logs](https://github.com/a-maliarov/amazoncaptcha/issues/new?assignees=a-maliarov&labels=training+data&template=send_logs.md&title=Add+training+data).
 ```python
 from amazoncaptcha import AmazonCaptcha
 from selenium import webdriver
@@ -95,6 +95,6 @@ solution = captcha.solve(keep_logs=True)
 If you have any suggestions or ideas of additional instances and methods, which you would like to see in this library, please, feel free to contact the owner via email or fork'n'pull to repository. Any contribution is highly appreciated!
 
 ## Additional
-+ If you want to see the [**History of Changes**](https://github.com/a-maliarov/amazon-captcha-solver/blob/master/HISTORY.md), [**Code of Conduct**](https://github.com/a-maliarov/amazon-captcha-solver/blob/master/.github/CODE_OF_CONDUCT.md), [**Contributing Policy**](https://github.com/a-maliarov/amazon-captcha-solver/blob/master/.github/CONTRIBUTING.md), or [**License**](https://github.com/a-maliarov/amazon-captcha-solver/blob/master/LICENSE), use these inline links to navigate based on your needs.
++ If you want to see the [**History of Changes**](https://github.com/a-maliarov/amazoncaptcha/blob/master/HISTORY.md), [**Code of Conduct**](https://github.com/a-maliarov/amazoncaptcha/blob/master/.github/CODE_OF_CONDUCT.md), [**Contributing Policy**](https://github.com/a-maliarov/amazoncaptcha/blob/master/.github/CONTRIBUTING.md), or [**License**](https://github.com/a-maliarov/amazoncaptcha/blob/master/LICENSE), use these inline links to navigate based on your needs.
 + If you are facing any errors, please, report your situation via an issue.
 + This project is for educational and research purposes only. Any actions and/or activities related to the material contained on this GitHub Repository is solely your responsibility. The author will not be held responsible in the event any criminal charges be brought against any individuals misusing the information in this GitHub Repository to break the law.

@@ -4,11 +4,11 @@ AmazonCaptcha
 AmazonCaptcha is an image processing library oriented on `a specific type of images taken from Amazon <https://www.amazon.com/errors/validateCaptcha>`_, which main objective is to solve the captcha in terms of a research sake without using any add-ons.
 
 .. image:: https://img.shields.io/badge/success%20rate-99.9%25-success
-  :target: https://github.com/a-maliarov/amazon-captcha-solver/blob/master/ext/accuracy.log
+  :target: https://github.com/a-maliarov/amazoncaptcha/blob/master/ext/accuracy.log
   :alt: Accuracy
 
 .. image:: https://img.shields.io/badge/response%20time-0.2s-success
-  :target: https://github.com/a-maliarov/amazon-captcha-solver/blob/master/ext/accuracy.log
+  :target: https://github.com/a-maliarov/amazoncaptcha/blob/master/ext/accuracy.log
   :alt: Timing
 
 .. image:: https://img.shields.io/badge/wheel%20size-0.9%20MB-informational
@@ -31,24 +31,24 @@ AmazonCaptcha is an image processing library oriented on `a specific type of ima
   :target: https://pypi.org/project/amazoncaptcha/
   :alt: Status
 
-.. image:: https://travis-ci.com/a-maliarov/amazon-captcha-solver.svg?branch=master
-  :target: https://travis-ci.com/a-maliarov/amazon-captcha-solver
+.. image:: https://travis-ci.com/a-maliarov/amazoncaptcha.svg?branch=master
+  :target: https://travis-ci.com/a-maliarov/amazoncaptcha
   :alt: Build Status
 
 .. image:: https://readthedocs.org/projects/amazoncaptcha/badge/?version=latest
   :target: https://amazoncaptcha.readthedocs.io/en/latest/
   :alt: Documentation Status
 
-.. image:: https://requires.io/github/a-maliarov/amazon-captcha-solver/requirements.svg?branch=master
-  :target: https://requires.io/github/a-maliarov/amazon-captcha-solver/requirements/?branch=master
+.. image:: https://requires.io/github/a-maliarov/amazoncaptcha/requirements.svg?branch=master
+  :target: https://requires.io/github/a-maliarov/amazoncaptcha/requirements/?branch=master
   :alt: Requirements Status
 
-.. image:: https://img.shields.io/codecov/c/gh/a-maliarov/amazon-captcha-solver?label=code%20coverage
-  :target: https://codecov.io/gh/a-maliarov/amazon-captcha-solver
+.. image:: https://img.shields.io/codecov/c/gh/a-maliarov/amazoncaptcha?label=code%20coverage
+  :target: https://codecov.io/gh/a-maliarov/amazoncaptcha
   :alt: Code Coverage
 
-.. image:: https://img.shields.io/codefactor/grade/github/a-maliarov/amazon-captcha-solver/master
-  :target: https://www.codefactor.io/repository/github/a-maliarov/amazon-captcha-solver/overview/master
+.. image:: https://img.shields.io/codefactor/grade/github/a-maliarov/amazoncaptcha/master
+  :target: https://www.codefactor.io/repository/github/a-maliarov/amazoncaptcha/overview/master
   :alt: CodeFactor Grade
 
 Overview
