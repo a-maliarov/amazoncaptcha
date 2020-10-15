@@ -29,3 +29,12 @@
   3. Add `fromlink` class method
   4. Move utilities into a separated file
   5. Add `ContentTypeError` exception
++ **Version 0.5.0**:
+  1. Remove captchas folder to the separated repository to lower the weight of this one
+  2. Add Python 3.9 support
+  3. Add Chromedriver 86.0.4240.22 support
+  4. Update AmazonCaptchaCollector
+  5. Add documentation.
+  6. Add Pillow 8.0.0 support
+  7. Add Stale Bot to remove stale issues
+  8. Workflow update
