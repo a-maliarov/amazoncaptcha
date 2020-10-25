@@ -4,7 +4,7 @@ Installation
 Warnings
 --------
 
-.. warning:: AmazonCaptcha uses Pillow library to operate with images. Pillow and PIL cannot co-exist in the same environment. Before installing AmazonCaptcha (which will automatically install Pillow), please uninstall PIL.
+.. warning:: AmazonCaptcha uses Pillow library to operate the images. Pillow and PIL cannot co-exist in the same environment. Before installing AmazonCaptcha (which will automatically install Pillow), please, uninstall PIL.
 
 Python Support
 --------------
