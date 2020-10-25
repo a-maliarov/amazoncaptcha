@@ -15,10 +15,6 @@ def cut_the_white(letter):
     """
     Cuts white spaces/borders to get a clear letter.
 
-    We do not trim the whole image at the beginning, because all the letters
-    have different position by Y, which means that cutting white won't do
-    any good, until letters are separated by X.
-
     Args:
         letter (PIL.Image): Letter to be processed.
 
