@@ -11,7 +11,7 @@ This module contains the set of amazoncaptcha's exceptions.
 
 class ContentTypeError(Exception):
     """
-    Requested url, which was supposed to be the url to the captcha image
+    Requested url, which was supposed to be the url to the captcha image,
     contains unsupported content type within response headers.
     """
 
@@ -24,7 +24,7 @@ class ContentTypeError(Exception):
 
 class NotFolderError(Exception):
     """
-    Given path, which was supposed to be a path to the folder, where
+    Given path, which was supposed to be the path to the folder where
     script can store images, is not a folder.
     """
 
