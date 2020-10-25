@@ -69,12 +69,12 @@ class AmazonCaptcha(object):
         created using `fromdriver` or `fromlink` class methods.
 
         If you have created an AmazonCaptcha instance using the constructor,
-        the property will be equal to None, which triggers the warning.
+        the property will be equal to None which triggers the warning.
 
         """
 
         if not self._image_link:
-            warnings.warn("Seems like you are trying to pull out the image link, while not having it.", Warning, stacklevel=2)
+            warnings.warn("Seems like you are trying to pull out the image link while not having it.", Warning, stacklevel=2)
 
         return self._image_link
 
@@ -132,7 +132,9 @@ class AmazonCaptcha(object):
         pattern and find a match".
 
         Returns:
-            str: a solution if there is one OR 'Not solved' if devmode set to False
+            str: a solution if there is one OR 
+                'Not solved' if devmode set to False OR
+                a solution where unrecognised letters will be replaces with dashes
 
         """
 
@@ -161,7 +163,7 @@ class AmazonCaptcha(object):
         Args:
             keep_logs (bool): Not solved captchas will be logged if True.
                 Defaults to False.
-            logs_path (str): Path to the file, where not solved captcha
+            logs_path (str): Path to the file where not solved captcha
                 links will be stored. Defaults to "not-solved-captcha.log".
 
         Returns:
@@ -229,7 +231,7 @@ class AmazonCaptcha(object):
     def fromlink(cls, image_link, devmode=False):
         """
         Requests the given link and stores the content of the response
-        as `io.BytesIO`, which is then used to create AmazonCaptcha instance.
+        as `io.BytesIO` that is then used to create AmazonCaptcha instance.
 
         This also means avoiding any local savings.
 

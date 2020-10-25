@@ -26,10 +26,10 @@ class AmazonCaptchaCollector(object):
 
         Args:
             output_folder (str): Folder where images or logs should be stored.
-            keep_logs (bool, optional): Is set to True, unsolved captcha links
+            keep_logs (bool, optional): If set to True, unsolved captcha links
                 will be stored separately.
             accuracy_test (bool, optional): If set to True, AmazonCaptchaCollector
-                will not download images, but just solve them and log the results.
+                will not download images but just solve them and log the results.
 
         """
 
@@ -81,7 +81,7 @@ class AmazonCaptchaCollector(object):
 
         If it is not an accuracy test, the image will be stored in a specified
         folder with the solution within its name. Otherwise, only the logs
-        will be stored, mentioning the captcha link being processes and the result.
+        will be stored, mentioning the captcha link being processed and the result.
 
         """
 
@@ -114,7 +114,7 @@ class AmazonCaptchaCollector(object):
 
     def start(self, target, processes):
         """
-        Starts the process of collecting captchas of conducting a test.
+        Starts the process of collecting captchas or conducting a test.
 
         Args:
             target (int): Number of captchas to be processed.

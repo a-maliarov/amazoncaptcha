@@ -4,7 +4,7 @@
 :py:mod:`~amazoncaptcha.solver` Module
 ======================================
 
-This module contains the solver itself - AmazonCaptcha instance.
+This module contains the solver itself, AmazonCaptcha instance.
 
 Examples
 --------

@@ -56,7 +56,7 @@ solution = captcha.solve()
 [![CodeFactor Grade](https://img.shields.io/codefactor/grade/github/a-maliarov/amazoncaptcha/master)](https://www.codefactor.io/repository/github/a-maliarov/amazoncaptcha/overview/master)
 
 ## Usage and Class Methods
-Browsing Amazon using `selenium` and stuck on captcha? The class method below will do all the "dirty" work of extracting an image from the webpage for you. Practically, it takes a screenshot from your webdriver, crops the captcha, and stores it into bytes array, which is then used to create an `AmazonCaptcha` instance. This also means avoiding any local savings.
+Browsing Amazon using `selenium` and stuck on captcha? The class method below will do all the dirty work of extracting an image from the webpage for you. Practically, it takes a screenshot from your webdriver, crops the captcha and stores it into bytes array which is then used to create an `AmazonCaptcha` instance. This also means avoiding any local savings.
 ```python
 from amazoncaptcha import AmazonCaptcha
 from selenium import webdriver
@@ -81,7 +81,7 @@ solution = captcha.solve()
 In addition, if you are a machine learning or neural network developer and are looking for some training data, check [this](https://github.com/a-maliarov/amazon-captcha-database) repository, which was created to store images and other non-script data for the solver.
 
 ## Help the Development
-If you are willing to help the development, consider setting `keep_logs` argument of the `solve` method to `True`. Here is the example, if you are using `fromdriver` class method. If set to `True`, all the links of the unsolved captcha will be stored, so later you can [open the issue and send the logs](https://github.com/a-maliarov/amazoncaptcha/issues/new?assignees=a-maliarov&labels=training+data&template=send_logs.md&title=Add+training+data).
+If you are willing to help the development, consider setting `keep_logs` argument of the `solve` method to `True`. Here is the example, if you are using `fromdriver` class method. If set to `True`, all the links of the unsolved captcha will be stored so that later you can [open the issue and send the logs](https://github.com/a-maliarov/amazoncaptcha/issues/new?assignees=a-maliarov&labels=training+data&template=send_logs.md&title=Add+training+data).
 ```python
 from amazoncaptcha import AmazonCaptcha
 from selenium import webdriver
