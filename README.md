@@ -25,8 +25,8 @@ Pure Python, lightweight, [Pillow](https://github.com/python-pillow/Pillow)-base
 [![Downloads](https://img.shields.io/pypi/dm/amazoncaptcha?color=success)](https://pypi.org/project/amazoncaptcha/)
 
 ## Recent News
-+ *October 15, 2020*: tested and approved compatibility with Pillow 8.0.0
-+ *October 8, 2020*: tested and approved compatibility with Chromedriver 86.0.4240.22
++ *June 6, 2021*: tested and approved compatibility with Chromedriver 91.0.4472.101
++ *April 1, 2021*: tested and approved compatibility with Pillow 8.2.0
 + *October 7, 2020*: tested and approved compatibility with Python 3.9
 + *September 20, 2020*: dropped support for Python 3.5
 
