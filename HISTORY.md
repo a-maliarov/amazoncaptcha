@@ -39,5 +39,7 @@
   7. Add Stale Bot to remove stale issues
   8. Workflow update
 + **Version 0.5.1**:
-  3. Add Chromedriver 91.0.4472.101 support
-  6. Add Pillow 8.2.0 support
+  1. Add Chromedriver 91.0.4472.101 support
+  2. Add Pillow 8.2.0 support
++ **Version 0.5.2**:
+  1. Add Pillow 8.3.0 support
