@@ -35,7 +35,7 @@ classifiers = [
 
 requires = [
     "pillow >= 7.2,< 8.4",
-    "requests >= 2.24,< 2.26",
+    "requests >= 2.24,< 2.27",
     "selenium ~= 3.141.0"
 ]
 
