@@ -12,6 +12,7 @@ python:
   - "3.6"
   - "3.7"
   - "3.8"
+  - "3.9"
   - "3.9-dev"
 
 matrix:
@@ -23,12 +24,7 @@ install:
   - pip install git+https://github.com/a-maliarov/amazoncaptcha
 
 before_script:
-  - wget -N https://chromedriver.storage.googleapis.com/91.0.4472.101/chromedriver_linux64.zip -P ~/
-  - unzip ~/chromedriver_linux64.zip -d ~/
-  - rm ~/chromedriver_linux64.zip
-  - sudo mv -f ~/chromedriver /usr/local/share/
-  - sudo chmod +x /usr/local/share/chromedriver
-  - sudo ln -s /usr/local/share/chromedriver /usr/local/bin/chromedriver
+  - pip install webdriver_manager
   - pip install maliarov
   - pip install coverage
   - pip install codecov
