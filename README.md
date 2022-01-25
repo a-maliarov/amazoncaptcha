@@ -56,7 +56,7 @@ solution = captcha.solve()
 [![CodeFactor Grade](https://img.shields.io/codefactor/grade/github/a-maliarov/amazoncaptcha/master)](https://www.codefactor.io/repository/github/a-maliarov/amazoncaptcha/overview/master)
 
 ## Usage and Class Methods
-Browsing Amazon using `selenium` and stuck on captcha? The class method below will do all the dirty work of extracting an image from the webpage for you. Practically, it takes a screenshot from your webdriver, crops the captcha and stores it into bytes array which is then used to create an `AmazonCaptcha` instance. This also means avoiding any local savings.
+Browsing Amazon using `selenium` and stuck on captcha? The class method below will do all the dirty work of extracting an image from the webpage for you. Practically, it takes a screenshot from your webdriver, crops the captcha and stores it into bytes array which is then used to create an `AmazonCaptcha` instance. This also means avoiding any local savings. **For consistency across different devices, it is highly recommended to use `fromlink` class method instead of `fromdriver`**.
 ```python
 from amazoncaptcha import AmazonCaptcha
 from selenium import webdriver
