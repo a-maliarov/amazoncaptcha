@@ -26,7 +26,7 @@ Pure Python, lightweight, [Pillow](https://github.com/python-pillow/Pillow)-base
 
 ## Recent News
 + *July 7, 2021*: tested and approved compatibility with Pillow 8.3.0
-+ *June 6, 2021*: tested and approved compatibility with Chromedriver 91.0.4472.101
++ *January 25, 2021*: tested and approved compatibility with Chromedriver 97.0.4692.71
 + *October 7, 2020*: tested and approved compatibility with Python 3.9
 + *September 20, 2020*: dropped support for Python 3.5
 
@@ -49,7 +49,7 @@ solution = captcha.solve()
 
 ## Status
 [![Status](https://img.shields.io/pypi/status/amazoncaptcha)](https://pypi.org/project/amazoncaptcha/)
-[![Build Status](https://travis-ci.com/a-maliarov/amazoncaptcha.svg?branch=master)](https://travis-ci.com/a-maliarov/amazoncaptcha)
+[![Build Status](https://app.travis-ci.com/a-maliarov/amazoncaptcha.svg?branch=master)](https://app.travis-ci.com/github/a-maliarov/amazoncaptcha)
 [![Documentation Status](https://readthedocs.org/projects/amazoncaptcha/badge/?version=latest)](https://amazoncaptcha.readthedocs.io/en/latest/)
 [![Requirements Status](https://requires.io/github/a-maliarov/amazoncaptcha/requirements.svg?branch=master)](https://requires.io/github/a-maliarov/amazoncaptcha/requirements/?branch=master)
 [![Code Coverage](https://img.shields.io/codecov/c/gh/a-maliarov/amazoncaptcha?label=code%20coverage)](https://codecov.io/gh/a-maliarov/amazoncaptcha)
