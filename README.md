@@ -26,7 +26,7 @@ Pure Python, lightweight, [Pillow](https://github.com/python-pillow/Pillow)-base
 
 ## Recent News
 + *July 7, 2021*: tested and approved compatibility with Pillow 8.3.0
-+ *June 6, 2021*: tested and approved compatibility with Chromedriver 91.0.4472.101
++ *January 25, 2021*: tested and approved compatibility with Chromedriver 97.0.4692.71
 + *October 7, 2020*: tested and approved compatibility with Python 3.9
 + *September 20, 2020*: dropped support for Python 3.5
 
