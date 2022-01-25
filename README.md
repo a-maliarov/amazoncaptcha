@@ -37,7 +37,7 @@ pip install amazoncaptcha
 ```
 
 ## Quick Snippet
-An example of the constructor usage. Scroll a bit down to see some tasty class methods.
+An example of the constructor usage. Scroll a bit down to see some tasty class methods. **For consistency across different devices, it is highly recommended to use `fromlink` class method**.
 ```python
 from amazoncaptcha import AmazonCaptcha
 
