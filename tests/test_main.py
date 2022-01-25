@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from amazoncaptcha import AmazonCaptcha, AmazonCaptchaCollector, ContentTypeError, NotFolderError, __version__
+from webdriver_manager.chrome import ChromeDriverManager
 from maliarov import webdriver
 import unittest
 import sys
@@ -62,12 +63,11 @@ class TestAmazonCaptcha(unittest.TestCase):
 
         self.assertTrue('is not supported as a Content-Type' in str(context.exception))
 
-    @unittest.skipIf(sys.platform.startswith("win"), "requires Ubuntu")
     def test_from_webdriver(self):
         capabilities = webdriver.ChromeCapabilities()
         capabilities.add_argument('--headless')
         capabilities.add_argument('--no-sandbox')
-        driver = webdriver.ChromeDriver('/usr/local/bin/chromedriver', desired_capabilities = capabilities.desired)
+        driver = webdriver.ChromeDriver(ChromeDriverManager().install(), desired_capabilities = capabilities.desired)
 
         solutions = list()
         for i in range(5):
