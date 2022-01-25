@@ -49,7 +49,7 @@ solution = captcha.solve()
 
 ## Status
 [![Status](https://img.shields.io/pypi/status/amazoncaptcha)](https://pypi.org/project/amazoncaptcha/)
-[![Build Status](https://travis-ci.com/a-maliarov/amazoncaptcha.svg?branch=master)](https://travis-ci.com/a-maliarov/amazoncaptcha)
+[![Build Status](https://app.travis-ci.com/a-maliarov/amazoncaptcha.svg?branch=master)](https://app.travis-ci.com/github/a-maliarov/amazoncaptcha)
 [![Documentation Status](https://readthedocs.org/projects/amazoncaptcha/badge/?version=latest)](https://amazoncaptcha.readthedocs.io/en/latest/)
 [![Requirements Status](https://requires.io/github/a-maliarov/amazoncaptcha/requirements.svg?branch=master)](https://requires.io/github/a-maliarov/amazoncaptcha/requirements/?branch=master)
 [![Code Coverage](https://img.shields.io/codecov/c/gh/a-maliarov/amazoncaptcha?label=code%20coverage)](https://codecov.io/gh/a-maliarov/amazoncaptcha)
