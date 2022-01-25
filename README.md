@@ -25,10 +25,10 @@ Pure Python, lightweight, [Pillow](https://github.com/python-pillow/Pillow)-base
 [![Downloads](https://img.shields.io/pypi/dm/amazoncaptcha?color=success)](https://pypi.org/project/amazoncaptcha/)
 
 ## Recent News
-+ *July 7, 2021*: tested and approved compatibility with Pillow 8.3.0
-+ *January 25, 2021*: tested and approved compatibility with Chromedriver 97.0.4692.71
-+ *October 7, 2020*: tested and approved compatibility with Python 3.9
-+ *September 20, 2020*: dropped support for Python 3.5
++ *January 25, 2022*: tested and approved compatibility with Pillow 9.0.0
++ *January 25, 2022*: tested and approved compatibility with Chromedriver 97.0.4692.71
++ *January 25, 2022*: tested and approved compatibility with Python 3.10-dev
++ *January 25, 2022*: dropped support for Python 3.6
 
 ## Installation
 You can simply install the library from [PyPi](https://pypi.org/project/amazoncaptcha/) using **pip**. For more methods check the [docs](https://amazoncaptcha.readthedocs.io/en/latest/installation.html).
