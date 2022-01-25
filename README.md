@@ -21,7 +21,7 @@ Pure Python, lightweight, [Pillow](https://github.com/python-pillow/Pillow)-base
 ![Timing](https://img.shields.io/badge/response%20time-0.2s-success)
 [![Size](https://img.shields.io/badge/wheel%20size-0.9%20MB-informational)](https://pypi.org/project/amazoncaptcha/)
 [![Version](https://img.shields.io/pypi/v/amazoncaptcha?color=informational)](https://pypi.org/project/amazoncaptcha/)
-[![Python version](https://img.shields.io/badge/python-3.6%2B-informational)](https://pypi.org/project/amazoncaptcha/)
+[![Python version](https://img.shields.io/badge/python-3.7%2B-informational)](https://pypi.org/project/amazoncaptcha/)
 [![Downloads](https://img.shields.io/pypi/dm/amazoncaptcha?color=success)](https://pypi.org/project/amazoncaptcha/)
 
 ## Recent News
