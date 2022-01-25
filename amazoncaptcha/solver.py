@@ -45,7 +45,7 @@ class AmazonCaptcha(object):
             img (str or io.BytesIO): Path to an input image OR an instance
                 of BytesIO representing this image.
             image_link (str, optional): Used if `AmazonCaptcha` was created
-                using `from_webdriver` class method. Defaults to None.
+                using `fromdriver` class method. Defaults to None.
             devmode (bool, optional): If set to True, instead of 'Not solved',
                 unrecognised letters will be replaced with dashes.
 
@@ -132,7 +132,7 @@ class AmazonCaptcha(object):
         pattern and find a match".
 
         Returns:
-            str: a solution if there is one OR 
+            str: a solution if there is one OR
                 'Not solved' if devmode set to False OR
                 a solution where unrecognised letters will be replaces with dashes
 
@@ -221,11 +221,6 @@ class AmazonCaptcha(object):
         image_bytes_array = BytesIO(bytes_array.getvalue())
 
         return cls(image_bytes_array, image_link, devmode)
-
-    @classmethod
-    def from_webdriver(cls, driver, devmode=False):
-        warnings.warn("from_webdriver() is deprecated; use fromdriver() instead.", DeprecationWarning, stacklevel=2)
-        return cls.fromdriver(driver, devmode)
 
     @classmethod
     def fromlink(cls, image_link, devmode=False):

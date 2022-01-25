@@ -63,7 +63,7 @@ class TestAmazonCaptcha(unittest.TestCase):
 
         self.assertTrue('is not supported as a Content-Type' in str(context.exception))
 
-    def test_from_webdriver(self):
+    def test_fromdriver(self):
         capabilities = webdriver.ChromeCapabilities()
         capabilities.add_argument('--headless')
         capabilities.add_argument('--no-sandbox')
@@ -73,7 +73,7 @@ class TestAmazonCaptcha(unittest.TestCase):
         for i in range(5):
             driver.get('https://www.amazon.com/errors/validateCaptcha')
 
-            captcha = AmazonCaptcha.from_webdriver(driver)
+            captcha = AmazonCaptcha.fromdriver(driver)
             solutions.append(len(captcha.solve()))
 
         driver.quit()
