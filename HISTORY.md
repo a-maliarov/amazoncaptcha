@@ -43,3 +43,9 @@
   2. Add Pillow 8.2.0 support
 + **Version 0.5.2**:
   1. Add Pillow 8.3.0 support
++ **Version 0.5.3**:
+1. Add Chromedriver 97.0.4692.71 support
+2. Add Pillow 9.0.0 support
+3. Add Python 3.10-dev support
+4. Drop Python 3.6 support
+5. Remove `from_webdriver` method
