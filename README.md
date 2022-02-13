@@ -31,7 +31,7 @@ Pure Python, lightweight, [Pillow](https://github.com/python-pillow/Pillow)-base
 + *January 25, 2022*: dropped support for Python 3.6
 
 ## Installation
-You can simply install the library from [PyPi](https://pypi.org/project/simpleplots/) using **pip**. For more methods check the [docs](https://amazoncaptcha.readthedocs.io/en/latest/installation.html).
+You can simply install the library from [PyPi](https://pypi.org/project/amazoncaptcha/) using **pip**. For more methods check the [docs](https://amazoncaptcha.readthedocs.io/en/latest/installation.html).
 ```bash
 pip install amazoncaptcha
 ```
