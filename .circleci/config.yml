@@ -15,15 +15,14 @@ shared: &shared
         name: Install Python deps in a venv
         command: |
           sudo pip install --upgrade pip
-          sudo pip install pipenv
-          pipenv install -r ext/requirements-dev.txt
+          pip install -r ext/requirements-dev.txt
     - run:
         name: Running tests
         command: |
-          pipenv run "coverage run -m unittest tests/test_main.py"
+          coverage run -m unittest tests/test_main.py
     - run: |
         if [ $UPLOAD_COV ]; then
-          pipenv run "codecov"
+          codecov
         fi
 
 jobs:
