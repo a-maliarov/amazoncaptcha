@@ -1,0 +1,7 @@
+pillow ~= 9.0.1
+requests ~= 2.27.1
+selenium ~= 4.1.0
+coverage >= 6.3.1
+codecov >= 2.1.12
+webdriver_manager ~= 3.5.2
+maliarov ~= 0.2.5
