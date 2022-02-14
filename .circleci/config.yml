@@ -1,0 +1,49 @@
+version: 2.1
+
+shared: &shared
+  steps:
+    - checkout
+    - run: |
+      wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+      sudo apt-get install ./google-chrome-stable_current_amd64.deb
+      sudo apt-get install -f
+      sudo apt-get install xvfb
+    - run:
+        name: Install Python deps in a venv
+        command: |
+          sudo pip install --upgrade pip
+          pip install -r ext/requirements-dev.txt
+    - run:
+        name: Running tests
+        command: |
+          coverage run -m unittest tests/test_main.py
+    - run: |
+        if [ $UPLOAD_COV ]; then
+          codecov
+        fi
+
+jobs:
+  py37:
+    <<: *shared
+    docker:
+      - image: circleci/python:3.7
+
+  py38:
+    <<: *shared
+    docker:
+      - image: circleci/python:3.8
+
+  py39:
+    <<: *shared
+    docker:
+      - image: circleci/python:3.9
+        environment:
+          UPLOAD_COV: "true"
+
+workflows:
+  version: 2.1
+  main:
+    jobs:
+      - py37
+      - py38
+      - py39
