@@ -6,10 +6,10 @@ shared: &shared
     - run:
         name: Install Chromedriver latest version
         command: |
+          sudo apt-get install unzip xvfb chromium-browser
           wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-          sudo apt-get install ./google-chrome-stable_current_amd64.deb
+          dpkg -i google-chrome-stable_current_amd64.deb
           sudo apt-get install -f
-          sudo apt-get install xvfb
     - run:
         name: Install Python deps in a venv
         command: |
