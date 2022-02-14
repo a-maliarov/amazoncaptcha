@@ -15,7 +15,8 @@ shared: &shared
         name: Install Python deps in a venv
         command: |
           sudo pip install --upgrade pip
-          pip install -r ext/requirements-dev.txt
+          sudo pip install pipenv
+          pipenv install -r ext/requirements-dev.txt
     - run:
         name: Running tests
         command: |
