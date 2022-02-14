@@ -1,16 +1,16 @@
 version: 2.1
 
+orbs:
+  browser-tools: circleci/browser-tools@1.2.4
+
 shared: &shared
   steps:
     - checkout
     - run:
         name: Install Chromedriver latest version
         command: |
-          sudo apt-get install unzip xvfb
-          wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-          sudo apt-get install ./google-chrome-stable_current_amd64.deb
-          sudo apt-get update
-          sudo apt-get install ./google-chrome-stable_current_amd64.deb
+          sudo apt-get install xvfb
+    - browser-tools/install-chrome
     - run:
         name: Install Python deps in a venv
         command: |
