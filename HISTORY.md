@@ -52,3 +52,5 @@
 + **Version 0.5.4**:
   1. 200,000 captchas crash test, accuracy is 100%.
   2. Minor notes added.
++ **Version 0.5.6**:
+  1. Remove `selenium` from required dependencies.
