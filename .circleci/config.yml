@@ -20,10 +20,10 @@ shared: &shared
     - run:
         name: Running tests
         command: |
-          coverage run -m unittest tests/test_main.py
+          pipenv run "coverage run -m unittest tests/test_main.py"
     - run: |
         if [ $UPLOAD_COV ]; then
-          codecov
+          pipenv run "codecov"
         fi
 
 jobs:
