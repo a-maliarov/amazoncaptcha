@@ -94,6 +94,8 @@ solution = captcha.solve(keep_logs=True)
 
 If you have any suggestions or ideas of additional instances and methods, which you would like to see in this library, please, feel free to contact the owner via email or fork'n'pull to repository. Any contribution is highly appreciated!
 
+[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/amaliarov)
+
 ## Additional
 + If you want to see the [**History of Changes**](https://github.com/a-maliarov/amazoncaptcha/blob/master/HISTORY.md), [**Code of Conduct**](https://github.com/a-maliarov/amazoncaptcha/blob/master/.github/CODE_OF_CONDUCT.md), [**Contributing Policy**](https://github.com/a-maliarov/amazoncaptcha/blob/master/.github/CONTRIBUTING.md), or [**License**](https://github.com/a-maliarov/amazoncaptcha/blob/master/LICENSE), use these inline links to navigate based on your needs.
 + If you are facing any errors, please, report your situation via an issue.
