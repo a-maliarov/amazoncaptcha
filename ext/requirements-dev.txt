@@ -2,5 +2,5 @@ pillow ~= 9.1.0
 requests ~= 2.27.1
 coverage >= 6.3.1
 codecov >= 2.1.12
-webdriver_manager ~= 3.5.4
+webdriver_manager ~= 3.6.1
 maliarov ~= 0.2.5
