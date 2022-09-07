@@ -15,6 +15,8 @@ Attributes:
 
 """
 
+from selenium.webdriver.common.by import By
+
 from .utils import cut_the_white, merge_horizontally, find_letter_boxes
 from .exceptions import ContentTypeError
 
@@ -203,7 +205,7 @@ class AmazonCaptcha(object):
         """
 
         png = driver.get_screenshot_as_png()
-        element = driver.find_element_by_tag_name('img')
+        element = driver.find_element(By.TAG_NAME, 'img')
         image_link = element.get_attribute('src')
 
         location = element.location
