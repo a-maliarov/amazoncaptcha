@@ -25,8 +25,8 @@ Pure Python, lightweight, [Pillow](https://github.com/python-pillow/Pillow)-base
 [![Downloads](https://img.shields.io/pypi/dm/amazoncaptcha?color=success)](https://pypi.org/project/amazoncaptcha/)
 
 ## Recent News
-+ *July 21, 2022*: tested and approved compatibility with Pillow 9.2.0
-+ *January 25, 2022*: tested and approved compatibility with Python 3.10-dev
++ *January 19, 2023*: tested and approved compatibility with Pillow 9.4.0
++ *January 25, 2022*: tested and approved compatibility with Python 3.10
 + *January 25, 2022*: dropped support for Python 3.6
 
 ## Installation
@@ -50,7 +50,6 @@ solution = captcha.solve()
 [![Status](https://img.shields.io/pypi/status/amazoncaptcha)](https://pypi.org/project/amazoncaptcha/)
 [![Build Status](https://img.shields.io/circleci/build/github/a-maliarov/amazoncaptcha)](https://app.circleci.com/pipelines/github/a-maliarov/amazoncaptcha)
 [![Documentation Status](https://readthedocs.org/projects/amazoncaptcha/badge/?version=latest)](https://amazoncaptcha.readthedocs.io/en/latest/)
-[![Requirements Status](https://requires.io/github/a-maliarov/amazoncaptcha/requirements.svg?branch=master)](https://requires.io/github/a-maliarov/amazoncaptcha/requirements/?branch=master)
 [![Code Coverage](https://img.shields.io/codecov/c/gh/a-maliarov/amazoncaptcha?label=code%20coverage)](https://codecov.io/gh/a-maliarov/amazoncaptcha)
 [![CodeFactor Grade](https://img.shields.io/codefactor/grade/github/a-maliarov/amazoncaptcha/master)](https://www.codefactor.io/repository/github/a-maliarov/amazoncaptcha/overview/master)
 
