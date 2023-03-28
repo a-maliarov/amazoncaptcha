@@ -54,3 +54,5 @@
   2. Minor notes added.
 + **Version 0.5.6**:
   1. Remove `selenium` from required dependencies.
++ **Version 0.5.10**:
+  1. Add timeout to `AmazonCaptcha.fromlink` method.
