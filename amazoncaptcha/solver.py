@@ -223,7 +223,7 @@ class AmazonCaptcha(object):
         return cls(image_bytes_array, image_link, devmode)
 
     @classmethod
-    def fromlink(cls, image_link, devmode=False):
+    def fromlink(cls, image_link, devmode=False, timeout=120):
         """
         Requests the given link and stores the content of the response
         as `io.BytesIO` that is then used to create AmazonCaptcha instance.
@@ -234,6 +234,7 @@ class AmazonCaptcha(object):
             link (str): Link to Amazon's captcha image.
             devmode (bool, optional): If set to True, instead of 'Not solved',
                 unrecognised letters will be replaced with dashes.
+            timeout (int, optional): Requests timeout.
 
         Returns:
             AmazonCaptcha: Instance created based on the image link.
@@ -244,7 +245,7 @@ class AmazonCaptcha(object):
 
         """
 
-        response = requests.get(image_link)
+        response = requests.get(image_link, timeout=timeout)
 
         if response.headers['Content-Type'] not in SUPPORTED_CONTENT_TYPES:
             raise ContentTypeError(response.headers['Content-Type'])
