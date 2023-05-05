@@ -25,7 +25,7 @@ Pure Python, lightweight, [Pillow](https://github.com/python-pillow/Pillow)-base
 [![Downloads](https://img.shields.io/pypi/dm/amazoncaptcha?color=success)](https://pypi.org/project/amazoncaptcha/)
 
 ## Recent News
-+ *January 19, 2023*: tested and approved compatibility with Pillow 9.4.0
++ *May 5, 2023*: tested and approved compatibility with Pillow 9.5.0
 + *January 25, 2022*: tested and approved compatibility with Python 3.10
 + *January 25, 2022*: dropped support for Python 3.6
 
