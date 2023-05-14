@@ -26,6 +26,11 @@ import json
 import zlib
 import os
 
+try:
+    from selenium.webdriver.common.by import By
+except:
+    By = None
+
 #--------------------------------------------------------------------------------------------------------------
 
 MONOWEIGHT = 1
@@ -203,7 +208,7 @@ class AmazonCaptcha(object):
         """
 
         png = driver.get_screenshot_as_png()
-        element = driver.find_element_by_tag_name('img')
+        element = driver.find_element(By.TAG_NAME, 'img')
         image_link = element.get_attribute('src')
 
         location = element.location

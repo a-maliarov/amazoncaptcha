@@ -2,7 +2,7 @@
 
 from amazoncaptcha import AmazonCaptcha, AmazonCaptchaCollector, ContentTypeError, NotFolderError, __version__
 from webdriver_manager.chrome import ChromeDriverManager
-from maliarov import webdriver
+from selenium import webdriver
 import unittest
 import sys
 import os
