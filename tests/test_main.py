@@ -64,10 +64,10 @@ class TestAmazonCaptcha(unittest.TestCase):
         self.assertTrue('is not supported as a Content-Type' in str(context.exception))
 
     def test_fromdriver(self):
-        capabilities = webdriver.ChromeCapabilities()
-        capabilities.add_argument('--headless')
-        capabilities.add_argument('--no-sandbox')
-        driver = webdriver.ChromeDriver(ChromeDriverManager().install(), desired_capabilities = capabilities.desired)
+        options = webdriver.ChromeOptions()
+        options.add_argument('no-sandbox')
+        options.add_argument('headless')
+        driver = webdriver.Chrome(ChromeDriverManager().install(), options=options, keep_alive=False)
 
         solutions = list()
         for i in range(5):
