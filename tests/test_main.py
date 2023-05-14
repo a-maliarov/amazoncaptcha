@@ -67,7 +67,7 @@ class TestAmazonCaptcha(unittest.TestCase):
         options = webdriver.ChromeOptions()
         options.add_argument('no-sandbox')
         options.add_argument('headless')
-        driver = webdriver.Chrome(ChromeDriverManager().install(), options=options, keep_alive=False)
+        driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
 
         solutions = list()
         for i in range(5):
