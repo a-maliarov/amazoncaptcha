@@ -2,5 +2,4 @@ pillow ~= 9.5.0
 requests ~= 2.30.0
 coverage >= 6.3.1
 codecov >= 2.1.12
-webdriver_manager ~= 3.8.6
 selenium ~= 4.9.1
