@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
 
 from amazoncaptcha import AmazonCaptcha, AmazonCaptchaCollector, ContentTypeError, NotFolderError, __version__
-from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium import webdriver
 import unittest
-import sys
 import os
 
 #--------------------------------------------------------------------------------------------------------------
@@ -12,6 +11,7 @@ import os
 here = os.path.abspath(os.path.dirname(__file__))
 captchas_folder = os.path.join(here, 'captchas')
 test_folder = os.path.join(here, 'test_folder')
+
 
 class TestAmazonCaptcha(unittest.TestCase):
 
@@ -67,7 +67,7 @@ class TestAmazonCaptcha(unittest.TestCase):
         options = webdriver.ChromeOptions()
         options.add_argument('no-sandbox')
         options.add_argument('headless')
-        driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
+        driver = webdriver.Chrome(service=ChromeService(), options=options)
 
         solutions = list()
         for i in range(5):
