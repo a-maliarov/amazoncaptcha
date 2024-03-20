@@ -1,46 +1,48 @@
 # -*- coding: utf-8 -*-
 
-from amazoncaptcha import AmazonCaptcha, AmazonCaptchaCollector, ContentTypeError, NotFolderError, __version__
+from amazoncaptcha import AmazonCaptcha, AmazonCaptchaCollector, ContentTypeError, NotFolderError
 from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium import webdriver
+from tempfile import TemporaryDirectory
 import unittest
 import os
 
-#--------------------------------------------------------------------------------------------------------------
+# --------------------------------------------------------------------------------------------------------------
 
 here = os.path.abspath(os.path.dirname(__file__))
 captchas_folder = os.path.join(here, 'captchas')
-test_folder = os.path.join(here, 'test_folder')
+test_folder = TemporaryDirectory().name
 
+print(f'using directory {test_folder} as test folder\n')
 
 class TestAmazonCaptcha(unittest.TestCase):
 
     def test_not_corrupted_image(self):
-        solution = AmazonCaptcha(os.path.join(captchas_folder, 'notcorrupted.jpg')).solve()
+        solution = AmazonCaptcha(os.path.join(captchas_folder, 'notcorrupted_1.jpg')).solve()
         self.assertEqual(solution, 'KRJNBY')
 
     def test_image_link_property_warning(self):
-        captcha = AmazonCaptcha(os.path.join(captchas_folder, 'notcorrupted.jpg'))
+        captcha = AmazonCaptcha(os.path.join(captchas_folder, 'notcorrupted_1.jpg'))
         self.assertEqual(captcha.image_link, None)
 
     def test_corrupted_image_with_last_letter_ending_at_the_beginning(self):
-        solution = AmazonCaptcha(os.path.join(captchas_folder, 'corrupted.png')).solve()
+        solution = AmazonCaptcha(os.path.join(captchas_folder, 'corrupted_1.png')).solve()
         self.assertEqual(solution, 'UGXGMM')
 
     def test_corrupted_image_with_letters_overlapping(self):
-        solution = AmazonCaptcha(os.path.join(captchas_folder, 'corrupted_1.png')).solve()
+        solution = AmazonCaptcha(os.path.join(captchas_folder, 'corrupted_2.png')).solve()
         self.assertEqual(solution, 'BPXHGH')
 
     def test_corrupted_image_with_both_overlap_and_separated_letter(self):
-        solution = AmazonCaptcha(os.path.join(captchas_folder, 'corrupted_2.png')).solve()
+        solution = AmazonCaptcha(os.path.join(captchas_folder, 'corrupted_3.png')).solve()
         self.assertEqual(solution, 'KMGMXE')
 
     def test_image_with_6_unrecognizable_letters(self):
-        solution = AmazonCaptcha(os.path.join(captchas_folder, 'notsolved.jpg')).solve()
+        solution = AmazonCaptcha(os.path.join(captchas_folder, 'notsolved_1.jpg')).solve()
         self.assertEqual(solution, 'Not solved')
 
     def test_totally_broken_image(self):
-        solution = AmazonCaptcha(os.path.join(captchas_folder, 'notsolved_1.jpg')).solve()
+        solution = AmazonCaptcha(os.path.join(captchas_folder, 'notsolved_2.jpg')).solve()
         self.assertEqual(solution, 'Not solved')
 
     def test_fromlink_with_predefined_undolvable_captcha(self):
@@ -49,11 +51,14 @@ class TestAmazonCaptcha(unittest.TestCase):
         solution = captcha.solve()
         self.assertEqual(solution, 'Not solved')
 
-    def test_fromlink_with_predefined_undolvable_captcha_and_keep_logs(self):
+    def test_fromlink_with_predefined_unsolvable_captcha_and_keep_logs(self):
+        unique_test_folder = os.path.join(test_folder, 'test_fromlink_with_predefined_unsolvable_captcha_and_keep_logs')
+        logs_path = os.path.join(unique_test_folder, 'not-solved-captcha.log')
+
         link = 'https://i.ibb.co/Cn2J1mS/notsolved.jpg'
         captcha = AmazonCaptcha.fromlink(link)
-        solution = captcha.solve(keep_logs=True)
-        self.assertIn('not-solved-captcha.log', os.listdir())
+        captcha.solve(keep_logs=True, logs_path=logs_path)
+        self.assertIn('not-solved-captcha.log', os.listdir(unique_test_folder))
 
     def test_content_type_error(self):
         link = 'https://ibb.co/kh13H5P'
@@ -81,36 +86,44 @@ class TestAmazonCaptcha(unittest.TestCase):
         self.assertIn(6, solutions)
 
     def test_collector(self):
-        collector = AmazonCaptchaCollector(output_folder_path = test_folder)
-        collector.get_captcha_image()
-        collector._distribute_collecting(range(4))
+        target = 4
+        unique_test_folder = os.path.join(test_folder, 'test_collector')
+        collector = AmazonCaptchaCollector(output_folder_path=unique_test_folder)
+        collector._distribute_collecting(range(target))
 
-        self.assertGreaterEqual(len(os.listdir(test_folder)), 4)
+        self.assertEqual(len(os.listdir(unique_test_folder)), target)
 
     def test_collector_in_multiprocessing(self):
-        collector = AmazonCaptchaCollector(output_folder_path = test_folder)
-        collector.start(target = 13, processes = 2)
+        target = 16
+        processes = 2
+        unique_test_folder = os.path.join(test_folder, 'test_collector_in_multiprocessing')
+        collector = AmazonCaptchaCollector(output_folder_path=unique_test_folder)
+        collector.start(target=target, processes=processes)
 
-        self.assertGreaterEqual(len(os.listdir(test_folder)), 16)
+        self.assertEqual(len(os.listdir(unique_test_folder)), target)
 
     def test_not_folder_error(self):
-
         with self.assertRaises(NotFolderError) as context:
-            collector = AmazonCaptchaCollector(output_folder_path = os.path.join(captchas_folder, 'notcorrupted.jpg'))
+            AmazonCaptchaCollector(output_folder_path=os.path.join(captchas_folder, 'notcorrupted_1.jpg'))
 
         self.assertTrue('is not a folder. Cannot store images there.' in str(context.exception))
 
     def test_accuracy_test(self):
-        collector = AmazonCaptchaCollector(output_folder_path = test_folder, accuracy_test=True)
-        collector.get_captcha_image()
-        collector._distribute_collecting(range(4))
+        target = 8
+        processes = 1
+        unique_test_folder = os.path.join(test_folder, 'test_accuracy_test')
+        collector = AmazonCaptchaCollector(output_folder_path=unique_test_folder, accuracy_test=True)
+        collector.start(target=target, processes=processes)
 
-        self.assertIn(f'collector-logs-{__version__.__version__.replace(".", "")}.log', os.listdir(test_folder))
+        self.assertIn('test-results.log', os.listdir(unique_test_folder))
 
     def test_accuracy_test_in_multiprocessing(self):
-        collector = AmazonCaptchaCollector(output_folder_path = test_folder, accuracy_test=True)
-        collector.start(target = 12, processes = 2)
+        target = 16
+        processes = 2
+        unique_test_folder = os.path.join(test_folder, 'test_accuracy_test_in_multiprocessing')
+        collector = AmazonCaptchaCollector(output_folder_path=unique_test_folder, accuracy_test=True)
+        collector.start(target=target, processes=processes)
 
-        self.assertIn('test-results.log', os.listdir(test_folder))
+        self.assertIn('test-results.log', os.listdir(unique_test_folder))
 
-#--------------------------------------------------------------------------------------------------------------
+# --------------------------------------------------------------------------------------------------------------

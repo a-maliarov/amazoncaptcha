@@ -182,8 +182,11 @@ class AmazonCaptcha(object):
 
         solution = self._translate()
 
-        if solution == 'Not solved' and keep_logs and self.image_link:
+        output_folder = os.path.dirname(logs_path)
+        if len(output_folder) > 0 and not os.path.exists(output_folder):
+            os.makedirs(output_folder)
 
+        if solution == 'Not solved' and keep_logs and self.image_link:
             with open(logs_path, 'a', encoding='utf-8') as f:
                 f.write(self.image_link + '\n')
 

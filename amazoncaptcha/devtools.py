@@ -16,7 +16,7 @@ import multiprocessing
 import requests
 import os
 
-#--------------------------------------------------------------------------------------------------------------
+# --------------------------------------------------------------------------------------------------------------
 
 class AmazonCaptchaCollector(object):
 
@@ -38,7 +38,7 @@ class AmazonCaptchaCollector(object):
         self.accuracy_test = accuracy_test
 
         if not os.path.exists(self.output_folder):
-            os.mkdir(self.output_folder)
+            os.makedirs(self.output_folder)
 
         elif not os.path.isdir(self.output_folder):
             raise NotFolderError(self.output_folder)
@@ -121,18 +121,23 @@ class AmazonCaptchaCollector(object):
             processes (int): Number of simultaneous processes.
 
         """
+        assert (processes > 0)
+        assert (target % processes == 0)
 
         goal = list(range(target))
         milestones = [goal[x: x + target // processes] for x in range(0, len(goal), target // processes)]
 
-        jobs = list()
-        for j in range(processes):
-            p = multiprocessing.Process(target=self._distribute_collecting, args=(milestones[j], ))
-            jobs.append(p)
-            p.start()
+        if processes > 1:
+            jobs = list()
+            for j in range(processes):
+                p = multiprocessing.Process(target=self._distribute_collecting, args=(milestones[j], ))
+                jobs.append(p)
+                p.start()
 
-        for proc in jobs:
-            proc.join()
+            for proc in jobs:
+                proc.join()
+        else:
+            self._distribute_collecting(milestones[0])
 
         if self.accuracy_test:
             with open(self.collector_logs, 'r', encoding='utf-8') as f:
@@ -147,4 +152,4 @@ class AmazonCaptchaCollector(object):
                 print(result)
                 f.write(result)
 
-#--------------------------------------------------------------------------------------------------------------
+# --------------------------------------------------------------------------------------------------------------
