@@ -4,11 +4,11 @@ AmazonCaptcha
 AmazonCaptcha is an image processing library oriented on `a specific type of images taken from Amazon <https://www.amazon.com/errors/validateCaptcha>`_, which main objective is to solve the captcha in terms of a research sake without using any add-ons.
 
 .. image:: https://img.shields.io/badge/success%20rate-99.9%25-success
-  :target: https://github.com/a-maliarov/amazoncaptcha/blob/master/ext/accuracy.log
-  :alt: Accuracy
+  :target: https://github.com/a-maliarov/amazoncaptcha/blob/master/ext/solve_rate.log
+  :alt: Solve rate
 
 .. image:: https://img.shields.io/badge/response%20time-0.2s-success
-  :target: https://github.com/a-maliarov/amazoncaptcha/blob/master/ext/accuracy.log
+  :target: https://github.com/a-maliarov/amazoncaptcha/blob/master/ext/solve_rate.log
   :alt: Timing
 
 .. image:: https://img.shields.io/badge/wheel%20size-0.9%20MB-informational

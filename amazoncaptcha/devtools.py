@@ -20,7 +20,7 @@ import os
 
 class AmazonCaptchaCollector(object):
 
-    def __init__(self, output_folder_path, keep_logs=True, accuracy_test=False):
+    def __init__(self, output_folder_path, keep_logs=True, solve_rate_test=False):
         """
         Initializes the AmazonCaptchaCollector instance.
 
@@ -28,14 +28,14 @@ class AmazonCaptchaCollector(object):
             output_folder (str): Folder where images or logs should be stored.
             keep_logs (bool, optional): If set to True, unsolved captcha links
                 will be stored separately.
-            accuracy_test (bool, optional): If set to True, AmazonCaptchaCollector
+            solve_rate_test (bool, optional): If set to True, AmazonCaptchaCollector
                 will not download images but just solve them and log the results.
 
         """
 
         self.output_folder = output_folder_path
         self.keep_logs = keep_logs
-        self.accuracy_test = accuracy_test
+        self.solve_rate_test = solve_rate_test
 
         if not os.path.exists(self.output_folder):
             os.makedirs(self.output_folder)
@@ -79,7 +79,7 @@ class AmazonCaptchaCollector(object):
         Requests the page with Amazon's captcha, gets random captcha.
         Creates AmazonCaptcha instance, stores an original image before solving.
 
-        If it is not an accuracy test, the image will be stored in a specified
+        If it is not a solve rate test, the image will be stored in a specified
         folder with the solution within its name. Otherwise, only the logs
         will be stored, mentioning the captcha link being processed and the result.
 
@@ -96,7 +96,7 @@ class AmazonCaptchaCollector(object):
         solution = captcha.solve(keep_logs=self.keep_logs, logs_path=self.not_solved_logs)
         log_message = f'{captcha.image_link}::{solution}'
 
-        if solution != 'Not solved' and not self.accuracy_test:
+        if solution != 'Not solved' and not self.solve_rate_test:
             print(log_message)
             captcha_name = 'dl_' + self._extract_captcha_id(captcha.image_link) + '_' + solution + '.png'
             original_image.save(os.path.join(self.output_folder, captcha_name))
@@ -139,7 +139,7 @@ class AmazonCaptchaCollector(object):
         else:
             self._distribute_collecting(milestones[0])
 
-        if self.accuracy_test:
+        if self.solve_rate_test:
             with open(self.collector_logs, 'r', encoding='utf-8') as f:
                 output = f.readlines()
 

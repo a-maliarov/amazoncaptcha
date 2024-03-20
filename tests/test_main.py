@@ -108,20 +108,20 @@ class TestAmazonCaptcha(unittest.TestCase):
 
         self.assertTrue('is not a folder. Cannot store images there.' in str(context.exception))
 
-    def test_accuracy_test(self):
+    def test_solve_rate_test(self):
         target = 8
         processes = 1
-        unique_test_folder = os.path.join(test_folder, 'test_accuracy_test')
-        collector = AmazonCaptchaCollector(output_folder_path=unique_test_folder, accuracy_test=True)
+        unique_test_folder = os.path.join(test_folder, 'test_solve_rate_test')
+        collector = AmazonCaptchaCollector(output_folder_path=unique_test_folder, solve_rate_test=True)
         collector.start(target=target, processes=processes)
 
         self.assertIn('test-results.log', os.listdir(unique_test_folder))
 
-    def test_accuracy_test_in_multiprocessing(self):
+    def test_solve_rate_test_in_multiprocessing(self):
         target = 16
         processes = 2
-        unique_test_folder = os.path.join(test_folder, 'test_accuracy_test_in_multiprocessing')
-        collector = AmazonCaptchaCollector(output_folder_path=unique_test_folder, accuracy_test=True)
+        unique_test_folder = os.path.join(test_folder, 'test_solve_rate_test_in_multiprocessing')
+        collector = AmazonCaptchaCollector(output_folder_path=unique_test_folder, solve_rate_test=True)
         collector.start(target=target, processes=processes)
 
         self.assertIn('test-results.log', os.listdir(unique_test_folder))
