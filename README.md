@@ -10,14 +10,14 @@
  \▓▓   \▓▓\▓▓  \▓▓  \▓▓\▓▓▓▓▓▓▓▓\▓▓   \▓▓ \▓▓▓▓▓▓  \▓▓▓▓▓▓▓ ▓▓▓▓▓▓▓    \▓▓▓▓  \▓▓▓▓▓▓▓\▓▓   \▓▓ \▓▓▓▓▓▓▓
                                                           | ▓▓                                          
   >>>solution                                             | ▓▓                            Response 0.24s
-  "AmznCaptcha"                                            \▓▓                            Accuracy 99.9%
+  "AmznCaptcha"                                            \▓▓                            Accuracy 99.5%
 ```
 The motivation behind the creation of this library is taking its start from the genuinely simple idea: "**I don't want to use pytesseract or some other non-amazon-specific OCR services, nor do I want to install some executables to just solve a captcha. I desire to get a solution with 2 lines of code without any heavy add-ons, using a pure Python.**"
 
 ---
 Pure Python, lightweight, [Pillow](https://github.com/python-pillow/Pillow)-based solver for [Amazon's text captcha](https://www.amazon.com/errors/validateCaptcha).
 
-[![Accuracy](https://img.shields.io/badge/success%20rate-99.9%25-success)](https://github.com/a-maliarov/amazoncaptcha/blob/master/ext/accuracy.log)
+[![Solve rate](https://img.shields.io/badge/success%20rate-99.9%25-success)](https://github.com/a-maliarov/amazoncaptcha/blob/master/ext/solve_rate.log)
 ![Timing](https://img.shields.io/badge/response%20time-0.2s-success)
 [![Size](https://img.shields.io/badge/wheel%20size-0.9%20MB-informational)](https://pypi.org/project/amazoncaptcha/)
 [![Version](https://img.shields.io/pypi/v/amazoncaptcha?color=informational)](https://pypi.org/project/amazoncaptcha/)

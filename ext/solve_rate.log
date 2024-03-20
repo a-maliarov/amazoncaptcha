@@ -1,0 +1,20 @@
+::Definition:: 'Test means - running the script through a continuous unordered
+                stream of previously unsolved captchas with a specific version of
+                the program (Ver), solving a specific number of captchas (Cap)
+                and calculating the percentage of solved captcha (Per) based
+                on bare, un-edited results immediately after the end of process.'
+
+::Test::Ver0.0.5::Cap1000::Per36.7::
+::Test::Ver0.0.6::Cap1000::Per67.9::
+::Test::Ver0.0.7::Cap2000::Per77.4::
+::Test::Ver0.0.8::Cap2000::Per87.9::
+::Test::Ver0.0.9::Cap3000::Per88.3::
+::Test::Ver0.0.10::Cap2000::Per93.8::
+
+::Test::Ver0.0.12::Cap12157::Per94.7::
+::Test::Ver0.1.0::Cap104463::Per98.5::
+::Test::Ver0.2.0::Cap125851::Per99.1::
+::Test::Ver0.2.2::Cap140572::Per99.998::
+
+::Test::Ver0.4.7::Cap144050::Per99.999::
+::Test::Ver0.5.3::Cap185691::Per100.0::

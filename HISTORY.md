@@ -1,6 +1,6 @@
 + **Version 0.0.10**:
   1. Reached 10000 training samples.
-  2. Reached 90%+ accuracy.
+  2. Reached 90%+ solve rate.
 + **Version 0.0.11**:
   1. Fixed error with captcha images that were taken from BytesIO.
 + **Version 0.0.12**:
@@ -9,18 +9,18 @@
 + **Version 0.0.13**:
   1. Added and tested 'from_webdriver' classmethod.
 + **Version 0.1.0**:
-  1. 100,000 captchas crash test, accuracy is 98.5%.
+  1. 100,000 captchas crash test, solve rate is 98.5%.
 + **Version 0.1.1 - 0.1.5**:
   1. Code adjustments and improvements.
   2. Added tests.
 + **Version 0.2.0**:
   1. Second crash test through 120k+ captchas.
-  2. Accuracy increased to 99.1%
+  2. Solve rate increased to 99.1%
   3. Code coverage is 100%
 + **Version 0.3.0**:
   1. Program can now solve images where letters are intercepted.
   2. Third crash test through 140k+ captchas.
-  3. Accuracy increased to 99.998%
+  3. Solve rate increased to 99.998%
 + **Version 0.3.8**:
   1. Added new instance - AmazonCaptchaCollector.
 + **Version 0.4.0**:
@@ -50,9 +50,11 @@
   4. Drop Python 3.6 support
   5. Remove `from_webdriver` method
 + **Version 0.5.4**:
-  1. 200,000 captchas crash test, accuracy is 100%.
+  1. 200,000 captchas crash test, solve rate is 100%.
   2. Minor notes added.
 + **Version 0.5.6**:
   1. Remove `selenium` from required dependencies.
 + **Version 0.5.10**:
   1. Add timeout to `AmazonCaptcha.fromlink` method.
++ **Version 0.5.11**:
+  1. Accuracy is 99.5%

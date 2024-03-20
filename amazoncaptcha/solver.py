@@ -18,7 +18,7 @@ Attributes:
 from .utils import cut_the_white, merge_horizontally, find_letter_boxes
 from .exceptions import ContentTypeError
 
-from PIL import Image, ImageChops
+from PIL import Image
 from io import BytesIO
 import warnings
 import requests
@@ -139,7 +139,7 @@ class AmazonCaptcha(object):
         Returns:
             str: a solution if there is one OR
                 'Not solved' if devmode set to False OR
-                a solution where unrecognised letters will be replaces with dashes
+                a solution where unrecognised letters will be replaced with dashes
 
         """
 
@@ -182,8 +182,11 @@ class AmazonCaptcha(object):
 
         solution = self._translate()
 
-        if solution == 'Not solved' and keep_logs and self.image_link:
+        output_folder = os.path.dirname(logs_path)
+        if len(output_folder) > 0 and not os.path.exists(output_folder):
+            os.makedirs(output_folder)
 
+        if solution == 'Not solved' and keep_logs and self.image_link:
             with open(logs_path, 'a', encoding='utf-8') as f:
                 f.write(self.image_link + '\n')
 
@@ -207,23 +210,9 @@ class AmazonCaptcha(object):
 
         """
 
-        png = driver.get_screenshot_as_png()
         element = driver.find_element(By.TAG_NAME, 'img')
         image_link = element.get_attribute('src')
-
-        location = element.location
-        size = element.size
-        left = location['x']
-        top = location['y']
-        right = location['x'] + size['width']
-        bottom = location['y'] + size['height']
-
-        img = Image.open(BytesIO(png))
-        img = img.crop((left, top, right, bottom))
-
-        bytes_array = BytesIO()
-        img.save(bytes_array, format='PNG')
-        image_bytes_array = BytesIO(bytes_array.getvalue())
+        image_bytes_array = BytesIO(element.screenshot_as_png)
 
         return cls(image_bytes_array, image_link, devmode)
 

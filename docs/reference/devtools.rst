@@ -23,8 +23,8 @@ Collect captcha.
     collector = AmazonCaptchaCollector(output_folder_path)
     collector.start(target, simultaneous_processes)
 
-Proceed accuracy tests.
-^^^^^^^^^^^^^^^^^^^^^^^
+Proceed solve rate tests.
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -34,7 +34,7 @@ Proceed accuracy tests.
     simultaneous_processes = 4
     target = 200
 
-    collector = AmazonCaptchaCollector(output_folder_path, accuracy_test=True)
+    collector = AmazonCaptchaCollector(output_folder_path, solve_rate_test=True)
     collector.start(target, simultaneous_processes)
 
 The AmazonCaptchaCollector Class
