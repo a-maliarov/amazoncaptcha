@@ -1,48 +1,52 @@
 # -*- coding: utf-8 -*-
 
 from amazoncaptcha import AmazonCaptcha, AmazonCaptchaCollector, ContentTypeError, NotFolderError
+from amazoncaptcha.__version__ import __version__
 from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium import webdriver
 from tempfile import TemporaryDirectory
 import unittest
 import os
 
+
 # --------------------------------------------------------------------------------------------------------------
 
 here = os.path.abspath(os.path.dirname(__file__))
-captchas_folder = os.path.join(here, 'captchas')
+base_examples_folder = os.path.join(here, 'examples/base')
+accuracy_examples_folder = os.path.join(here, 'examples/accuracy')
 test_folder = TemporaryDirectory().name
 
-print(f'using directory {test_folder} as test folder\n')
+print(f'using temp directory {test_folder} as test folder\n')
+
 
 class TestAmazonCaptcha(unittest.TestCase):
 
     def test_not_corrupted_image(self):
-        solution = AmazonCaptcha(os.path.join(captchas_folder, 'notcorrupted_1.jpg')).solve()
+        solution = AmazonCaptcha(os.path.join(base_examples_folder, 'notcorrupted_1.jpg')).solve()
         self.assertEqual(solution, 'KRJNBY')
 
     def test_image_link_property_warning(self):
-        captcha = AmazonCaptcha(os.path.join(captchas_folder, 'notcorrupted_1.jpg'))
+        captcha = AmazonCaptcha(os.path.join(base_examples_folder, 'notcorrupted_1.jpg'))
         self.assertEqual(captcha.image_link, None)
 
     def test_corrupted_image_with_last_letter_ending_at_the_beginning(self):
-        solution = AmazonCaptcha(os.path.join(captchas_folder, 'corrupted_1.png')).solve()
+        solution = AmazonCaptcha(os.path.join(base_examples_folder, 'corrupted_1.png')).solve()
         self.assertEqual(solution, 'UGXGMM')
 
     def test_corrupted_image_with_letters_overlapping(self):
-        solution = AmazonCaptcha(os.path.join(captchas_folder, 'corrupted_2.png')).solve()
+        solution = AmazonCaptcha(os.path.join(base_examples_folder, 'corrupted_2.png')).solve()
         self.assertEqual(solution, 'BPXHGH')
 
     def test_corrupted_image_with_both_overlap_and_separated_letter(self):
-        solution = AmazonCaptcha(os.path.join(captchas_folder, 'corrupted_3.png')).solve()
+        solution = AmazonCaptcha(os.path.join(base_examples_folder, 'corrupted_3.png')).solve()
         self.assertEqual(solution, 'KMGMXE')
 
     def test_image_with_6_unrecognizable_letters(self):
-        solution = AmazonCaptcha(os.path.join(captchas_folder, 'notsolved_1.jpg')).solve()
+        solution = AmazonCaptcha(os.path.join(base_examples_folder, 'notsolved_1.jpg')).solve()
         self.assertEqual(solution, 'Not solved')
 
     def test_totally_broken_image(self):
-        solution = AmazonCaptcha(os.path.join(captchas_folder, 'notsolved_2.jpg')).solve()
+        solution = AmazonCaptcha(os.path.join(base_examples_folder, 'notsolved_2.jpg')).solve()
         self.assertEqual(solution, 'Not solved')
 
     def test_fromlink_with_predefined_undolvable_captcha(self):
@@ -104,7 +108,7 @@ class TestAmazonCaptcha(unittest.TestCase):
 
     def test_not_folder_error(self):
         with self.assertRaises(NotFolderError) as context:
-            AmazonCaptchaCollector(output_folder_path=os.path.join(captchas_folder, 'notcorrupted_1.jpg'))
+            AmazonCaptchaCollector(output_folder_path=os.path.join(base_examples_folder, 'notcorrupted_1.jpg'))
 
         self.assertTrue('is not a folder. Cannot store images there.' in str(context.exception))
 
@@ -125,5 +129,34 @@ class TestAmazonCaptcha(unittest.TestCase):
         collector.start(target=target, processes=processes)
 
         self.assertIn('test-results.log', os.listdir(unique_test_folder))
+
+    def test_accuracy_rate_test(self):
+        target = None
+        examples_filenames = os.listdir(accuracy_examples_folder)
+        if target is None:
+            target = len(examples_filenames)
+
+        example_index_padding = len(str(target)) + 2
+        examples_solved_correctly = 0
+        examples_count = 0
+        for idx, example_filename in enumerate(examples_filenames):
+            examples_count += 1
+            expected_solution = os.path.splitext(example_filename)[0]
+            example_full_path = os.path.join(accuracy_examples_folder, example_filename)
+            solution = AmazonCaptcha(example_full_path).solve()
+            is_correct = solution != 'Not solved' and solution == expected_solution
+            example_index_string = f'{idx + 1}.'.ljust(example_index_padding, ' ')
+            log_message = f'{example_index_string}{example_full_path}::{expected_solution}::{solution}::' + ('V:' if is_correct else 'X:')
+            print(log_message)
+
+            if is_correct:
+                examples_solved_correctly += 1
+
+            if idx > target:
+                break
+
+        success_percentage = round((examples_solved_correctly / examples_count) * 100, 5)
+        result = f'::Test::Ver{__version__}::Cap{examples_count}::Per{success_percentage}::'
+        print(result)
 
 # --------------------------------------------------------------------------------------------------------------

@@ -56,3 +56,5 @@
   1. Remove `selenium` from required dependencies.
 + **Version 0.5.10**:
   1. Add timeout to `AmazonCaptcha.fromlink` method.
++ **Version 0.5.11**:
+  1. accuracy is 99.5%
