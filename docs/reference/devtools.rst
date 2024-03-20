@@ -24,7 +24,7 @@ Collect captcha.
     collector.start(target, simultaneous_processes)
 
 Proceed solve rate tests.
-^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
