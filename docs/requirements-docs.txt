@@ -1,1 +1,2 @@
--e .
+Sphinx
+sphinx-rtd-theme

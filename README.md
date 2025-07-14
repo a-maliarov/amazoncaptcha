@@ -21,10 +21,11 @@ Pure Python, lightweight, [Pillow](https://github.com/python-pillow/Pillow)-base
 ![Timing](https://img.shields.io/badge/response%20time-0.2s-success)
 [![Size](https://img.shields.io/badge/wheel%20size-0.9%20MB-informational)](https://pypi.org/project/amazoncaptcha/)
 [![Version](https://img.shields.io/pypi/v/amazoncaptcha?color=informational)](https://pypi.org/project/amazoncaptcha/)
-[![Python version](https://img.shields.io/badge/python-3.7%2B-informational)](https://pypi.org/project/amazoncaptcha/)
+[![Python version](https://img.shields.io/badge/python-3.9%2B-informational)](https://pypi.org/project/amazoncaptcha/)
 [![Downloads](https://img.shields.io/pypi/dm/amazoncaptcha?color=success)](https://pypi.org/project/amazoncaptcha/)
 
 ## Recent News
++ *July 14, 2025*: dropped support for Python 3.7 and 3.8, added support through Python 3.13 and Pillow 11
 + *May 5, 2023*: tested and approved compatibility with Pillow 9.5.0
 + *January 25, 2022*: tested and approved compatibility with Python 3.10
 + *January 25, 2022*: dropped support for Python 3.6

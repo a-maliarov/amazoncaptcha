@@ -24,18 +24,7 @@ shared: &shared
         if [ $UPLOAD_COV ]; then
           codecov
         fi
-
 jobs:
-  py37:
-    <<: *shared
-    docker:
-      - image: circleci/python:3.7
-
-  py38:
-    <<: *shared
-    docker:
-      - image: circleci/python:3.8
-
   py39:
     <<: *shared
     docker:
@@ -45,6 +34,11 @@ jobs:
     <<: *shared
     docker:
       - image: circleci/python:3.10
+
+  py313:
+    <<: *shared
+    docker:
+      - image: circleci/python:3.13
         environment:
           UPLOAD_COV: "true"
 
@@ -52,7 +46,6 @@ workflows:
   version: 2.1
   main:
     jobs:
-      - py37
-      - py38
       - py39
       - py310
+      - py313

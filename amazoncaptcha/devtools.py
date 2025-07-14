@@ -6,6 +6,7 @@ amazoncaptcha.devtools
 
 This module contains the set of amazoncaptcha's devtools.
 """
+from bs4 import BeautifulSoup
 
 from .solver import AmazonCaptcha
 from .exceptions import NotFolderError
@@ -51,14 +52,14 @@ class AmazonCaptchaCollector(object):
         """Extracts a captcha link from an html page.
 
         Args:
-            captcha_page (str): A page's html in string format.
+            captcha_page (Response): A page's html in string format.
 
         Returns:
             str: Captcha link.
 
         """
 
-        return captcha_page.text.split('<img src="')[1].split('">')[0]
+        return BeautifulSoup(captcha_page.text).select("img")[0]["src"]
 
     def _extract_captcha_id(self, captcha_link):
         """
